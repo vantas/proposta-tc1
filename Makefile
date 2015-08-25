@@ -16,7 +16,7 @@
 TARGET=proposta-tc1
 PDFDIR=pdf
 
-RM=rm -f
+RM=rm -fr
 #RM=rm -i # para evitar remoções indesejadas de arquivos.
 
 # Modernamente, é muito mais eficiente utilizar 'pdflatex' pois
@@ -62,6 +62,6 @@ endif
 # diretório atual. Retire a entrada '*.pdf' abaixo se não desejar
 # este comportamento.
 clean:
-	$(RM) *.aux *.log *.bbl *.blg *.out *.toc *.loa *.lob *.lov *.lof *.los *.lot *.dvi *.ps *.pdf
+	$(RM) *.aux *.log *.bbl *.blg *.out *.toc *.loa *.lob *.lov *.lof *.los *.lot *.dvi *.ps *.pdf pdf/
 # A sintaxe abaixo aparentemente só funciona no bash:
 #	$(RM) *.{aux,log,bbl,blg,out,toc,loa,lob,lov,lof,los,lot,dvi,ps,pdf}
