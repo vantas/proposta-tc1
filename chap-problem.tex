@@ -1,48 +1,79 @@
 \chapter{\label{chap:problem}Descrição do Problema}
 
+\section{Contextualização}
+
 A maior parte dos prédios possui instalações de grupos constituídos por 2 a 8 elevadores. Humanos interagem com este sistema.
 
-...
+O que fazer aqui? Um descritivo de como seres humanos usam elevadores? Ou quem sabe montar um diagrama (fluxograma)?
+
+\section{Tipos de Chamadas}
 
 Existem dois tipos de chamadas:
 
 \begin{description}
-\item pickup calls: passageiros estão fora dos elevadores e apertam o botão SUBIR e/ou DESCER do andar em que se encontram
-\item cabin calls: passageiros estão dentro de elevadores e apertam o botão correspondente ao andar que desejam ir
+\item[pickup calls] passageiros estão fora dos elevadores e pressionam o botão (subir ou descer) do andar em que se encontram
+\item[cabin calls] passageiros estão dentro do elevador e pressionam o botão correspondente ao andar para o qual desejam ir
 \end{description}
 
-Métricas:
+\section{Métricas}
 
- - HC5\%: especifica a porcentagem da população total do prédio que um grupo de elevadores é capaz de transportar em um intervalo de 5 minutos. Pode ser medido de duas formas:
+  A indústria de elevadores possui duas principais métricas: o HC5\% e o Tempo de Viagem.
 
-    - Empiricamente: em uma simulação
-    - Computados utilizando agreed-on analytic methods
+\subsection{HC5\%}
 
-  Um bom HC5\% é de no mínimo 14\% da população total transportada em 5 minutos. Ou seja, eu um prédio com 600 pessoas (FACIN), representaria o transporte de no mínimo 84 pessoas em 5 minutos.
+ O HC5\% especifica a porcentagem da população total do prédio que um grupo de elevadores é capaz de transportar em um intervalo de 5 minutos.
 
-  - Tempos de viagem, sendo:
+ Um HC5\% aceitável é de no mínimo 14\% (\cite{KOEHLEROTTIGER02}). Por exemplo, em um prédio cuja população é de 600 pessoas, um HC5\% aceitável representaria o transporte de no mínimo 84 pessoas em 5 minutos.
 
-    tempos médio e máximo de espera
-    tempos médio e máximo de jornada/viagem
+\subsection{Tempo de Viagem}
 
-    Esta métrica define diretamente a qualidade do serviço, já que está ligada diretamente à percepção que os passageiros. Quanto menores, melhor.
-    O passageiro quer chegar no seu destino no menor tempo posssível sempre, sendo que o tempo de sua viagem compreende espera + jornada.
+  O Tempo de Viagem total é composto pela soma de duas parcelas:
 
-    Tempos curtos de jornada relacionam-se diretamente com um alto HC5\%, porém os passageiros (seres humanos) dão muito mais importância à um tempo baixo de espera do que um tempo baixo de jornada.
-    Ainda assim, embora não seja uma grande melhoria reduzir de 32 para 28 segundos de espera, é psicologicamente importante evitar esperas longas como 60 segundos ou mais.
+  \begin{itemize}
+    \item Tempo de Espera
+    \item Tempo de Jornada
+  \end{itemize}
 
-Questões que complicam:
+  O Tempo de Viagem define a qualidade do serviço, já que está ligada diretamente à percepção que os passageiros possuem do sistema. É correto afirmar que o passageiro quer chegar no seu destino o mais rápido possível - ou seja, com o menor Tempo de Viagem possível.
 
-- Quantas pessoas estão esperando
+  Tempos de Jornada mais curtos relacionam-se com um alto HC5\%, porém passageiros (seres humanos) dão mais importância a um baixo tempo de espera do que a um baixo tempo de jornada (\cite{KOEHLEROTTIGER02}).
 
-O que torna uma tecnologia interessante para fabricantes de elevadores?
+  Ainda assim, embora não seja uma grande melhoria reduzir de 32 para 28 segundos de espera, é psicologicamente importante evitar esperas longas, i. e. 60 segundos ou mais.
 
-Segundo \cite{KOEHLEROTTIGER02}, qualquer tecnologia que souber endereçar as seguintes questões será de interesse para os fabricantes de elevadores:
+\section{Questões que complicam o problema}
 
-1. Qual é a função objetivo de um algoritmo de despache em grupo?
-2. Como um sistema de controle captura informações adicionais acerca das necessidades dos passageiros?
-3. Como o desempenho do controlador pode ser melhorada?
-4. Como as interfaces com os passageiros podem evoluir além de simples botões?
+\begin{itemize}
+\item Quantas pessoas estão esperando
+\item Pessoas segurando a porta para alguém que está vindo (é gentil com quem está vindo, porém egoísta com os outros que esperam em outros andares)
+\end{itemize}
+
+\section{Padrões de Comportamento}
+
+\begin{description}
+\item[up peak] Passengers enter at the lobby floor and request upward transportation.
+\item[down peak] Passengers request downward transportation from all floors to the lobby.
+\item[interfloor] Passengers request upward or downward transportation between floors but not to or from the lobby.
+\end{description}
+
+Other patterns can be defined by specifying the proportions of the three basic patterns that constitute them.
+
+\section{Critérios de Aceitação}
+
+Segundo \cite{KOEHLEROTTIGER02}, uma tecnologia que saiba endereçar as seguintes questões será de grande interesse para a indústria de elevadores:
+
+\begin{enumerate}
+\item Qual é a função objetivo de um algoritmo de despache em grupo? \hfill \newline
+      Almost no information is published by companies about the objective functions they use in their con- trol algorithms. Usually, a vague “combination of waiting and journey times” is minimized, but which function would yield the best possi- ble results still seems to be an open question.
+
+\item Como um sistema de controle pode obter informações adicionais acerca das necessidades dos passageiros?\hfill \newline
+      In particular, how can it find out how many passengers are waiting at a floor, how fully loaded a car is, and where the passengers want to go?
+
+\item Como o desempenho do controlador pode ser melhorado? \hfill \newline
+      Is it possible to detect and predict patterns of traffic based on the cur- rently available information and/or previously learned patterns? How could such information be exploited by a control algorithm?
+
+\item De quê forma as interfaces com os passageiros podem evoluir além de simples botões? \hfill \newline
+      How can passengers with special needs be better served? In the following, we give an overview of AI- based approaches that have been explored by elevator companies in the past to address these issues.
+\end{enumerate}
 
 
-\cite{KOEHLEROTTIGER02}
+
