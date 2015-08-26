@@ -1,3 +1,48 @@
 \chapter{\label{chap:problem}Descrição do Problema}
 
-\cite{PLASSPAG81}
+A maior parte dos prédios possui instalações de grupos constituídos por 2 a 8 elevadores. Humanos interagem com este sistema.
+
+...
+
+Existem dois tipos de chamadas:
+
+\begin{description}
+\item pickup calls: passageiros estão fora dos elevadores e apertam o botão SUBIR e/ou DESCER do andar em que se encontram
+\item cabin calls: passageiros estão dentro de elevadores e apertam o botão correspondente ao andar que desejam ir
+\end{description}
+
+Métricas:
+
+ - HC5\%: especifica a porcentagem da população total do prédio que um grupo de elevadores é capaz de transportar em um intervalo de 5 minutos. Pode ser medido de duas formas:
+
+    - Empiricamente: em uma simulação
+    - Computados utilizando agreed-on analytic methods
+
+  Um bom HC5\% é de no mínimo 14\% da população total transportada em 5 minutos. Ou seja, eu um prédio com 600 pessoas (FACIN), representaria o transporte de no mínimo 84 pessoas em 5 minutos.
+
+  - Tempos de viagem, sendo:
+
+    tempos médio e máximo de espera
+    tempos médio e máximo de jornada/viagem
+
+    Esta métrica define diretamente a qualidade do serviço, já que está ligada diretamente à percepção que os passageiros. Quanto menores, melhor.
+    O passageiro quer chegar no seu destino no menor tempo posssível sempre, sendo que o tempo de sua viagem compreende espera + jornada.
+
+    Tempos curtos de jornada relacionam-se diretamente com um alto HC5\%, porém os passageiros (seres humanos) dão muito mais importância à um tempo baixo de espera do que um tempo baixo de jornada.
+    Ainda assim, embora não seja uma grande melhoria reduzir de 32 para 28 segundos de espera, é psicologicamente importante evitar esperas longas como 60 segundos ou mais.
+
+Questões que complicam:
+
+- Quantas pessoas estão esperando
+
+O que torna uma tecnologia interessante para fabricantes de elevadores?
+
+Segundo \cite{KOEHLEROTTIGER02}, qualquer tecnologia que souber endereçar as seguintes questões será de interesse para os fabricantes de elevadores:
+
+1. Qual é a função objetivo de um algoritmo de despache em grupo?
+2. Como um sistema de controle captura informações adicionais acerca das necessidades dos passageiros?
+3. Como o desempenho do controlador pode ser melhorada?
+4. Como as interfaces com os passageiros podem evoluir além de simples botões?
+
+
+\cite{KOEHLEROTTIGER02}
