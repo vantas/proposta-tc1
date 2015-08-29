@@ -11,9 +11,20 @@ Além do impacto econômico existe o impacto psicológico. Trabalhadores em cent
 \caption{\label{fig:fig1}Tempo de espera acumulado (em anos) por elevadores durante 12 meses em 16 cidades norte-americanas. Fonte: \cite{IBM10}}
 \end{figure}
 
-Neste contexto global, a indústria de elevadores possui alguns desafios: primeiro, lidar com a pressão para a redução de custos na construção civil, construindo elevadores mais baratos e eficientes, com melhorias no desempenho de transporte; segundo, competir no mercado oferecendo serviços novos, personalizados e com garantia de qualidade, visando revolucionar a maneira com que elevadores interagem e servem passageiros \cite{KOEHLEROTTIGER02}. Do ponto de vista dos passageiros, estes esperam que um elevador atenda-o imediatamente e leve-o ao seu destino o mais rápido possível. Entretanto, este problema não é de simples solução.
+Neste contexto global, a indústria de elevadores possui alguns desafios: primeiro, lidar com a pressão para a redução de custos na construção civil, construindo elevadores mais baratos e eficientes, com melhorias no desempenho de transporte; segundo, competir no mercado oferecendo serviços novos, personalizados e com garantia de qualidade, visando revolucionar a maneira com que elevadores interagem e servem passageiros \cite{KOEHLEROTTIGER02}. Já sob o ponto de vista dos passageiros, estes esperam que suas chamadas sejam atendidas imediatamente e que sejam levados ao seu destino o mais rápido possível.
 
-De fato, a tarefa de atribuir elevadores para atender chamadas minimizando tempo médio de espera é um problema NP-difícil (ou NP-hard, ou NP-complexo), conforme provado por \cite{SeKo99}. Assim sendo, para ajudar a atingir estes objetivos, fabricantes de elevadores vem estudando e implementando soluções alternativas desde meados dos anos 1980. Diversas técnicas de Inteligência Artificial foram adotadas pela indústria, como redes neurais, algoritmos genéticos, lógicas \textit{fuzzy} e, mais recentemente, sistemas multi-agentes e planejamento \cite{KOEHLEROTTIGER02}.
+Existem diversas abordagens que os fabricantes de elevadores podem usar para minimizar o tempo de espera, como aumentar o número de elevadores no prédio ou a capacidade de cada elevador. Entretanto, este tipo de alteração não é sempre realizável em função de limitações na estrutura do prédio ou inviabilidade financeira. Como alternativa e muitas vezes uma solução de mais fácil aplicação é otimizar o sistema de controle dos elevadores. Ainda assim, a tarefa de atribuir elevadores para atender chamadas minimizando o tempo médio de espera está no conjunto de problemas NP-difícil (ou NP-hard, ou NP-complexo) \cite{SeKo99}. Portanto, uma solução ótima para este problema ainda não é conhecida.
+
+Desde meados dos anos 1980, a indústria de elevadores vem estudando e implementando estratégias para encontrar soluções sub-ótimas para o problema. Diversas técnicas de Inteligência Artificial foram adotadas, como redes neurais, algoritmos genéticos, lógicas \textit{fuzzy} e, mais recentemente, sistemas multi-agentes, planejamento e aprendizado de máquina \cite{KOEHLEROTTIGER02}.
+
+A proposta deste trabalho é construir um simulador de elevadores e utilizá-lo para comparar diferentes estratégias de controle em diferentes cenários. O usuário do simulador poderá:
+
+\begin{itemize}
+  \item Definir cenários (número de andares; número de elevadores; população do prédio; distribuição de chegada de passageiros; etc);
+  \item Selecionar um algoritmo para controle dos elevadores ou implementar o seu próprio;
+  \item Comparar o desempenho entre diferentes algoritmos em um mesmo cenário;
+  \item Comparar o desempenho de um algoritmo em múltiplos cenários.
+\end{itemize}
 
 \section{Motivação prática}
 
