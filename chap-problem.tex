@@ -60,12 +60,22 @@ Existem dois tipos de chamadas:
 
   Ainda assim, embora não seja uma grande melhoria reduzir de 32 para 28 segundos de espera, é psicologicamente importante evitar esperas longas, i. e. 60 segundos ou mais.
 
-\section{Questões que complicam o problema}
+\section{Possíveis Complicadores}
 
-\begin{itemize}
-\item Quantas pessoas estão esperando
-\item Pessoas segurando a porta para alguém que está vindo (é gentil com quem está vindo, porém egoísta com os outros que esperam em outros andares)
-\end{itemize}
+Um número de cenários podem complicar as métricas e prejudicar os resultados. A
+grande maioria destes complicadores são fatores humanos, como pessoas segurando
+a porta, passageiros indecisos, seleção acidental de andares e desistências após
+chamar o elevador.
+
+Alguns destes problemas podem ser mitigados com a modificação da interface de
+usuário dos elevadores. Por exemplo, seleções acidentais de andares poderiam ser
+desfeitas, caso houvesse um mecanismo para desselecionar um andar após o mesmo
+ter sido selecionado. O mesmo vale para o cenário do passageiro indeciso.
+
+No entanto, propor este tipo de alteração de comportamento não está no escopo
+deste trabalho. É nosso objetivo estudar alterações somente nos algoritmos que
+regem o comportamento dos elevadores da maneira com que estão atualmente
+instalados na vasta maioria dos prédios.
 
 \section{Padrões de Comportamento}
 
