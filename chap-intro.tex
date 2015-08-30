@@ -17,7 +17,9 @@ Existem diversas abordagens que os fabricantes de elevadores podem usar para min
 
 Desde meados dos anos 1980, a indústria de elevadores vem estudando e implementando estratégias para encontrar soluções sub-ótimas para o problema. Diversas técnicas de Inteligência Artificial foram adotadas, como redes neurais, algoritmos genéticos, lógicas \textit{fuzzy} e, mais recentemente, sistemas multi-agentes, planejamento e aprendizado de máquina~\cite{KOEHLEROTTIGER02}.
 
-A proposta deste trabalho é construir um simulador de elevadores e utilizá-lo para comparar diferentes estratégias de controle em diferentes cenários. O usuário do simulador poderá:
+A proposta deste trabalho é comparar diferentes estratégias de controle de elevadores em alguns cenários e avaliar, dentre as opções possíveis, quais combinações resultam em um melhor desempenho no transporte de passageiros. A comparação se dará analisando os resultados de simulações de diferentes algoritmos de controle.
+
+Para tanto, serão implementados no mínimo 2 algoritmos para o sistema de controle de elevadores e um simulador de elevadores. O usuário do simulador poderá:
 
 \begin{itemize}
   \item Definir cenários (número de andares; número de elevadores; população do prédio; distribuição de chegada de passageiros; etc);
@@ -26,9 +28,38 @@ A proposta deste trabalho é construir um simulador de elevadores e utilizá-lo 
   \item Comparar o desempenho de um algoritmo em múltiplos cenários.
 \end{itemize}
 
-Espera-se que com os resultados das simulações seja possível avaliar quais estratégias são viáveis em quais cenários e, em última análise, sugerir uma estratégia superior às demais.
+\section{Métricas de Desempenho de um Sistema de Elevadores}
 
-\section{Motivação prática}
+
+\begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries HC\textsubscript{5\%}}]
+  \item[HC\textsubscript{5\%}]
+  Percentual da população total do prédio que um sistema de elevadores consegue transportar em um intervalo de 5 minutos. Um HC\textsubscript{5\%} aceitável é de no mínimo 14\% \cite{KOEHLEROTTIGER02}. Por exemplo, em um prédio cuja população é de 600 pessoas, este índice representa o transporte de no mínimo 84 pessoas em 5 minutos.
+
+  \item[WT]
+  \textit{Waiting Time}, ou tempo de espera; está compreendido entre a chegada de um passageiro e o seu embarque em um elevador.
+
+  \item[JT]
+  \texit{Journey Time}, ou tempo de jornada; está compreendido entre o embarque de um passageiro em um elevador e o desembarque em seu destino.
+
+  \item[ST]
+  \textit{System Time}, ou tempo de sistema; está compreendido entre entre a chegada de um passageiro e o desembarque em seu destino, ou seja, é a soma do tempo de espera com o tempo de jornada.
+
+  \item[AWT]
+  \textit{Average Waiting Time}, ou tempo médio de espera.
+
+  \item[AJT]
+  \textit{Average Journey Time}, ou tempo médio de jornada.
+
+
+  \item[AST]
+  \textit{Average System Time}, ou tempo médio de sistema.
+\end{description}
+
+O tempo médio de sistema define a qualidade do serviço, já que está ligada diretamente à percepção que os passageiros possuem do sistema. É correto afirmar que o desejo de um passageiro é chegar no seu destino o mais rápido possível - ou seja, com o menor tempo de sistema possível. Normalmente, tempos de sistema menores relacionam-se com um alto HC\textsubscript{5\%}; porém, passageiros tendem a dar maior importância a um baixo tempo de espera do que a um baixo tempo de jornada~\cite{KOEHLEROTTIGER02}.
+
+ Ainda assim, embora não seja uma grande melhoria reduzir de 32 para 28 segundos de espera, é psicologicamente importante evitar esperas longas, i. e. 60 segundos ou mais. {\color{red}[BUSCAR FONTES PARA ESTA AFIRMAÇÃO]} % TODO: CITATIONNEEDED
+
+ Assim sendo, o escopo deste trabalho será limitado na busca pela otimização do tempo médio de espera (\textbf{AWT}).
 
 \section{Glossário}
 
