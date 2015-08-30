@@ -22,7 +22,7 @@ A proposta deste trabalho é comparar diferentes estratégias de controle de ele
 Para tanto, serão implementados no mínimo 2 algoritmos para o sistema de controle de elevadores e um simulador de elevadores. O usuário do simulador poderá:
 
 \begin{itemize}
-  \item Definir cenários (número de andares; número de elevadores; população do prédio; distribuição de chegada de passageiros; etc);
+  \item Selecionar cenários;
   \item Selecionar um algoritmo para controle dos elevadores ou implementar o seu próprio;
   \item Comparar o desempenho entre diferentes algoritmos em um mesmo cenário;
   \item Comparar o desempenho de um algoritmo em múltiplos cenários.
@@ -60,6 +60,21 @@ O tempo médio de sistema define a qualidade do serviço, já que está ligada d
  Ainda assim, embora não seja uma grande melhoria reduzir de 32 para 28 segundos de espera, é psicologicamente importante evitar esperas longas, i. e. 60 segundos ou mais. {\color{red}[BUSCAR FONTES PARA ESTA AFIRMAÇÃO]} % TODO: CITATIONNEEDED
 
  Assim sendo, o escopo deste trabalho será limitado na busca pela otimização do tempo médio de espera (\textbf{AWT}).
+
+\section{Parâmetros de Definição de Cenários}
+
+\begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries AAA}]
+  \item[F]
+  Número total de andares do prédio.
+  \item[E]
+  Número total de elevadores que compõem o sistema.
+  \item[K]
+  Capacidade máxima de passageiros que um elevador é capaz de transportar.
+  \item[P]
+  População total do prédio.
+  \item[F]
+  Função de distribuição de chegada de passageiros.
+\end{description}
 
 \section{Glossário}
 
