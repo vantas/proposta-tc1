@@ -1,8 +1,6 @@
 \chapter{\label{chap:problem}Descrição do Problema}
 
-O problema estudado neste trabalho é definido da seguinte forma:
-
-Seja um prédio com \textbf{N} andares e \textbf{M} elevadores, cada um com capacidade para transportar \textbf{K} pessoas simultaneamente; sabe-se que a população total do prédio é \textbf{P} e está distribuída de maneira uniforme nos andares do prédio; também sabe-se que a chegada ou saídas destas pessoas obedece uma função de distribuição de probabilidade \textbf{F}. Qual a melhor maneira de atender esta população do prédio de modo a minimizar o tempo médio de atendimento de cada pessoa?
+O problema estudado neste trabalho é definido da seguinte forma: seja um prédio com \textbf{N} andares e \textbf{M} elevadores, cada um com capacidade para transportar \textbf{K} pessoas simultaneamente; sabe-se que a população total do prédio é \textbf{P} e está distribuída de maneira uniforme nos andares do prédio; também sabe-se que a chegada ou saídas destas pessoas obedece uma função de distribuição de probabilidade \textbf{F}. Qual a melhor maneira de atender esta população do prédio de modo a minimizar o tempo médio de atendimento de cada pessoa?
 
 \section{Métricas de Desempenho de um Sistema de Elevadores}
 
@@ -27,7 +25,6 @@ A indústria de elevadores utiliza um conjunto de métricas para avaliar e compa
   \item[AJT]
   \textit{Average Journey Time}, ou tempo médio de jornada.
 
-
   \item[AST]
   \textit{Average System Time}, ou tempo médio de sistema.
 
@@ -37,22 +34,7 @@ A indústria de elevadores utiliza um conjunto de métricas para avaliar e compa
 
 O tempo médio de sistema (AST) define a qualidade do serviço, já que está ligada diretamente à percepção que os passageiros possuem do sistema. É correto afirmar que o desejo de um passageiro é chegar no seu destino o mais rápido possível - ou seja, com o menor tempo de sistema possível. Normalmente, tempos de sistema menores relacionam-se com um alto HC\textsubscript{5\%}; porém, passageiros tendem a dar maior importância a um baixo tempo de espera do que a um baixo tempo de jornada~\cite{KOEHLEROTTIGER02}.
 
- Ainda assim, embora uma redução de 32 para 28 segundos de espera não seja considerada uma grande melhoria, é psicologicamente importante evitar esperas longas, i. e. 60 segundos ou mais. {\color{red}[BUSCAR FONTES PARA ESTA AFIRMAÇÃO]} % TODO: CITATIONNEEDED
-
-\section{Parâmetros de Definição de Cenários}
-
-\begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries AAA}]
-  \item[N]
-  Número total de andares do prédio.
-  \item[M]
-  Número total de elevadores que compõem o sistema.
-  \item[K]
-  Capacidade máxima de passageiros que um elevador é capaz de transportar.
-  \item[P]
-  População total do prédio.
-  \item[F]
-  Função de distribuição de chegada de passageiros.
-\end{description}
+Ainda assim, embora uma redução de 32 para 28 segundos de espera não seja considerada uma grande melhoria, é psicologicamente importante evitar esperas longas, i. e.~60 segundos ou mais. {\color{red}[BUSCAR FONTES PARA ESTA AFIRMAÇÃO]} % TODO: CITATIONNEEDED
 
 \section{Contextualização}
 
@@ -60,23 +42,6 @@ A maior parte dos prédios possui instalações de grupos constituídos por 2 a 
 elevadores \cite{KOEHLEROTTIGER02}. Em muitos prédios, esses são o meio de
 transporte primário entre andares, visto que escadas são menos práticas e,
 muitas vezes, menos acessíveis. % TODO: CITATIONNEEDED
-
-Há vários cenários possíveis, no que tange o propósito do prédio e seu tamanho
-
-Neste trabalho, focaremos em <N> cenários: Quanto ao propósito, temos prédios
-com uma única empresa, prédios com várias empresas e prédios residenciais.
-Quanto ao tamanho, vamos dividir em 4 categorias: prédios pequenos, de 4 ou 5
-andares; prédios médios, de 6 a 10 andares; prédios grandes, de 11 a 30 andares;
-e arranha-céus, de 31 a 162 andares;
-
-% TODO: achar legislação que exige que um prédio em Porto Alegre, de 4 ou mais
-% andares, tenha elevador
-
-A escolha das divisões é arbitrária, com fim didático, exceto pelos limites
-inferiores e superiores. O limite inferior de 4 andares foi escolhido devido à
-exigência de prédios deste tamanho (mas não menores que isto) de serem
-construídos com elevadores. O limite superior, de 162 andares, é o tamanho do
-Burj Khalifa, que, em 2015, é o maior arranha-céu do mundo.
 
 \section{Possíveis Complicadores}
 
@@ -105,6 +70,45 @@ instalados na vasta maioria dos prédios.
 
 Outros padrões podem ser definidos combinando-se os três padrões acima
 descritos. No entanto, para os fins deste trabalho, nos limitaremos aos padrões puros.
+
+\section{Cenários}
+
+Pode-se dizer que cada prédio é um cenário em potencial no contexto deste trabalho. Alguns dos principais atributos que podem ser utilizados para definir um cenário são:
+
+\begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Propósito}]
+  \item[N]
+  Número total de andares do prédio.
+  \item[M]
+  Número total de elevadores que compõem o sistema.
+  \item[K]
+  Capacidade máxima de passageiros que um elevador é capaz de transportar.
+  \item[P]
+  População total do prédio.
+  \item[F]
+  Função de distribuição de probabilidade de chegada de passageiros.
+  \item[Propósito]
+  Propósito do prédio: residencial, comercial com múltiplas empresas, comercial com única empresa, etc;
+\end{description}
+
+Logo, há tantos cenários possíveis quanto há prédios ao redor do mundo. Entretanto, por limitação de tempo e de recursos computacionais, vamos limitar os cenários em algumas categorias. A escolha destas divisões é arbitrária, com fim didático, exceto pelo limite inferior de 4 andares devido à exigência legal do Município de Porto Alegre onde prédios deste tamanho ou maiores (mas não menores que isto) de serem construídos com elevadores. O limite superior\footnote{O maior arranha-céu do mundo em 2015 é o Burj Khalif, localizado em Dubai, com mais de 162m de altura.} fica em aberto.
+
+% \footnote{http://www2.portoalegre.rs.gov.br/cgi-bin/nph-brs?u=/netahtml/sirel/avancada.html&p=3&r=59&f=G&d=ATOS&l=20&s1=(ELEVADOR)..RELA. }
+
+\begin{table}[htb!]
+\centering
+\caption{Cenários}
+\label{table:tab1}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+{\bf Cenário}        & {\bf N}    & {\bf M} & {\bf K} & {\bf P} \\ \hline
+{\it Prédio pequeno} & 4 a 5      & 1       & 6       & 40      \\ \hline
+{\it Prédio médio}   & 6 a 10     & 2       & 10      & 96      \\ \hline
+{\it Pŕedio grande}  & 11 a 30    & 5       & 10      & 560     \\ \hline
+{\it Arranha-céu}    & 30 ou mais & 10      & 12      & 3200    \\ \hline
+\end{tabular}
+\end{table}
+
+{\color{red}[SERIA BEM MELHOR SE USÁSSEMOS DADOS REAIS PARA MKP DE PRÉDIOS CONHECIDOS. EX: PŔEDIO ONDE MORAMOS, FACIN, EMPIRE STATE, BURJ KHALIF, ETC]} % TODO
 
 \section{Critérios de Aceitação}
 
