@@ -1,5 +1,59 @@
 \chapter{\label{chap:problem}Descrição do Problema}
 
+O problema estudado neste trabalho é definido da seguinte forma:
+
+Seja um prédio com \textbf{N} andares e \textbf{M} elevadores, cada um com capacidade para transportar \textbf{K} pessoas simultaneamente; sabe-se que a população total do prédio é \textbf{P} e está distribuída de maneira uniforme nos andares do prédio; também sabe-se que a chegada ou saídas destas pessoas obedece uma função de distribuição de probabilidade \textbf{F}. Qual a melhor maneira de atender esta população do prédio de modo a minimizar o tempo médio de atendimento de cada pessoa?
+
+\section{Métricas de Desempenho de um Sistema de Elevadores}
+
+A indústria de elevadores utiliza um conjunto de métricas para avaliar e comparar o desempenho de sistemas de elevadores. Em sistemas já instalados estas métricas são obtidas empiricamente, através de contagens e medições~\cite{KOEHLEROTTIGER02}. Entretanto, também podem ser calculadas através de simulações e cálculos matemáticos. São elas:
+
+\begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries HC\textsubscript{5\%}}]
+  \item[HC\textsubscript{5\%}]
+  Percentual da população total do prédio que um sistema de elevadores consegue transportar em um intervalo de 5 minutos. Um HC\textsubscript{5\%} aceitável é de no mínimo 14\%~\cite{KOEHLEROTTIGER02}. Por exemplo, em um prédio cuja população é de 600 pessoas, este índice representa o transporte de no mínimo 84 pessoas em 5 minutos.
+
+  \item[WT]
+  \textit{Waiting Time}, ou tempo de espera; está compreendido entre a chegada de um passageiro e o seu embarque em um elevador.
+
+  \item[JT]
+  \textit{Journey Time}, ou tempo de jornada; está compreendido entre o embarque de um passageiro em um elevador e o desembarque em seu destino.
+
+  \item[ST]
+  \textit{System Time}, ou tempo de sistema; está compreendido entre entre a chegada de um passageiro e o desembarque em seu destino, ou seja, é a soma do tempo de espera com o tempo de jornada.
+
+  \item[AWT]
+  \textit{Average Waiting Time}, ou tempo médio de espera.
+
+  \item[AJT]
+  \textit{Average Journey Time}, ou tempo médio de jornada.
+
+
+  \item[AST]
+  \textit{Average System Time}, ou tempo médio de sistema.
+
+  \item[RTT]
+  \textit{Round-trip Time}, ou tempo de ida e volta em uma tradução livre; é o tempo médio de uma viagem de um elevador partindo do lobby, indo até todos os andares do prédio e de volta ao lobby em horário de pico.
+\end{description}
+
+O tempo médio de sistema (AST) define a qualidade do serviço, já que está ligada diretamente à percepção que os passageiros possuem do sistema. É correto afirmar que o desejo de um passageiro é chegar no seu destino o mais rápido possível - ou seja, com o menor tempo de sistema possível. Normalmente, tempos de sistema menores relacionam-se com um alto HC\textsubscript{5\%}; porém, passageiros tendem a dar maior importância a um baixo tempo de espera do que a um baixo tempo de jornada~\cite{KOEHLEROTTIGER02}.
+
+ Ainda assim, embora uma redução de 32 para 28 segundos de espera não seja considerada uma grande melhoria, é psicologicamente importante evitar esperas longas, i. e. 60 segundos ou mais. {\color{red}[BUSCAR FONTES PARA ESTA AFIRMAÇÃO]} % TODO: CITATIONNEEDED
+
+\section{Parâmetros de Definição de Cenários}
+
+\begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries AAA}]
+  \item[N]
+  Número total de andares do prédio.
+  \item[M]
+  Número total de elevadores que compõem o sistema.
+  \item[K]
+  Capacidade máxima de passageiros que um elevador é capaz de transportar.
+  \item[P]
+  População total do prédio.
+  \item[F]
+  Função de distribuição de chegada de passageiros.
+\end{description}
+
 \section{Contextualização}
 
 A maior parte dos prédios possui instalações de grupos constituídos por 2 a 8
@@ -18,22 +72,11 @@ e arranha-céus, de 31 a 162 andares;
 % TODO: achar legislação que exige que um prédio em Porto Alegre, de 4 ou mais
 % andares, tenha elevador
 
-% TODO: tamanho do maior arranha-céu
-
 A escolha das divisões é arbitrária, com fim didático, exceto pelos limites
 inferiores e superiores. O limite inferior de 4 andares foi escolhido devido à
 exigência de prédios deste tamanho (mas não menores que isto) de serem
 construídos com elevadores. O limite superior, de 162 andares, é o tamanho do
 Burj Khalifa, que, em 2015, é o maior arranha-céu do mundo.
-
-\section{Tipos de Chamadas}
-
-Existem dois tipos de chamadas:
-
-\begin{description}
-\item[pickup calls] passageiros estão fora dos elevadores e pressionam o botão (subir ou descer) do andar em que se encontram
-\item[cabin calls] passageiros estão dentro do elevador e pressionam o botão correspondente ao andar para o qual desejam ir
-\end{description}
 
 \section{Possíveis Complicadores}
 
@@ -54,11 +97,10 @@ instalados na vasta maioria dos prédios.
 
 \section{Padrões de Comportamento}
 
-\begin{description}
-\item[up peak] Passageiros chegam no lobby e desejam subir.
-\item[down peak] Passageiros desejam descer de qualquer andar para o lobby.
-\item[interfloor] Passageiros deslocam-se entre andares arbitrários, com
-  excessão do lobby.
+\begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries interfloor}]
+  \item[up peak]    Passageiros chegam no lobby e desejam subir.
+  \item[down peak]  Passageiros desejam descer de qualquer andar para o lobby.
+  \item[interfloor] Passageiros deslocam-se entre andares arbitrários, com excessão do lobby.
 \end{description}
 
 Outros padrões podem ser definidos combinando-se os três padrões acima
