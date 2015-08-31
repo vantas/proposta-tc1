@@ -28,53 +28,7 @@ Para tanto, serão implementados no mínimo 2 algoritmos para o sistema de contr
   \item Comparar o desempenho de um algoritmo em múltiplos cenários.
 \end{itemize}
 
-\section{Métricas de Desempenho de um Sistema de Elevadores}
-
-
-\begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries HC\textsubscript{5\%}}]
-  \item[HC\textsubscript{5\%}]
-  Percentual da população total do prédio que um sistema de elevadores consegue transportar em um intervalo de 5 minutos. Um HC\textsubscript{5\%} aceitável é de no mínimo 14\% \cite{KOEHLEROTTIGER02}. Por exemplo, em um prédio cuja população é de 600 pessoas, este índice representa o transporte de no mínimo 84 pessoas em 5 minutos.
-
-  \item[WT]
-  \textit{Waiting Time}, ou tempo de espera; está compreendido entre a chegada de um passageiro e o seu embarque em um elevador.
-
-  \item[JT]
-  \textit{Journey Time}, ou tempo de jornada; está compreendido entre o embarque de um passageiro em um elevador e o desembarque em seu destino.
-
-  \item[ST]
-  \textit{System Time}, ou tempo de sistema; está compreendido entre entre a chegada de um passageiro e o desembarque em seu destino, ou seja, é a soma do tempo de espera com o tempo de jornada.
-
-  \item[AWT]
-  \textit{Average Waiting Time}, ou tempo médio de espera.
-
-  \item[AJT]
-  \textit{Average Journey Time}, ou tempo médio de jornada.
-
-
-  \item[AST]
-  \textit{Average System Time}, ou tempo médio de sistema.
-\end{description}
-
-O tempo médio de sistema define a qualidade do serviço, já que está ligada diretamente à percepção que os passageiros possuem do sistema. É correto afirmar que o desejo de um passageiro é chegar no seu destino o mais rápido possível - ou seja, com o menor tempo de sistema possível. Normalmente, tempos de sistema menores relacionam-se com um alto HC\textsubscript{5\%}; porém, passageiros tendem a dar maior importância a um baixo tempo de espera do que a um baixo tempo de jornada~\cite{KOEHLEROTTIGER02}.
-
- Ainda assim, embora não seja uma grande melhoria reduzir de 32 para 28 segundos de espera, é psicologicamente importante evitar esperas longas, i.e.~60 segundos ou mais.~{\color{red}[BUSCAR FONTES PARA ESTA AFIRMAÇÃO]} % TODO: CITATIONNEEDED
-
- Assim sendo, o escopo deste trabalho será limitado na busca pela otimização do tempo médio de espera (\textbf{AWT}).
-
-\section{Parâmetros de Definição de Cenários}
-
-\begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries AAA}]
-  \item[F]
-  Número total de andares do prédio.
-  \item[E]
-  Número total de elevadores que compõem o sistema.
-  \item[K]
-  Capacidade máxima de passageiros que um elevador é capaz de transportar.
-  \item[P]
-  População total do prédio.
-  \item[F]
-  Função de distribuição de chegada de passageiros.
-\end{description}
+Com base nos resultados estatísticos obtidos através das simulações serão realizadas análises quantitativas e qualitativas e, se possível, otimizações nas implementações dos algoritmos. Assim, objetiva-se encontrar quais são as melhores estratégias para cada cenário proposto.
 
 \section{Motivações}
 
@@ -113,5 +67,7 @@ Termos chaves usados neste trabalho.
 \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Sistema de Controle}]
   \item[Lobby]                Andar térreo de um prédio.
   \item[Elevador]             Dispositivo de transporte vertical que movimenta pessoas ou cargas entre andares ou níveis de um prédio ou estrutura.
+  \item[pickup call]          Chamada na qual passageiros estão fora dos elevadores e pressionam o botão (subir ou descer) do andar em que se encontram.
+  \item[cabin call]           Chamada na qual passageiros estão dentro do elevador e pressionam o botão correspondente ao andar para o qual desejam ir.
   \item[Sistema de Controle]  O sistema central que gerencia todos os elevadores.
 \end{description}
