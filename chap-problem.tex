@@ -2,9 +2,11 @@
 
 O problema estudado neste trabalho é definido da seguinte forma: seja um prédio com \textbf{N} andares e \textbf{M} elevadores, cada um com capacidade para transportar \textbf{K} pessoas simultaneamente; sabe-se que a população total do prédio é \textbf{P} e está distribuída de maneira uniforme nos andares do prédio; também sabe-se que a chegada ou saídas destas pessoas obedece uma função de distribuição de probabilidade \textbf{F}. Qual a melhor maneira de atender esta população do prédio de modo a minimizar o tempo médio de atendimento de cada pessoa?
 
-\section{Métricas de Desempenho de um Sistema de Elevadores}
+\section{Métricas e Aquisição de Dados}
 
-A indústria de elevadores utiliza um conjunto de métricas para avaliar e comparar o desempenho de sistemas de elevadores. Em sistemas já instalados estas métricas são obtidas empiricamente, através de contagens e medições~\cite{KOEHLEROTTIGER02}. Entretanto, também podem ser calculadas através de simulações e cálculos matemáticos. São elas:
+A aquisição de dados sobre o tráfego de um sistema de elevadores instalados é um problema em aberto na indústria~\cite{KOEHLEROTTIGER02}. Em casos simples é possível designar pessoas para observar e contar passageiros entrando e saindo dos elevadores. Já em casos mais complexos foram aplicadas soluções mais engenhosas, como contagem de pessoas aplicando algoritmos de visão computacional em vídeos de câmeras de segurança e sensores de carga. Estas abordagens possuem fatores complicadores - como, por exemplo, a dificuldade em lidar com as diferenças de iluminação, baixa qualidade de vídeo, baixa precisão de sensores, etc - e o resultado obtido não compensa o custo.
+
+A simulação de sistemas de elevadores ganha destaque neste contexto, tornando-se uma alternativa atraente. Através de simulações é possível obter métricas e avaliar o desempenho de um sistema na fase de projeto, antes da sua construção. Algumas das principais métricas utilizadas pela indústria de elevadores para avaliar o desempenho de seus sistemas são:
 
 \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries HC\textsubscript{5\%}}]
   \item[HC\textsubscript{5\%}]
@@ -32,9 +34,9 @@ A indústria de elevadores utiliza um conjunto de métricas para avaliar e compa
   \textit{Round-trip Time}, ou tempo de ida e volta em uma tradução livre; é o tempo médio de uma viagem de um elevador partindo do lobby, indo até todos os andares do prédio e de volta ao lobby em horário de pico.
 \end{description}
 
-O tempo médio de sistema (AST) define a qualidade do serviço, já que está ligada diretamente à percepção que os passageiros possuem do sistema. É correto afirmar que o desejo de um passageiro é chegar no seu destino o mais rápido possível - ou seja, com o menor tempo de sistema possível. Normalmente, tempos de sistema menores relacionam-se com um alto HC\textsubscript{5\%}; porém, passageiros tendem a dar maior importância a um baixo tempo de espera do que a um baixo tempo de jornada~\cite{KOEHLEROTTIGER02}.
+O tempo médio de sistema (AST) define a qualidade do serviço, já que está ligado diretamente à percepção que os passageiros possuem do sistema. É correto afirmar que o desejo de um passageiro é chegar no seu destino o mais rápido possível - ou seja, com o menor tempo de sistema possível. Normalmente, tempos de sistema menores relacionam-se com um alto HC\textsubscript{5\%}; porém, passageiros tendem a dar maior importância a um baixo tempo de espera do que a um baixo tempo de jornada~\cite{KOEHLEROTTIGER02}.
 
-Ainda assim, embora uma redução de 32 para 28 segundos de espera não seja considerada uma grande melhoria, é psicologicamente importante evitar esperas longas, i. e.~60 segundos ou mais. {\color{red}[BUSCAR FONTES PARA ESTA AFIRMAÇÃO]} % TODO: CITATIONNEEDED
+Ainda assim, embora uma redução de 32 para 28 segundos de espera não seja considerada uma grande melhoria, é psicologicamente importante evitar esperas longas, i. e.~60 segundos ou mais. {\color{red}[BUSCAR FONTES PARA ESTA AFIRMAÇÃO -- DESENVOLVER]} % TODO: CITATIONNEEDED
 
 \section{Contextualização}
 
@@ -52,8 +54,7 @@ chamar o elevador.
 
 Alguns destes problemas podem ser mitigados com a modificação da interface de
 usuário dos elevadores. Por exemplo, seleções acidentais de andares poderiam ser
-desfeitas, caso houvesse um mecanismo para desselecionar um andar após o mesmo
-ter sido selecionado. O mesmo vale para o cenário do passageiro indeciso.
+desfeitas, caso houvesse um mecanismo para cancelar a seleção de um andar. O mesmo vale para o cenário do passageiro indeciso.
 
 No entanto, propor este tipo de alteração de comportamento não está no escopo
 deste trabalho. É nosso objetivo estudar alterações somente nos algoritmos que
@@ -65,7 +66,7 @@ instalados na vasta maioria dos prédios.
 \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries interfloor}]
   \item[up peak]    Passageiros chegam no lobby e desejam subir.
   \item[down peak]  Passageiros desejam descer de qualquer andar para o lobby.
-  \item[interfloor] Passageiros deslocam-se entre andares arbitrários, com excessão do lobby.
+  \item[interfloor] Passageiros deslocam-se entre andares arbitrários, com exceção do lobby.
 \end{description}
 
 Outros padrões podem ser definidos combinando-se os três padrões acima
@@ -81,7 +82,7 @@ Pode-se dizer que cada prédio é um cenário em potencial no contexto deste tra
   \item[M]
   Número total de elevadores que compõem o sistema.
   \item[K]
-  Capacidade máxima de passageiros que um elevador é capaz de transportar.
+  Capacidade máxima de passageiros que cada elevador é capaz de transportar. A capacidade é igual entre todos os elevadores.
   \item[P]
   População total do prédio.
   \item[F]
