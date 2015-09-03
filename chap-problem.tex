@@ -2,7 +2,7 @@
 
 A maior parte dos prédios possui instalações de grupos com 2 a 8 elevadores \cite{KOEHLEROTTIGER02}. Em muitos prédios, esses são o meio de transporte primário entre andares, visto que escadas são menos práticas e, muitas vezes, menos acessíveis ou exclusivas para situações de emergência. Dado o seu uso em larga escala, a ineficiência dos sistemas de controle de elevadores é sentida diariamente por seus usuários. Neste cenário deseja-se encontrar formas de otimizar estes sistemas de controle. % TODO: CITATIONNEEDED
 
-O problema estudado neste trabalho é definido da seguinte forma: seja um prédio com \textbf{N} andares e \textbf{M} elevadores, cada um com capacidade para transportar \textbf{K} pessoas simultaneamente; sabe-se que a população total do prédio é \textbf{P} e está distribuída de maneira uniforme nos andares do prédio; também sabe-se que a chegada ou saídas destas pessoas obedece uma função de distribuição de probabilidade \textbf{F}. Qual a melhor maneira de atender esta população do prédio de modo a minimizar o tempo médio de atendimento de cada pessoa?
+O problema estudado neste trabalho é modelado da seguinte forma: seja um prédio com \textbf{N} andares e \textbf{M} elevadores, cada um com capacidade para transportar \textbf{K} pessoas simultaneamente; sabe-se que a população total do prédio é \textbf{P} e está distribuída de maneira uniforme nos andares do prédio; também sabe-se que a chegada ou saídas destas pessoas obedece uma função de distribuição de probabilidade \textbf{F}. De que forma o sistema pode atender esta população de modo a minimizar o tempo médio de atendimento de cada pessoa?
 
 \section{Métricas e Aquisição de Dados}
 
@@ -15,7 +15,7 @@ A simulação de sistemas de elevadores ganha destaque neste contexto, tornando-
   Percentual da população total do prédio que um sistema de elevadores consegue transportar em um intervalo de 5 minutos. Um HC\textsubscript{5\%} aceitável é de no mínimo 14\%~\cite{KOEHLEROTTIGER02}. Por exemplo, em um prédio cuja população é de 600 pessoas, este índice representa o transporte de no mínimo 84 pessoas em 5 minutos.
 
   \item[WT]
-  \textit{Waiting Time}, ou tempo de espera; está compreendido entre a chegada de um passageiro e o seu embarque em um elevador.
+  \textit{Waiting Time}, ou tempo de espera; está compreendido entre a requisição de um passageiro e o seu embarque em um elevador.
 
   \item[JT]
   \textit{Journey Time}, ou tempo de jornada; está compreendido entre o embarque de um passageiro em um elevador e o desembarque em seu destino.
@@ -42,9 +42,9 @@ Ainda assim, embora uma redução de 32 para 28 segundos de espera não seja con
 
 \section{Possíveis Complicadores}
 
-Um número de cenários podem complicar as métricas e prejudicar os resultados. A grande maioria destes complicadores são fatores humanos, como pessoas segurando a porta, passageiros indecisos, seleção acidental de andares e desistências após chamar o elevador.
+Um número de cenários pode complicar as métricas e prejudicar os resultados. A grande maioria destes complicadores são fatores humanos, como pessoas segurando a porta, passageiros indecisos, seleção acidental de andares e desistências após chamar o elevador.
 
-Alguns destes problemas podem ser mitigados com a modificação da interface de usuário dos elevadores. Por exemplo, seleções acidentais de andares poderiam ser desfeitas, caso houvesse um mecanismo para cancelar a seleção de um andar. O mesmo vale para o cenário do passageiro indeciso.
+Alguns destes problemas podem ser mitigados com a modificação da interface dos elevadores. Por exemplo, seleções acidentais de andares poderiam ser desfeitas, caso houvesse um mecanismo para cancelar a seleção de um andar. O mesmo vale para o cenário do passageiro indeciso.
 
 No entanto, propor este tipo de alteração de comportamento não está no escopo deste trabalho. É nosso objetivo estudar alterações somente nos algoritmos que regem o comportamento dos elevadores da maneira com que estão atualmente instalados na vasta maioria dos prédios.
 
@@ -73,7 +73,7 @@ Pode-se dizer que cada prédio é um cenário em potencial no contexto deste tra
   \item[P]
   População total do prédio.
   \item[F]
-  Função de distribuição de probabilidade de chegada de passageiros.
+  Função de distribuição de probabilidade de chegada/saída de passageiros.
   \item[Propósito]
   Propósito do prédio: residencial, comercial com múltiplas empresas, comercial com única empresa, etc;
 \end{description}
