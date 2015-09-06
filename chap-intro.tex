@@ -17,48 +17,16 @@ Neste contexto global, a indústria de elevadores possui alguns desafios: primei
 
 Existem diversas abordagens que os fabricantes de elevadores podem usar para tornar o sistema mais eficiente. Por exemplo, projetar o sistema com um número maior de elevadores ou optar por elevadores com maior capacidade de carga. Entretanto, este tipo de alteração não é sempre realizável em função de limitações na estrutura do prédio ou inviabilidade financeira. Uma solução de mais fácil aplicação é otimizar o sistema de controle dos elevadores.
 
-\section{Sistema de Controle de Grupo de Elevadores}
+A função do sistema de controle dos elevadores é resolver um problema de otimização: atribuir elevadores para atender chamadas feitas pelos passageiros minimizando alguma métrica - mais adiante serão apresentadas as métricas de desempenho utilizadas. Entretanto, este problema encontra-se no conjunto de problemas NP-difícil (ou NP-hard, ou NP-complexo)~\cite{SeKo99}. Portanto, uma solução ótima, decidível em tempo polinomial, ainda não é conhecida para este problema.
 
-Um \textit{Elevator Group Control System} (\textbf{EGCS}), ou sistema de controle de grupo de elevadores, é responsável por coordenar as ações de todos os elevadores do prédio~\cite{kuzunuki1984elevator}. Esta coordenação visa atender à todas \textbf{chamadas de corredor}\footnote{Passageiros estão fora dos elevadores e realizam uma chamada para subir ou descer à partir do andar em que se encontram.} e \textbf{chamadas de cabine}\footnote{Passageiros estão dentro do elevador e realizam uma chamada para desembarcar em um andar destino} em cada instante. Para tanto, o EGCS utiliza-se de algoritmos e heurísticas aplicados à dados de entrada que refletem o estado atual do sistema. Estes dados são compostos, minimamente, por:
+Desde meados dos anos 1980, a indústria de elevadores vem estudando e implementando estratégias para encontrar soluções sub-ótimas para o problema de otimização. Diversas técnicas de Inteligência Artificial foram adotadas, como redes neurais, algoritmos genéticos, lógicas \textit{fuzzy} e, mais recentemente, sistemas multi-agentes, planejamento e aprendizado de máquina~\cite{KOEHLEROTTIGER02}. Porém, estas melhorias são encontradas nos modelos top de linha, que adotam novos paradigmas de utilização e interfaceamento com usuários, e acabam ficando de fora dos modelos mais simples e sistemas legados, i. e,~que já estão instalados em prédios.
 
-\begin{itemize}
-  \item Para cada andar:
-  \begin{itemize}
-    \item Se existe uma chamada para subir a partir deste
-    \item Se existe uma chamada para descer a partir deste
-  \end{itemize}
-  \item Para cada elevador:
-  \begin{itemize}
-    \item O andar em que se encontra
-    \item Se está parado, subindo ou descendo
-    \item Sua lotação
-    \item Um conjunto de paradas solicitadas pelos passageiros
-  \end{itemize}
-\end{itemize}
+Entretanto, ao analisar a tecnologia atual, percebe-se que houve pouca evolução nos elevadores desde sua concepção - sobretudo nos sistemas mais simples e mais baratos. De fato, o mecanismo que os faz mover evoluiu drasticamente, fato evidenciado ao comparar máquinas de tração manual com máquinas elétricas modernas. No entanto, essas evoluções são de difícil percepção aos usuários de elevadores. O sistema de controle dos elevadores ainda é simples, utilizando-se muito pouco de técnicas de Inteligência Artificial para alterar seu comportamento em tempo de execução, apesar dos esforços da indústria ao longo das últimas décadas.
 
-A função do EGCS, portanto, trata-se de resolver um problema de otimização: atribuir elevadores para atender chamadas minimizando alguma métrica - veremos mais adiante as métricas de desempenho de um EGCS. Entretanto, este problema encontra-se no conjunto de problemas NP-difícil (ou NP-hard, ou NP-complexo)~\cite{SeKo99}. Portanto, uma solução ótima, decidível em tempo polinomial, ainda não é conhecida para este problema.
-
-Desde meados dos anos 1980, a indústria de elevadores vem estudando e implementando estratégias para encontrar soluções sub-ótimas para o problema. Diversas técnicas de Inteligência Artificial foram adotadas, como redes neurais, algoritmos genéticos, lógicas \textit{fuzzy} e, mais recentemente, sistemas multi-agentes, planejamento e aprendizado de máquina~\cite{KOEHLEROTTIGER02}.
-
-
-% TODO - vamos fazer o simulador ou usar um pronto? DEFINIR
-{\color{red}A proposta deste trabalho é comparar diferentes estratégias de controle de elevadores em alguns cenários e avaliar, dentre as opções possíveis, quais combinações resultam em um melhor desempenho no transporte de passageiros. A comparação se dará analisando os resultados de simulações de diferentes algoritmos de controle. Para tanto, serão implementados no mínimo 2 algoritmos para o sistema de controle de elevadores e um simulador de elevadores. O usuário do simulador poderá:
-
-\begin{itemize}
-  \item Selecionar cenários;
-  \item Selecionar um algoritmo para controle dos elevadores ou implementar o seu próprio;
-  \item Comparar o desempenho entre diferentes algoritmos em um mesmo cenário;
-  \item Comparar o desempenho de um algoritmo em múltiplos cenários.
-\end{itemize}
-
-Com base nos resultados estatísticos obtidos através das simulações serão realizadas análises quantitativas e qualitativas e, se possível, otimizações nas implementações dos algoritmos. Assim, objetiva-se encontrar quais são as melhores estratégias para cada cenário proposto.}
+Acredita-se que tais técnicas permitam trazer uma evolução grande para os sistemas de controle de grupos de elevadores, assim como os motores elétricos foram para a tração dos elevadores. Por isto, o objetivo desde trabalho é comparar, através de simulações, diferentes estratégias de controle de elevadores utilizando Inteligência Artificial em alguns cenários. Assim, espera-se ser possível avaliar, dentre as opções possíveis, quais combinações resultam em um melhor desempenho no transporte de passageiros para cada cenário.
 
 \section{Motivação Prática}
 
-A Inteligência Artifical é uma área de conhecimento de grande interesse dos autores, junto dos problemas relacionados a simulações, às ferramentas de programação e à engenharia de software. O problema de otimização na alocação de elevadores apresenta um campo de pesquisa único para a aplicação destas ferramentas em busca da prática da Inteligência Artificial.
+O uso de elevadores é presente na vida de grande parte dos habitantes de grandes metrópoles. Uma parcela significativa do dia-a-dia desta população é passada em grandes caixas metálicas, ou esperando pelas mesmas. A possibilidade de aplicar conhecimentos em Inteligência Artificial para melhorar o desempenho deste meio de transporte e, por conseqüência, contribuir com um aumento na qualidade de vida de seus passageiros é um grande atrativo para o estudo deste assunto.
 
-Além disso, o uso de elevadores é presente na vida de todos os habitantes de grandes metrópoles. Uma parcela significativa do dia-a-dia desta população é passada em grandes caixas metálicas, ou esperando pelas mesmas. A possibilidade de aplicar conhecimentos em Inteligência Artificial para melhorar o desempenho deste meio de transporte e, por conseqüência, contribuir com um aumento na qualidade de vida de seus passageiros é um grande atrativo para a escolha deste tópico.
-
-Ao analisar a tecnologia atual, percebe-se que houve pouca evolução nos elevadores desde sua concepção. De fato, o mecanismo que os faz mover evoluiu drasticamente, quando comparamos elevadores de tração manual com as máquinas modernas. No entanto, tais evoluções são de difícil percepção aos usuários de elevadores. O sistema de controle dos elevadores ainda é simples, utilizando-se muito pouco de técnicas de aprendizado e heurísticas para alterar seu comportamento em tempo de execução. Acredita-se que seja possível trazer uma evolução grande para os sistemas de controle de grupos de elevadores com Inteligência Artificial, assim como os motores elétricos foram para a tração dos elevadores.
-
-Os problemas de simulação também são particularmente interessantes. Definir métricas e realizar a coleta de dados significativos para o problema é um conjunto de habilidades que perdurará e será de inestimável valor profissional e pessoal.
+Além disso, a Inteligência Artifical é uma área de conhecimento de grande interesse dos autores, junto dos problemas relacionados a simulações, às ferramentas de programação e à engenharia de software. O problema de otimização na alocação de elevadores apresenta um campo de pesquisa único para a aplicação destas ferramentas em busca da prática da Inteligência Artificial.
