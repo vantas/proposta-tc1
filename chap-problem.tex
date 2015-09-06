@@ -11,12 +11,11 @@ Um \textit{Elevator Group Control System} (\textbf{EGCS}), ou sistema de control
 \begin{itemize}
   \item Para cada andar:
   \begin{itemize}
-    \item Se existe uma \textbf{chamada de corredor} para subir a partir deste;
-    \item Se existe uma \textbf{chamada de corredor} para descer a partir deste;
+    \item Se existe uma \textbf{chamada de corredor} a partir deste andar, o horário em que foi originada e o sentido (subir, descer ou ambos);
   \end{itemize}
   \item Para cada elevador:
   \begin{itemize}
-    \item Um conjunto de \textbf{chamadas de cabine} solicitadas pelos passageiros;
+    \item Um conjunto de \textbf{chamadas de cabine} solicitadas pelos passageiros e o horário em que cada uma foi originada;
     \item O andar em que se encontra;
     \item Se está parado, subindo ou descendo;
     \item Sua lotação.
@@ -32,7 +31,7 @@ Sobre estes dados, o EGCS utiliza-se de algoritmos e técnicas para fornecer com
   \end{itemize}
 \end{itemize}
 
-Existem eventos após os quais o EGCS deve recalcular as sequências de paradas dos elevadores de modo a atender as novas solicitações. Um evento de interação com o usuário pode ser:
+Existem eventos após os quais o EGCS deve recalcular as sequências de paradas dos elevadores de modo a atender as novas solicitações. Tais eventos são:
 
 \begin{itemize}
   \item Uma nova \textbf{chamada de corredor};
