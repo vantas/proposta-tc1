@@ -78,6 +78,9 @@ O tempo médio de sistema (AST) define a qualidade do serviço, já que está li
 
 \section{Padrões de Comportamento}
 
+Há três padrões principais que descrevem o comportamento de grupos de
+passageiros em relação aos elevadores.
+
 \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries interfloor}]
   \item[up peak]    Passageiros chegam no lobby e desejam subir.
   \item[down peak]  Passageiros desejam descer de qualquer andar para o lobby.
@@ -97,7 +100,9 @@ Pode-se dizer que cada prédio é um cenário em potencial no contexto deste tra
   \item[M]
   Número total de elevadores que compõem o sistema.
   \item[K]
-  Capacidade\footnote{Como efeito de redução de escopo consideraremos todos os elevadores de um mesmo sistema como tendo a mesma capacidade.} máxima de passageiros que cada elevador é capaz de transportar.
+  Capacidade\footnote{Como efeito de redução de escopo consideraremos todos os
+    elevadores de um mesmo sistema como tendo a mesma capacidade.} (em número de
+  pessoas\footnote{Consideramos uma pessoa com peso médio de 70kg.}) máxima de passageiros que cada elevador é capaz de transportar.
   \item[P]
   População total do prédio.
   \item[F]
@@ -106,7 +111,14 @@ Pode-se dizer que cada prédio é um cenário em potencial no contexto deste tra
   Propósito do prédio: residencial, comercial com múltiplas empresas, comercial com única empresa, etc;
 \end{description}
 
-Logo, há tantos cenários possíveis quanto há prédios ao redor do mundo. Entretanto, por limitação de tempo e de recursos computacionais, vamos limitar os cenários em algumas categorias. A escolha destas divisões é arbitrária, com fim didático, exceto pelo limite inferior de 4 andares devido à exigência legal do Município de Porto Alegre onde prédios deste tamanho ou maiores (mas não menores que isto) de serem construídos com elevadores. O limite superior\footnote{O maior arranha-céu do mundo em 2015 é o Burj Khalif, localizado em Dubai, com mais de 162m de altura.} fica em aberto.
+Logo, há tantos cenários possíveis quanto há prédios ao redor do mundo.
+Entretanto, por limitação de tempo e de recursos computacionais, vamos limitar
+os cenários em algumas categorias. A escolha destas divisões é arbitrária, com
+fim didático, exceto pelo limite inferior de 4 andares devido à exigência legal
+do Município de Porto Alegre onde prédios deste tamanho ou maiores (mas não
+menores que isto) de serem construídos com elevadores. O limite
+superior\footnote{O maior arranha-céu do mundo em 2015 é o Burj Khalif,
+  localizado em Dubai, com mais de 800m de altura, em 160 andares habitáveis.} fica em aberto.
 
 % \footnote{http://www2.portoalegre.rs.gov.br/cgi-bin/nph-brs?u=/netahtml/sirel/avancada.html&p=3&r=59&f=G&d=ATOS&l=20&s1=(ELEVADOR)..RELA. }
 
