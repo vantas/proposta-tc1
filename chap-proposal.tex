@@ -1,25 +1,29 @@
 \chapter{\label{chap:proposal}Proposta do Trabalho}
 
-% TODO - vamos fazer o simulador ou usar um pronto? DEFINIR
-{\color{red}A proposta deste trabalho é comparar diferentes estratégias de
-  controle de elevadores em alguns cenários e avaliar, dentre as opções
-  possíveis, quais combinações resultam em um melhor desempenho no transporte de
-  passageiros. A comparação se dará analisando os resultados de simulações de
-  diferentes algoritmos de controle. Para tanto, serão implementados no mínimo 2
-  algoritmos de IA, além de um algoritmo trivial para comparação, para o sistema
- de controle de elevadores e um simulador de elevadores. O usuário do simulador poderá:
+A proposta deste trabalho é implementar um simulador de elevadores e alguns
+algoritmos de Inteligência Artificial, de modo a podermos testar sua eficiência
+e compará-los entre si e contra um algoritmo trivial.
 
-\begin{itemize}
-  \item Selecionar cenários;
-  \item Selecionar um algoritmo para controle dos elevadores ou implementar o seu próprio;
-  \item Comparar o desempenho entre diferentes algoritmos em um mesmo cenário;
-  \item Comparar o desempenho de um algoritmo em múltiplos cenários.
-\end{itemize}
+O objetivo é encontrar uma solução que reduza significativamente o tempo de
+viagem dos passageiros e possa ser implementado em conjuntos existentes de
+elevadores.
 
-Com base nos resultados estatísticos obtidos através das simulações serão realizadas análises quantitativas e qualitativas e, se possível, otimizações nas implementações dos algoritmos. Assim, objetiva-se encontrar quais são as melhores estratégias para cada cenário proposto.}
+Para isto, será modelado e desenvolvido um simulador, que irá expor uma API para
+o usuário instanciar grupos de elevadores em prédios de tamanhos e
+comportamentos diferentes e comparar estratégias de alocação e movimentação dos
+mesmos.
 
-MODELAGEM
+O usuário poderá, também, implementar seus próprios algoritmos e utilizar o
+simulador para compará-los entre si ou contra aqueles já implementados. Além
+disso, o usuário poderá comparar a execução de uma estratégia entre vários
+cenários. Isso permitirá que, por exemplo, fique claro se uma estratégia
+funciona para um prédio residencial, mas não para um prédio comercial; ou ainda,
+se um algoritmo tem um gargalo em número de usuários ou quantidade de andares.
 
-AGENTES
+O simulador deverá retornar estatísticas sobre a execução de cada estratégia,
+como tempo médio de viagem, tempo médio de espera, ocupação de cada carro e
+ociosidade total do sistema.
 
-FUNÇÃO-OBJETIVO
+Este simulador dará base para uma análise e potencial proposta de uma estratégia
+(ou um conjunto de estratégias) que pode ser imediatamente implementada em um
+prédio existente.
