@@ -1,8 +1,44 @@
 \chapter{\label{chap:problem}Descrição do Problema}
 
-A maior parte dos prédios possui instalações de grupos com 2 a 8 elevadores \cite{KOEHLEROTTIGER02}. Em muitos prédios, esses são o meio de transporte primário entre andares, visto que escadas são menos práticas e, muitas vezes, menos acessíveis ou exclusivas para situações de emergência. Dado o seu uso em larga escala, a ineficiência dos sistemas de controle de elevadores é sentida diariamente por seus usuários. Neste cenário deseja-se encontrar formas de otimizar estes sistemas de controle.
+A maior parte dos prédios possui instalações de grupos com 2 a 8 elevadores \cite{KOEHLEROTTIGER02}. Em muitos prédios, esses são o meio de transporte primário entre andares, visto que escadas são menos práticas e, muitas vezes, menos acessíveis ou exclusivas para situações de emergência. Dado o seu uso em larga escala, a ineficiência dos sistemas de controle de elevadores é sentida diariamente por seus usuários. Neste cenário, deseja-se encontrar formas de otimizar estes sistemas de controle de modo a refletir positivamente no desempenho geral do sistema e na percepção da qualidade do sistema na visão de seus usuários.
 
 O problema estudado neste trabalho é modelado da seguinte forma: seja um prédio com \textbf{N} andares e \textbf{M} elevadores, cada um com capacidade para transportar \textbf{K} pessoas simultaneamente; sabe-se que a população total do prédio é \textbf{P} e está distribuída de maneira uniforme nos andares do prédio; também sabe-se que a chegada ou saídas destas pessoas obedece uma função de distribuição de probabilidade \textbf{F}. De que forma o sistema pode atender esta população de modo a minimizar o tempo médio de atendimento de cada pessoa?
+
+\section{Sistema de Controle de Grupo de Elevadores}
+
+Um \textit{Elevator Group Control System} (\textbf{EGCS}), ou sistema de controle de grupo de elevadores, é responsável por coordenar as ações dos elevadores do prédio~\cite{kuzunuki1984elevator}. Esta coordenação visa atender à todas \textbf{chamadas de corredor}\footnote{Passageiros estão fora dos elevadores e realizam uma chamada para subir ou descer à partir do andar em que se encontram.} e \textbf{chamadas de cabine}\footnote{Passageiros estão dentro do elevador e realizam uma chamada para desembarcar em um andar destino.} em um dado instante. O \textbf{estado} do sistema pode ser modelado, minimamente, pelo seguinte conjunto de informações:
+
+\begin{itemize}
+  \item Para cada andar:
+  \begin{itemize}
+    \item Se existe uma \textbf{chamada de corredor} para subir a partir deste;
+    \item Se existe uma \textbf{chamada de corredor} para descer a partir deste;
+  \end{itemize}
+  \item Para cada elevador:
+  \begin{itemize}
+    \item Um conjunto de \textbf{chamadas de cabine} solicitadas pelos passageiros;
+    \item O andar em que se encontra;
+    \item Se está parado, subindo ou descendo;
+    \item Sua lotação.
+  \end{itemize}
+\end{itemize}
+
+Sobre estes dados, o EGCS utiliza-se de algoritmos e técnicas para fornecer como saída:
+
+\begin{itemize}
+  \item Para cada elevador:
+  \begin{itemize}
+    \item Uma \textbf{sequência de paradas} que aquele elevador deve realizar.
+  \end{itemize}
+\end{itemize}
+
+Existem eventos após os quais o EGCS deve recalcular as sequências de paradas dos elevadores de modo a atender as novas solicitações. Um evento de interação com o usuário pode ser:
+
+\begin{itemize}
+  \item Uma nova \textbf{chamada de corredor};
+  \item Uma nova \textbf{chamada de cabine};
+  \item Uma \textbf{parada realizada} com alteração significativa na lotação do elevador\footnote{Possível aplicação para uso de uma banda morta.};
+\end{itemize}
 
 \section{Aquisição de Dados e Métricas}
 
@@ -39,35 +75,6 @@ A simulação de sistemas de elevadores ganha destaque neste contexto, tornando-
 O tempo médio de sistema (AST) define a qualidade do serviço, já que está ligado diretamente à percepção que os passageiros possuem do sistema. É correto afirmar que o desejo de um passageiro é chegar no seu destino o mais rápido possível - ou seja, com o menor tempo de sistema possível. Normalmente, tempos de sistema menores relacionam-se com um alto HC\textsubscript{5\%}; porém, passageiros tendem a dar maior importância a um baixo tempo de espera do que a um baixo tempo de jornada~\cite{KOEHLEROTTIGER02}. Isto por que, uma vez dentro do elevador, o passageiro não se sente mais esperando: ele sente que já está sendo servido.
 
 {\color{red}Ainda assim, embora uma redução de 32 para 28 segundos de espera não seja considerada uma grande melhoria, é psicologicamente importante evitar esperas longas, i.~e.~60 segundos ou mais.} % TODO: CITATIONNEEDED
-
-\section{Sistema de Controle de Grupo de Elevadores}
-
-Um \textit{Elevator Group Control System} (\textbf{EGCS}), ou sistema de controle de grupo de elevadores, é responsável por coordenar as ações de todos os elevadores do prédio~\cite{kuzunuki1984elevator}. Esta coordenação visa atender à todas \textbf{chamadas de corredor}\footnote{Passageiros estão fora dos elevadores e realizam uma chamada para subir ou descer à partir do andar em que se encontram.} e \textbf{chamadas de cabine}\footnote{Passageiros estão dentro do elevador e realizam uma chamada para desembarcar em um andar destino} em cada instante. Para tanto, o EGCS utiliza-se de algoritmos e heurísticas aplicados à dados de entrada que refletem o estado atual do sistema. Estes dados são compostos, minimamente, por:
-
-\begin{itemize}
-  \item Para cada andar:
-  \begin{itemize}
-    \item Se existe uma chamada para subir a partir deste
-    \item Se existe uma chamada para descer a partir deste
-  \end{itemize}
-  \item Para cada elevador:
-  \begin{itemize}
-    \item O andar em que se encontra
-    \item Se está parado, subindo ou descendo
-    \item Sua lotação
-    \item Um conjunto de paradas solicitadas pelos passageiros
-  \end{itemize}
-\end{itemize}
-
-A função do EGCS, portanto, trata-se de resolver um problema de otimização: atribuir elevadores para atender chamadas minimizando alguma métrica - veremos mais adiante as métricas de desempenho de um EGCS. Entretanto, este problema encontra-se no conjunto de problemas NP-difícil (ou NP-hard, ou NP-complexo)~\cite{SeKo99}. Portanto, uma solução ótima, decidível em tempo polinomial, ainda não é conhecida para este problema.
-
-\section{Possíveis Complicadores}
-
-Um número de cenários pode complicar as métricas e prejudicar os resultados. A grande maioria destes complicadores são fatores humanos, como pessoas segurando a porta, passageiros indecisos, seleção acidental de andares e desistências após chamar o elevador.
-
-Alguns destes problemas podem ser mitigados com a modificação da interface dos elevadores. Por exemplo, seleções acidentais de andares poderiam ser desfeitas, caso houvesse um mecanismo para cancelar a seleção de um andar. O mesmo vale para o cenário do passageiro indeciso.
-
-No entanto, propor este tipo de alteração de comportamento não está no escopo deste trabalho. É nosso objetivo estudar alterações somente nos algoritmos que regem o comportamento dos elevadores da maneira com que estão atualmente instalados na vasta maioria dos prédios.
 
 \section{Padrões de Comportamento}
 
@@ -136,3 +143,11 @@ Uma tecnologia que saiba endereçar as seguintes questões será de grande inter
 \item De quê forma as interfaces com os passageiros podem evoluir além de simples botões? \hfill \newline
       How can passengers with special needs be better served? In the following, we give an overview of AI- based approaches that have been explored by elevator companies in the past to address these issues.
 \end{enumerate}
+
+\section{Possíveis Complicadores}
+
+Um número de cenários pode complicar as métricas e prejudicar os resultados. A grande maioria destes complicadores são fatores humanos, como pessoas segurando a porta, passageiros indecisos, seleção acidental de andares e desistências após chamar o elevador.
+
+Alguns destes problemas podem ser mitigados com a modificação da interface dos elevadores. Por exemplo, seleções acidentais de andares poderiam ser desfeitas, caso houvesse um mecanismo para cancelar a seleção de um andar. O mesmo vale para o cenário do passageiro indeciso.
+
+No entanto, propor este tipo de alteração de comportamento não está no escopo deste trabalho. É nosso objetivo estudar alterações somente nos algoritmos que regem o comportamento dos elevadores da maneira com que estão atualmente instalados na vasta maioria dos prédios.
