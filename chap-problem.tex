@@ -1,28 +1,53 @@
 \chapter{\label{chap:problem}Descrição do Problema}
 
-A maior parte dos prédios possui instalações de grupos com 2 a 8 elevadores \cite{KOEHLEROTTIGER02}. Em muitos prédios, esses são o meio de transporte primário entre andares, visto que escadas são menos práticas e, muitas vezes, menos acessíveis ou exclusivas para situações de emergência. Dado o seu uso em larga escala, a ineficiência dos sistemas de controle de elevadores é sentida diariamente por seus usuários. Neste cenário, deseja-se encontrar formas de otimizar estes sistemas de controle de modo a refletir positivamente no desempenho geral do sistema e na percepção da qualidade do sistema na visão de seus usuários.
+A maior parte dos prédios possui instalações de grupos com 2 a 8 elevadores
+\cite{KOEHLEROTTIGER02}. Em muitos prédios, esses são o meio de transporte
+primário entre andares, visto que escadas são menos práticas e, muitas vezes,
+menos acessíveis ou exclusivas para situações de emergência. Dado o seu uso em
+larga escala, a ineficiência dos sistemas de controle de elevadores é sentida
+diariamente por seus usuários. Neste cenário, deseja-se encontrar formas de
+otimizar estes sistemas de controle de modo a refletir positivamente no
+desempenho geral do sistema e na percepção da qualidade do sistema na visão de
+seus usuários.
 
-O problema estudado neste trabalho é modelado da seguinte forma: seja um prédio com \textbf{N} andares e \textbf{M} elevadores, cada um com capacidade para transportar \textbf{K} pessoas simultaneamente; sabe-se que a população total do prédio é \textbf{P} e está distribuída de maneira uniforme nos andares do prédio; também sabe-se que a chegada ou saídas destas pessoas obedece uma função de distribuição de probabilidade \textbf{F}. De que forma o sistema pode atender esta população de modo a minimizar o tempo médio de atendimento de cada pessoa?
+O problema estudado neste trabalho é modelado da seguinte forma: seja um prédio
+com \textbf{N} andares e \textbf{M} elevadores, cada um com capacidade para
+transportar \textbf{K} pessoas simultaneamente; sabe-se que a população total do
+prédio é \textbf{P} e está distribuída de maneira uniforme nos andares do
+prédio; também sabe-se que a chegada ou saídas destas pessoas obedece uma função
+de distribuição de probabilidade \textbf{F}. De que forma o sistema pode atender
+esta população de modo a minimizar o tempo médio de atendimento de cada pessoa?
 
 \section{Sistema de Controle de Grupo de Elevadores}
 
-Um \textit{Elevator Group Control System} (\textbf{EGCS}), ou sistema de controle de grupo de elevadores, é responsável por coordenar as ações dos elevadores do prédio~\cite{kuzunuki1984elevator}. Esta coordenação visa atender à todas \textbf{chamadas de corredor}\footnote{Passageiros estão fora dos elevadores e realizam uma chamada para subir ou descer a partir do andar em que se encontram.} e \textbf{chamadas de cabine}\footnote{Passageiros estão dentro do elevador e realizam uma chamada para desembarcar em um andar destino.} em um dado instante. O \textbf{estado} do sistema pode ser modelado, minimamente, pelo seguinte conjunto de informações:
+Um \textit{Elevator Group Control System} (\textbf{EGCS}), ou sistema de
+controle de grupo de elevadores, é responsável por coordenar as ações dos
+elevadores do prédio~\cite{kuzunuki1984elevator}. Esta coordenação visa atender
+à todas \textbf{chamadas de corredor}\footnote{Passageiros estão fora dos
+elevadores e realizam uma chamada para subir ou descer a partir do andar em que
+se encontram.} e \textbf{chamadas de cabine}\footnote{Passageiros estão dentro
+do elevador e realizam uma chamada para desembarcar em um andar destino.} em um
+dado instante. O \textbf{estado} do sistema pode ser modelado, minimamente, pelo
+seguinte conjunto de informações:
 
 \begin{itemize}
   \item Para cada andar:
   \begin{itemize}
-    \item Se existe uma \textbf{chamada de corredor} a partir deste andar e o sentido (subir, descer ou ambos);
+    \item Se existe uma \textbf{chamada de corredor} a partir deste andar e o
+          sentido (subir, descer ou ambos);
   \end{itemize}
   \item Para cada elevador:
   \begin{itemize}
-    \item Um conjunto de \textbf{chamadas de cabine} solicitadas pelos passageiros;
+    \item Um conjunto de \textbf{chamadas de cabine} solicitadas pelos
+          passageiros;
     \item O andar em que se encontra;
     \item Se está parado, subindo ou descendo;
     \item Sua lotação.
   \end{itemize}
 \end{itemize}
 
-Sobre estes dados, o EGCS utiliza-se de algoritmos e técnicas para fornecer como saída:
+Sobre estes dados, o EGCS utiliza-se de algoritmos e técnicas para fornecer como
+saída:
 
 \begin{itemize}
   \item Para cada elevador:
@@ -31,7 +56,8 @@ Sobre estes dados, o EGCS utiliza-se de algoritmos e técnicas para fornecer com
   \end{itemize}
 \end{itemize}
 
-Existem eventos após os quais o EGCS deve recalcular as sequências de paradas dos elevadores de modo a atender as novas solicitações. Tais eventos são:
+Existem eventos após os quais o EGCS deve recalcular as sequências de paradas
+dos elevadores de modo a atender as novas solicitações. Tais eventos são:
 
 \begin{itemize}
   \item Uma nova \textbf{chamada de corredor};
@@ -40,13 +66,32 @@ Existem eventos após os quais o EGCS deve recalcular as sequências de paradas 
   \item Um elevador torna-se ocioso, i. e. não possuir mais paradas a realizar.
 \end{itemize}
 
-Para cada um destes eventos deve existir uma estampa de tempo associada para fins estatísticos e cálculos de métricas, conforme apresentado à seguir.
+Para cada um destes eventos deve existir uma estampa de tempo associada para
+fins estatísticos e cálculos de métricas, conforme apresentado à seguir.
 
 \section{Aquisição de Dados e Métricas}
 
-A aquisição destes dados sobre o tráfego de um sistema de elevadores instalados é um problema em aberto na indústria~\cite{KOEHLEROTTIGER02}. Em casos simples é possível designar pessoas para observar e contar passageiros entrando e saindo dos elevadores. Já em casos mais complexos foram aplicadas soluções mais engenhosas, como contagem de pessoas aplicando algoritmos de visão computacional em vídeos de câmeras de segurança e sensores de carga. Estas abordagens possuem fatores complicadores - como, por exemplo, a dificuldade em lidar com as diferenças de iluminação, baixa qualidade de vídeo, baixa precisão de sensores, etc - e o resultado obtido não compensa o custo.
+A aquisição destes dados sobre o tráfego de um sistema de elevadores instalados
+é um problema em aberto na indústria~\cite{KOEHLEROTTIGER02}. Em casos simples é
+possível designar pessoas para observar e contar passageiros entrando e saindo
+dos elevadores. Já em casos mais complexos foram aplicadas soluções mais
+engenhosas, como contagem de pessoas aplicando algoritmos de visão computacional
+em vídeos de câmeras de segurança e sensores de carga. Estas abordagens possuem
+fatores complicadores - como, por exemplo, a dificuldade em lidar com as
+diferenças de iluminação, baixa qualidade de vídeo, baixa precisão de sensores,
+etc - e o resultado obtido não compensa o custo.
 
-Neste contexto, a simulação de sistemas de elevadores ganha destaque neste contexto, tornando-se uma alternativa atraente para obter métricas e avaliar o desempenho de um sistema na fase de projeto, antes da sua construção. Por exemplo, supondo que em um prédio de 10 andares com 2 elevadores exista uma fila de 20 pessoas que desejam ir a andares variados do prédio; cada uma destas pessoas chegou à fila em um momento distinto; porém, a chamada de corredor foi realizado apenas pela primeira pessoa da fila. Como medir o tempo que cada passageiro ficou esperando pelo elevador ou levou para chegar ao seu destino? A modelagem do problema e simulação em ambiente computacional permitem obter dados estruturados e estatísticos que em um ambiente real seriam impossíveis de se conseguir. Tais dados podem compreender:
+Neste contexto, a simulação de sistemas de elevadores ganha destaque neste
+contexto, tornando-se uma alternativa atraente para obter métricas e avaliar o
+desempenho de um sistema na fase de projeto, antes da sua construção. Por
+exemplo, supondo que em um prédio de 10 andares com 2 elevadores exista uma fila
+de 20 pessoas que desejam ir a andares variados do prédio; cada uma destas
+pessoas chegou à fila em um momento distinto; porém, a chamada de corredor foi
+realizado apenas pela primeira pessoa da fila. Como medir o tempo que cada
+passageiro ficou esperando pelo elevador ou levou para chegar ao seu destino? A
+modelagem do problema e simulação em ambiente computacional permitem obter dados
+estruturados e estatísticos que em um ambiente real seriam impossíveis de se
+conseguir. Tais dados podem compreender:
 
 \begin{itemize}
   \item Para cada passageiro:
@@ -62,20 +107,29 @@ Neste contexto, a simulação de sistemas de elevadores ganha destaque neste con
   \end{itemize}
 \end{itemize}
 
-A partir destes dados, algumas das principais métricas utilizadas pela indústria de elevadores para avaliar o desempenho de seus sistemas podem ser calculadas:
+A partir destes dados, algumas das principais métricas utilizadas pela indústria
+de elevadores para avaliar o desempenho de seus sistemas podem ser calculadas:
 
 \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries HC\textsubscript{5\%}}]
   \item[HC\textsubscript{5\%}]
-  Percentual da população total do prédio que um sistema de elevadores consegue transportar em um intervalo de 5 minutos. Um HC\textsubscript{5\%} aceitável é de no mínimo 14\%~\cite{KOEHLEROTTIGER02}. Por exemplo, em um prédio cuja população é de 600 pessoas, este índice representa o transporte de no mínimo 84 pessoas em 5 minutos.
+  Percentual da população total do prédio que um sistema de elevadores consegue
+  transportar em um intervalo de 5 minutos. Um HC\textsubscript{5\%} aceitável é
+   de no mínimo 14\%~\cite{KOEHLEROTTIGER02}. Por exemplo, em um prédio cuja
+   população é de 600 pessoas, este índice representa o transporte de no mínimo
+   84 pessoas em 5 minutos.
 
   \item[WT]
-  \textit{Waiting Time}, ou tempo de espera; está compreendido entre a requisição de um passageiro e o seu embarque em um elevador.
+  \textit{Waiting Time}, ou tempo de espera; está compreendido entre a
+  requisição de um passageiro e o seu embarque em um elevador.
 
   \item[JT]
-  \textit{Journey Time}, ou tempo de jornada; está compreendido entre o embarque de um passageiro em um elevador e o desembarque em seu destino.
+  \textit{Journey Time}, ou tempo de jornada; está compreendido entre o embarque
+   de um passageiro em um elevador e o desembarque em seu destino.
 
   \item[ST]
-  \textit{System Time}, ou tempo de sistema; está compreendido entre entre a chegada de um passageiro e o desembarque em seu destino, ou seja, é a soma do tempo de espera com o tempo de jornada.
+  \textit{System Time}, ou tempo de sistema; está compreendido entre entre a
+  chegada de um passageiro e o desembarque em seu destino, ou seja, é a soma do
+  tempo de espera com o tempo de jornada.
 
   \item[AWT]
   \textit{Average Waiting Time}, ou tempo médio de espera.
@@ -87,14 +141,28 @@ A partir destes dados, algumas das principais métricas utilizadas pela indústr
   \textit{Average System Time}, ou tempo médio de sistema.
 
   \item[RTT]
-  \textit{Round-trip Time}, ou tempo de ida e volta em uma tradução livre; é o tempo médio de uma viagem de um elevador partindo do lobby, indo até todos os andares do prédio e de volta ao lobby em horário de pico.
+  \textit{Round-trip Time}, ou tempo de ida e volta em uma tradução livre; é o
+  tempo médio de uma viagem de um elevador partindo do lobby, indo até todos os
+  andares do prédio e de volta ao lobby em horário de pico.
 \end{description}
 
-O tempo médio de sistema (AST) define a qualidade do serviço, já que está ligado diretamente à percepção que os passageiros possuem do sistema. É correto afirmar que o desejo de um passageiro é chegar no seu destino o mais rápido possível~-~ou seja, com o menor tempo de sistema possível. Normalmente, tempos de sistema menores relacionam-se com um alto HC\textsubscript{5\%}; porém, passageiros tendem a dar maior importância a um baixo tempo de espera do que a um baixo tempo de jornada~\cite{KOEHLEROTTIGER02}. Isto por que, uma vez dentro do elevador, o passageiro não se sente mais esperando: ele sente que já está sendo servido. Ainda assim, embora uma redução de 32 para 28 segundos de espera não seja considerada uma grande melhoria, é psicologicamente importante evitar esperas longas, i.~e.~60 segundos ou mais.
+O tempo médio de sistema (AST) define a qualidade do serviço, já que está ligado
+diretamente à percepção que os passageiros possuem do sistema. É correto afirmar
+que o desejo de um passageiro é chegar no seu destino o mais rápido
+possível~-~ou seja, com o menor tempo de sistema possível. Normalmente, tempos
+de sistema menores relacionam-se com um alto HC\textsubscript{5\%}; porém,
+passageiros tendem a dar maior importância a um baixo tempo de espera do que a
+um baixo tempo de jornada~\cite{KOEHLEROTTIGER02}. Isto por que, uma vez dentro
+do elevador, o passageiro não se sente mais esperando: ele sente que já está
+sendo servido. Ainda assim, embora uma redução de 32 para 28 segundos de espera
+não seja considerada uma grande melhoria, é psicologicamente importante evitar
+esperas longas, i.~e.~60 segundos ou mais.
 
 \section{Cenários de Testes}
 
-Pode-se dizer que cada prédio é um cenário em potencial no contexto deste trabalho. Alguns dos principais atributos que podem ser utilizados para definir um cenário são:
+Pode-se dizer que cada prédio é um cenário em potencial no contexto deste
+trabalho. Alguns dos principais atributos que podem ser utilizados para definir
+um cenário são:
 
 \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Propósito}]
   \item[N]
@@ -103,24 +171,27 @@ Pode-se dizer que cada prédio é um cenário em potencial no contexto deste tra
   Número total de elevadores que compõem o sistema.
   \item[K]
   Capacidade\footnote{Como efeito de redução de escopo, consideram-se todos os
-    elevadores de um mesmo sistema como tendo a mesma capacidade.} (em número de
-  pessoas\footnote{Considerando uma pessoa com peso médio de 70 kg.}) máxima de passageiros que cada elevador é capaz de transportar.
+  elevadores de um mesmo sistema como tendo a mesma capacidade.} (em número de
+  pessoas\footnote{Considerando uma pessoa com peso médio de 70 kg.}) máxima de
+  passageiros que cada elevador é capaz de transportar.
   \item[P]
   População total do prédio.
   \item[F]
   Função de distribuição de probabilidade de chegada/saída de passageiros.
   \item[Propósito]
-  Propósito do prédio: residencial, comercial com múltiplas empresas, comercial com única empresa, etc;
+  Propósito do prédio: residencial, comercial com múltiplas empresas, comercial
+  com única empresa, etc;
 \end{description}
 
 Logo, há tantos cenários possíveis quanto há prédios ao redor do mundo.
 Entretanto, por limitação de tempo e de recursos computacionais, vamos limitar
 os cenários em algumas categorias. A escolha destas divisões é arbitrária, com
 fim didático, exceto pelo limite inferior de 4 andares devido à exigência legal
-do Município de Porto Alegre\footnote{http://www2.portoalegre.rs.gov.br/netahtml/sirel/atos/Lei\%201344} onde prédios deste tamanho ou maiores (mas não
-menores que isto) de serem construídos com elevadores. O limite
-superior\footnote{O maior arranha-céu do mundo em 2015 é o Burj Khalif,
-  localizado em Dubai, com mais de 800m de altura distribuídos em 160 andares habitáveis.} fica em aberto.
+do Município de Porto Alegre\footnote{http://www2.portoalegre.rs.gov.br/netahtml
+/sirel/atos/Lei\%201344} onde prédios deste tamanho ou maiores (mas não menores
+que isto) de serem construídos com elevadores. O limite superior\footnote{O
+maior arranha-céu do mundo em 2015 é o Burj Khalif, localizado em Dubai, com
+mais de 800m de altura distribuídos em 160 andares habitáveis.} fica em aberto.
 
 \begin{savenotes}
 \begin{table}[htb!]
@@ -129,26 +200,44 @@ superior\footnote{O maior arranha-céu do mundo em 2015 é o Burj Khalif,
 \label{tab:cenarios}
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-{\bf Cenário\footnote{Classificações de prédios de acordo com a definição da consultoria Emporis GMBH~\cite{Emporis15}.}}    & {\bf Altura} & {\bf N}  & {\bf M}        & {\bf K} & {\bf P por andar} \\ \hline
-{\it Low-rise}   & menor que 35 m          & 4 a 11         & 1       & 6       & 20      \\ \hline
-{\it High-rise}  & entre 35 e 100 m        & 12 a 39        & 5       & 10      & 40      \\ \hline
-{\it Skyscraper} & maior que 100 m         & a partir de 40 & 10      & 12      & 60      \\ \hline
+{\bf Cenário\footnote{Classificações de prédios de acordo com a definição da
+consultoria Emporis GMBH~\cite{Emporis15}.}} & {\bf Altura} & {\bf N}  & {\bf M}
+& {\bf K} & {\bf P por andar} \\ \hline
+{\it Low-rise}   & menor que 35 m    & 4 a 11         & 1  & 6  & 20 \\ \hline
+{\it High-rise}  & entre 35 e 100 m  & 12 a 39        & 5  & 10 & 40 \\ \hline
+{\it Skyscraper} & maior que 100 m   & a partir de 40 & 10 & 12 & 60 \\ \hline
 \end{tabular}
 \end{table}
 \end{savenotes}
 
 \section{Possíveis Complicadores}
 
-Existem fatores humanos cujas ocorrências geram situações especiais que aumentam a complexidade do problema e prejudicam o desempenho geral do sistema. Por exemplo, podem ser destacadas as seguintes situações:
+Existem fatores humanos cujas ocorrências geram situações especiais que aumentam
+a complexidade do problema e prejudicam o desempenho geral do sistema. Por
+exemplo, podem ser destacadas as seguintes situações:
 
 \begin{itemize}
-  \item Um passageiro segura a porta do elevador aberta para um colega que se atrasou - deste modo, o passageiro que segura a porta está sendo altruísta para com seu colega, porém egoísta em relação aos outros passageiros que estão aguardando nos demais andares;
-  \item Passageiros acidentalmente fazem uma chamada de corredor no sentido errado;
-  \item Passageiros fazem uma chamada de corredor, desistem de aguardar pelo elevador e utilizam as escadas - ou seja, não embarcam no elevador;
-  \item Passageiros acidentalmente fazem chamadas de cabine para andares errados;
+  \item Um passageiro segura a porta do elevador aberta para um colega que se
+        atrasou - deste modo, o passageiro que segura a porta está sendo
+        altruísta para com seu colega, porém egoísta em relação aos outros
+        passageiros que estão aguardando nos demais andares;
+  \item Passageiros acidentalmente fazem uma chamada de corredor no sentido
+        errado;
+  \item Passageiros fazem uma chamada de corredor, desistem de aguardar pelo
+        elevador e utilizam as escadas - ou seja, não embarcam no elevador;
+  \item Passageiros acidentalmente fazem chamadas de cabine para andares
+        errados;
   \item Etc.
 \end{itemize}
 
-Estes são apenas alguns exemplos de situações que ocorrem diariamente. Alguns destes problemas podem ser mitigados através de aprimoramentos da interface dos elevadores. Por exemplo, seleções acidentais de andares ou desistências poderiam ser desfeitas, caso houvesse uma interface para cancelar chamadas de corredor ou de cabine.
+Estes são apenas alguns exemplos de situações que ocorrem diariamente. Alguns
+destes problemas podem ser mitigados através de aprimoramentos da interface dos
+elevadores. Por exemplo, seleções acidentais de andares ou desistências poderiam
+ser desfeitas, caso houvesse uma interface para cancelar chamadas de corredor ou
+de cabine.
 
-No entanto, propor este tipo de análise e alteração de interfaces e comportamentos não está no escopo deste estudo. O objetivo aqui é analisar e propor alterações somente nos sistema de controle que regem o comportamento dos elevadores da maneira com que estão atualmente instalados na vasta maioria dos prédios.
+No entanto, propor este tipo de análise e alteração de interfaces e
+comportamentos não está no escopo deste estudo. O objetivo aqui é analisar e
+propor alterações somente nos sistema de controle que regem o comportamento dos
+elevadores da maneira com que estão atualmente instalados na vasta maioria dos
+prédios.
