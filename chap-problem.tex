@@ -11,11 +11,11 @@ Um \textit{Elevator Group Control System} (\textbf{EGCS}), ou sistema de control
 \begin{itemize}
   \item Para cada andar:
   \begin{itemize}
-    \item Se existe uma \textbf{chamada de corredor} a partir deste andar, o horário em que foi originada e o sentido (subir, descer ou ambos);
+    \item Se existe uma \textbf{chamada de corredor} a partir deste andar e o sentido (subir, descer ou ambos);
   \end{itemize}
   \item Para cada elevador:
   \begin{itemize}
-    \item Um conjunto de \textbf{chamadas de cabine} solicitadas pelos passageiros e o horário em que cada uma foi originada;
+    \item Um conjunto de \textbf{chamadas de cabine} solicitadas pelos;
     \item O andar em que se encontra;
     \item Se está parado, subindo ou descendo;
     \item Sua lotação.
@@ -36,15 +36,33 @@ Existem eventos após os quais o EGCS deve recalcular as sequências de paradas 
 \begin{itemize}
   \item Uma nova \textbf{chamada de corredor};
   \item Uma nova \textbf{chamada de cabine};
-  \item Uma \textbf{parada realizada} com alteração significativa na lotação do elevador;
+  \item Uma \textbf{parada realizada};
   \item Um elevador torna-se ocioso, i. e., não possuir mais paradas a realizar.
 \end{itemize}
 
+Para cada um destes eventos deve existir uma estampa de tempo associada para fins estatísticos e cálculos de métricas, conforme apresentado à seguir.
+
 \section{Aquisição de Dados e Métricas}
 
-A aquisição de dados sobre o tráfego de um sistema de elevadores instalados é um problema em aberto na indústria~\cite{KOEHLEROTTIGER02}. Em casos simples é possível designar pessoas para observar e contar passageiros entrando e saindo dos elevadores. Já em casos mais complexos foram aplicadas soluções mais engenhosas, como contagem de pessoas aplicando algoritmos de visão computacional em vídeos de câmeras de segurança e sensores de carga. Estas abordagens possuem fatores complicadores - como, por exemplo, a dificuldade em lidar com as diferenças de iluminação, baixa qualidade de vídeo, baixa precisão de sensores, etc - e o resultado obtido não compensa o custo.
+A aquisição destes dados sobre o tráfego de um sistema de elevadores instalados é um problema em aberto na indústria~\cite{KOEHLEROTTIGER02}. Em casos simples é possível designar pessoas para observar e contar passageiros entrando e saindo dos elevadores. Já em casos mais complexos foram aplicadas soluções mais engenhosas, como contagem de pessoas aplicando algoritmos de visão computacional em vídeos de câmeras de segurança e sensores de carga. Estas abordagens possuem fatores complicadores - como, por exemplo, a dificuldade em lidar com as diferenças de iluminação, baixa qualidade de vídeo, baixa precisão de sensores, etc - e o resultado obtido não compensa o custo.
 
-A simulação de sistemas de elevadores ganha destaque neste contexto, tornando-se uma alternativa atraente para obter métricas e avaliar o desempenho de um sistema na fase de projeto, antes da sua construção. Algumas das principais métricas utilizadas pela indústria de elevadores para avaliar o desempenho de seus sistemas são:
+Neste contexto, a simulação de sistemas de elevadores ganha destaque neste contexto, tornando-se uma alternativa atraente para obter métricas e avaliar o desempenho de um sistema na fase de projeto, antes da sua construção. Por exemplo, supondo que em um prédio de 10 andares com 2 elevadores exista uma fila de 20 pessoas que desejam ir a andares variados do prédio; cada uma destas pessoas chegou à fila em um momento distinto; porém, a chamada de corredor foi realizado apenas pela primeira pessoa da fila. Como medir o tempo que cada passageiro ficou esperando pelo elevador ou levou para chegar ao seu destino? A modelagem do problema e simulação em ambiente computacional podem fornecer dados estruturados e estatísticos que em um ambiente real seriam impossíveis de se conseguir.
+
+\begin{itemize}
+  \item Para cada passageiro:
+  \begin{itemize}
+    \item A hora de sua chegada ao prédio;
+    \item O andar de destino;
+    \item A hora de embarque no elevador;
+    \item A hora de desembarque no andar de destino;
+  \end{itemize}
+  \item Para cada elevador:
+  \begin{itemize}
+    \item A hora em que partiu do lobby.
+  \end{itemize}
+\end{itemize}
+
+À partir destes dados, algumas das principais métricas utilizadas pela indústria de elevadores para avaliar o desempenho de seus sistemas podem ser calculadas:
 
 \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries HC\textsubscript{5\%}}]
   \item[HC\textsubscript{5\%}]
@@ -72,25 +90,9 @@ A simulação de sistemas de elevadores ganha destaque neste contexto, tornando-
   \textit{Round-trip Time}, ou tempo de ida e volta em uma tradução livre; é o tempo médio de uma viagem de um elevador partindo do lobby, indo até todos os andares do prédio e de volta ao lobby em horário de pico.
 \end{description}
 
-O tempo médio de sistema (AST) define a qualidade do serviço, já que está ligado diretamente à percepção que os passageiros possuem do sistema. É correto afirmar que o desejo de um passageiro é chegar no seu destino o mais rápido possível - ou seja, com o menor tempo de sistema possível. Normalmente, tempos de sistema menores relacionam-se com um alto HC\textsubscript{5\%}; porém, passageiros tendem a dar maior importância a um baixo tempo de espera do que a um baixo tempo de jornada~\cite{KOEHLEROTTIGER02}. Isto por que, uma vez dentro do elevador, o passageiro não se sente mais esperando: ele sente que já está sendo servido.
+O tempo médio de sistema (AST) define a qualidade do serviço, já que está ligado diretamente à percepção que os passageiros possuem do sistema. É correto afirmar que o desejo de um passageiro é chegar no seu destino o mais rápido possível - ou seja, com o menor tempo de sistema possível. Normalmente, tempos de sistema menores relacionam-se com um alto HC\textsubscript{5\%}; porém, passageiros tendem a dar maior importância a um baixo tempo de espera do que a um baixo tempo de jornada~\cite{KOEHLEROTTIGER02}. Isto por que, uma vez dentro do elevador, o passageiro não se sente mais esperando: ele sente que já está sendo servido. Ainda assim, embora uma redução de 32 para 28 segundos de espera não seja considerada uma grande melhoria, é psicologicamente importante evitar esperas longas, i.~e.~60 segundos ou mais.
 
-{\color{red}Ainda assim, embora uma redução de 32 para 28 segundos de espera não seja considerada uma grande melhoria, é psicologicamente importante evitar esperas longas, i.~e.~60 segundos ou mais.} % TODO: CITATIONNEEDED
-
-\section{Padrões de Comportamento}
-
-Há três padrões principais que descrevem o comportamento de grupos de
-passageiros em relação aos elevadores.
-
-\begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries interfloor}]
-  \item[up peak]    Passageiros chegam no lobby e desejam subir.
-  \item[down peak]  Passageiros desejam descer de qualquer andar para o lobby.
-  \item[interfloor] Passageiros deslocam-se entre andares arbitrários, com exceção do lobby.
-\end{description}
-
-Outros padrões podem ser definidos combinando-se os três padrões acima
-descritos. No entanto, para os fins deste trabalho, nos limitaremos aos padrões puros.
-
-\section{Cenários}
+\section{Cenários de Testes}
 
 Pode-se dizer que cada prédio é um cenário em potencial no contexto deste trabalho. Alguns dos principais atributos que podem ser utilizados para definir um cenário são:
 
@@ -100,9 +102,9 @@ Pode-se dizer que cada prédio é um cenário em potencial no contexto deste tra
   \item[M]
   Número total de elevadores que compõem o sistema.
   \item[K]
-  Capacidade\footnote{Como efeito de redução de escopo consideraremos todos os
+  Capacidade\footnote{Como efeito de redução de escopo, consideram-se todos os
     elevadores de um mesmo sistema como tendo a mesma capacidade.} (em número de
-  pessoas\footnote{Consideramos uma pessoa com peso médio de 70kg.}) máxima de passageiros que cada elevador é capaz de transportar.
+  pessoas\footnote{Considerando uma pessoa com peso médio de 70 kg.}) máxima de passageiros que cada elevador é capaz de transportar.
   \item[P]
   População total do prédio.
   \item[F]
@@ -118,25 +120,40 @@ fim didático, exceto pelo limite inferior de 4 andares devido à exigência leg
 do Município de Porto Alegre onde prédios deste tamanho ou maiores (mas não
 menores que isto) de serem construídos com elevadores. O limite
 superior\footnote{O maior arranha-céu do mundo em 2015 é o Burj Khalif,
-  localizado em Dubai, com mais de 800m de altura, em 160 andares habitáveis.} fica em aberto.
+  localizado em Dubai, com mais de 800m de altura distribuídos em 160 andares habitáveis.} fica em aberto.
 
 % \footnote{http://www2.portoalegre.rs.gov.br/cgi-bin/nph-brs?u=/netahtml/sirel/avancada.html&p=3&r=59&f=G&d=ATOS&l=20&s1=(ELEVADOR)..RELA. }
 
+\begin{savenotes}
 \begin{table}[htb!]
 \centering
-\caption{Cenários}
-\label{table:tab1}
-\begin{tabular}{|l|c|c|c|c|}
+\caption{Cenários de Testes}
+\label{my-label}
+\begin{tabular}{|c|c|c|c|c|c|}
 \hline
-{\bf Cenário}        & {\bf N}    & {\bf M} & {\bf K} & {\bf P} \\ \hline
-{\it Prédio pequeno} & 4 a 5      & 1       & 6       & 40      \\ \hline
-{\it Prédio médio}   & 6 a 10     & 2       & 10      & 96      \\ \hline
-{\it Pŕedio grande}  & 11 a 30    & 5       & 10      & 560     \\ \hline
-{\it Arranha-céu}    & 30 ou mais & 10      & 12      & 3200    \\ \hline
+{\bf Cenário\footnote{Classificações de prédios de acordo com a definição da consultoria Emporis GMBH~\cite{Emporis15}.}}    & {\bf Altura} & {\bf N}  & {\bf M}        & {\bf K} & {\bf P por andar} \\ \hline
+{\it Low-rise}   & menor que 35 m          & 4 a 11         & 1       & 6       & 20      \\ \hline
+{\it High-rise}  & entre 35 e 100 m        & 12 a 39        & 5       & 10      & 40      \\ \hline
+{\it Skyscraper} & maior que 100 m         & à partir de 40 & 10      & 12      & 60      \\ \hline
 \end{tabular}
 \end{table}
+\end{savenotes}
 
 {\color{red}[SERIA BEM MELHOR SE USÁSSEMOS DADOS REAIS PARA MKP DE PRÉDIOS CONHECIDOS. EX: PŔEDIO ONDE MORAMOS, FACIN, EMPIRE STATE, BURJ KHALIF, ETC]} % TODO
+
+\section{Padrões de Comportamento}
+
+Há três padrões principais que descrevem o comportamento de grupos de
+passageiros em relação aos elevadores.
+
+\begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries interfloor}]
+  \item[up peak]    Passageiros chegam no lobby e desejam subir.
+  \item[down peak]  Passageiros desejam descer de qualquer andar para o lobby.
+  \item[interfloor] Passageiros deslocam-se entre andares arbitrários, com exceção do lobby.
+\end{description}
+
+Outros padrões podem ser definidos combinando-se os três padrões acima
+descritos. No entanto, para os fins deste trabalho, nos limitaremos aos padrões puros.
 
 \section{Critérios de Aceitação}
 
