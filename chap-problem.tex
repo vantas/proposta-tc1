@@ -6,7 +6,7 @@ O problema estudado neste trabalho é modelado da seguinte forma: seja um prédi
 
 \section{Sistema de Controle de Grupo de Elevadores}
 
-Um \textit{Elevator Group Control System} (\textbf{EGCS}), ou sistema de controle de grupo de elevadores, é responsável por coordenar as ações dos elevadores do prédio~\cite{kuzunuki1984elevator}. Esta coordenação visa atender à todas \textbf{chamadas de corredor}\footnote{Passageiros estão fora dos elevadores e realizam uma chamada para subir ou descer à partir do andar em que se encontram.} e \textbf{chamadas de cabine}\footnote{Passageiros estão dentro do elevador e realizam uma chamada para desembarcar em um andar destino.} em um dado instante. O \textbf{estado} do sistema pode ser modelado, minimamente, pelo seguinte conjunto de informações:
+Um \textit{Elevator Group Control System} (\textbf{EGCS}), ou sistema de controle de grupo de elevadores, é responsável por coordenar as ações dos elevadores do prédio~\cite{kuzunuki1984elevator}. Esta coordenação visa atender à todas \textbf{chamadas de corredor}\footnote{Passageiros estão fora dos elevadores e realizam uma chamada para subir ou descer a partir do andar em que se encontram.} e \textbf{chamadas de cabine}\footnote{Passageiros estão dentro do elevador e realizam uma chamada para desembarcar em um andar destino.} em um dado instante. O \textbf{estado} do sistema pode ser modelado, minimamente, pelo seguinte conjunto de informações:
 
 \begin{itemize}
   \item Para cada andar:
@@ -15,7 +15,7 @@ Um \textit{Elevator Group Control System} (\textbf{EGCS}), ou sistema de control
   \end{itemize}
   \item Para cada elevador:
   \begin{itemize}
-    \item Um conjunto de \textbf{chamadas de cabine} solicitadas pelos;
+    \item Um conjunto de \textbf{chamadas de cabine} solicitadas pelos passageiros;
     \item O andar em que se encontra;
     \item Se está parado, subindo ou descendo;
     \item Sua lotação.
@@ -37,7 +37,7 @@ Existem eventos após os quais o EGCS deve recalcular as sequências de paradas 
   \item Uma nova \textbf{chamada de corredor};
   \item Uma nova \textbf{chamada de cabine};
   \item Uma \textbf{parada realizada};
-  \item Um elevador torna-se ocioso, i. e., não possuir mais paradas a realizar.
+  \item Um elevador torna-se ocioso, i. e. não possuir mais paradas a realizar.
 \end{itemize}
 
 Para cada um destes eventos deve existir uma estampa de tempo associada para fins estatísticos e cálculos de métricas, conforme apresentado à seguir.
@@ -90,7 +90,7 @@ Neste contexto, a simulação de sistemas de elevadores ganha destaque neste con
   \textit{Round-trip Time}, ou tempo de ida e volta em uma tradução livre; é o tempo médio de uma viagem de um elevador partindo do lobby, indo até todos os andares do prédio e de volta ao lobby em horário de pico.
 \end{description}
 
-O tempo médio de sistema (AST) define a qualidade do serviço, já que está ligado diretamente à percepção que os passageiros possuem do sistema. É correto afirmar que o desejo de um passageiro é chegar no seu destino o mais rápido possível - ou seja, com o menor tempo de sistema possível. Normalmente, tempos de sistema menores relacionam-se com um alto HC\textsubscript{5\%}; porém, passageiros tendem a dar maior importância a um baixo tempo de espera do que a um baixo tempo de jornada~\cite{KOEHLEROTTIGER02}. Isto por que, uma vez dentro do elevador, o passageiro não se sente mais esperando: ele sente que já está sendo servido. Ainda assim, embora uma redução de 32 para 28 segundos de espera não seja considerada uma grande melhoria, é psicologicamente importante evitar esperas longas, i.~e.~60 segundos ou mais.
+O tempo médio de sistema (AST) define a qualidade do serviço, já que está ligado diretamente à percepção que os passageiros possuem do sistema. É correto afirmar que o desejo de um passageiro é chegar no seu destino o mais rápido possível~-~ou seja, com o menor tempo de sistema possível. Normalmente, tempos de sistema menores relacionam-se com um alto HC\textsubscript{5\%}; porém, passageiros tendem a dar maior importância a um baixo tempo de espera do que a um baixo tempo de jornada~\cite{KOEHLEROTTIGER02}. Isto por que, uma vez dentro do elevador, o passageiro não se sente mais esperando: ele sente que já está sendo servido. Ainda assim, embora uma redução de 32 para 28 segundos de espera não seja considerada uma grande melhoria, é psicologicamente importante evitar esperas longas, i.~e.~60 segundos ou mais.
 
 \section{Cenários de Testes}
 
@@ -134,7 +134,7 @@ superior\footnote{O maior arranha-céu do mundo em 2015 é o Burj Khalif,
 {\bf Cenário\footnote{Classificações de prédios de acordo com a definição da consultoria Emporis GMBH~\cite{Emporis15}.}}    & {\bf Altura} & {\bf N}  & {\bf M}        & {\bf K} & {\bf P por andar} \\ \hline
 {\it Low-rise}   & menor que 35 m          & 4 a 11         & 1       & 6       & 20      \\ \hline
 {\it High-rise}  & entre 35 e 100 m        & 12 a 39        & 5       & 10      & 40      \\ \hline
-{\it Skyscraper} & maior que 100 m         & à partir de 40 & 10      & 12      & 60      \\ \hline
+{\it Skyscraper} & maior que 100 m         & a partir de 40 & 10      & 12      & 60      \\ \hline
 \end{tabular}
 \end{table}
 \end{savenotes}
