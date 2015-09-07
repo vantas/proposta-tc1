@@ -1,48 +1,30 @@
 \chapter{\label{chap:related}Trabalhos Relacionados}
 
 Alguns trabalhos já abordaram a temática de Inteligência Artificial aplicada a
-elevadores. O artigo ``\textit{An AI-based approac to destination control in
-  elevators}''~\cite{KOEHLEROTTIGER02} descreve o problema e o classifica como
-NP-Hard.  %TODO CONTINUAR
+elevadores. O artigo ``\textit{An AI-based Approach to Destination Control in
+  Elevators}''~\cite{KOEHLEROTTIGER02} descreve o problema e o classifica como
+NP-Hard. Também fala das tentativas feitas de se contar os passageiros que estão
+esperando, bem como os padrões de tráfego dos mesmos. O artigo segue descrevendo
+o histórico de pesquisa em Inteligência Artificial aplicada a Elevadores,
+passando por Lógica~\textit{Fuzzy} e Redes~Neurais. 
 
+Além disso, segundo este artigo, algoritmos genéticos foram utilizados para definir Zonas de
+Atuação de elevadores. Por exemplo, um elevador só irá atender do sétimo ao
+décimo quarto andares, e isto seria ajustado dinamicamente.
 
+Outra alternativa apresentada pelo artigo é a de Controle de Destino, onde o
+destino do passageiro é selecionado do lado de fora do elevador, em vez de
+apenas uma indicação de direção de viagem. Isto permite, segundo o artigo, um
+planejamento melhor da alocação dos carros, mas tem a desvantagem de não poder
+ser facilmente integrado a sistemas existentes, já que exige que painéis novos e
+mais caros sejam instalados em todos os andares.
 
+No entanto, o sistema de Controle de Destino está instalado em mais de 1500
+elevadores~\cite{KOEHLEROTTIGER02} e obtém resultados muito bons, utilizando
+algoritmos de alocação heurística para atingir um valor duas vezes maior para o
+HC\textsubscript{5\%} do que quando não utilizado.
 
-\section{Destination Dispatch}
-
-%http://www.schindler.com/br/internet/pt/solucoes-em-mobilidade/produtos/gerenciamento-acesso/miconic-10.html
-
-Rockefeller Center, New York NY
-Prime Tower, Zurich, Switzerland (2011)
-
-%http://www.schindler.com/br/internet/pt/solucoes-em-mobilidade/produtos/gerenciamento-acesso/port-technology.html
-
-EZ Towers
-São Paulo, 2012
-
-Doha Twin Towers
-Doha, 2013
-
-%https://www.thyssenkruppelevator.com/elevator-products/elevator-destination-dispatch#tab1
-
-World Financial Center, NY, EUA
-
-\section{Double-deck Elevators}
-
-%http://www.schindler.com/content/au/internet/en/mobility-solutions/products/elevators/schindler-7000/_jcr_content/rightPar/downloadlist_0/downloadList/16_1336648631250.download.asset.16_1336648631250/DD_Brochure.pdf
-
-Utilizado em:
-
-Burj Khalifa in Dubai
-Petronas Twin Towers in Kuala Lumpur
-Statue of Liberty in New York (goes no higher than the pedestal)
-
-\section{Two elevators, same shaft}
-
-https://twin.thyssenkrupp-elevator.com/
-
-Utilizado em:
-
-European Central Bank, Frankfurt, Alemanha
-ThyssenKrupp Headquarters, Essen, Alemanha
-Mercury Tower Lot 14, Moscou, Russie
+Tanto o sistema de Zonas de Atuação quanto o de Controle de Destino têm a
+desvantagem de onerar o usuário. O potencial passageiro deve atentar para qual
+elevador foi alocado para ele, no caso do Controle de Destino, ou qual elevador
+estará servindo o andar para qual deseja ir, no caso do sistema de Zonas de Atuação~\cite{KOEHLERROTTIGER02}.
