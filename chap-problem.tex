@@ -151,28 +151,18 @@ passageiros em relação aos elevadores.
 Outros padrões podem ser definidos combinando-se os três padrões acima
 descritos. No entanto, para os fins deste trabalho, nos limitaremos aos padrões puros.
 
-\section{Critérios de Aceitação}
-
-Uma tecnologia que saiba endereçar as seguintes questões será de grande interesse para a indústria de elevadores~\cite{KOEHLEROTTIGER02}:
-
-\begin{enumerate}
-\item Qual é a função objetivo de um algoritmo de despache em grupo? \hfill \newline
-      Almost no information is published by companies about the objective functions they use in their con- trol algorithms. Usually, a vague “combination of waiting and journey times” is minimized, but which function would yield the best possi- ble results still seems to be an open question.
-
-\item Como um sistema de controle pode obter informações adicionais acerca das necessidades dos passageiros?\hfill \newline
-      In particular, how can it find out how many passengers are waiting at a floor, how fully loaded a car is, and where the passengers want to go?
-
-\item Como o desempenho do controlador pode ser melhorado? \hfill \newline
-      Is it possible to detect and predict patterns of traffic based on the cur- rently available information and/or previously learned patterns? How could such information be exploited by a control algorithm?
-
-\item De quê forma as interfaces com os passageiros podem evoluir além de simples botões? \hfill \newline
-      How can passengers with special needs be better served? In the following, we give an overview of AI- based approaches that have been explored by elevator companies in the past to address these issues.
-\end{enumerate}
-
 \section{Possíveis Complicadores}
 
-Um número de cenários pode complicar as métricas e prejudicar os resultados. A grande maioria destes complicadores são fatores humanos, como pessoas segurando a porta, passageiros indecisos, seleção acidental de andares e desistências após chamar o elevador.
+Existem fatores humanos cujas ocorrências geram situações especiais que aumentam a complexidade do problema e prejudicam o desempenho geral do sistema. Por exemplo, podem ser destacadas as seguintes situações:
 
-Alguns destes problemas podem ser mitigados com a modificação da interface dos elevadores. Por exemplo, seleções acidentais de andares poderiam ser desfeitas, caso houvesse um mecanismo para cancelar a seleção de um andar. O mesmo vale para o cenário do passageiro indeciso.
+\begin{itemize}
+  \item Um passageiro segura a porta do elevador aberta para um colega que se atrasou - deste modo, o passageiro que segura a porta está sendo altruísta para com seu colega, porém egoísta em relação aos outros passageiros que estão aguardando nos demais andares;
+  \item Passageiros acidentalmente fazem uma chamada de corredor no sentido errado;
+  \item Passageiros fazem uma chamada de corredor, desistem de aguardar pelo elevador e utilizam as escadas - ou seja, não embarcam no elevador;
+  \item Passageiros acidentalmente fazem chamadas de cabine para andares errados;
+  \item Etc.
+\end{itemize}
 
-No entanto, propor este tipo de alteração de comportamento não está no escopo deste trabalho. É nosso objetivo estudar alterações somente nos algoritmos que regem o comportamento dos elevadores da maneira com que estão atualmente instalados na vasta maioria dos prédios.
+Estes são apenas alguns exemplos de situações que ocorrem diariamente. Alguns destes problemas podem ser mitigados através de aprimoramentos da interface dos elevadores. Por exemplo, seleções acidentais de andares ou desistências poderiam ser desfeitas, caso houvesse uma interface para cancelar chamadas de corredor ou de cabine.
+
+No entanto, propor este tipo de análise e alteração de interfaces e comportamentos não está no escopo deste estudo. O objetivo aqui é analisar e propor alterações somente nos sistema de controle que regem o comportamento dos elevadores da maneira com que estão atualmente instalados na vasta maioria dos prédios.
