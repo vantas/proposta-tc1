@@ -63,7 +63,7 @@ dos elevadores de modo a atender as novas solicitações. Tais eventos são:
   \item Uma nova \textbf{chamada de corredor};
   \item Uma nova \textbf{chamada de cabine};
   \item Uma \textbf{parada realizada};
-  \item Um elevador torna-se ocioso, i. e. não possuir mais paradas a realizar.
+  \item Um elevador torna-se ocioso, i.e.,~não possuir mais paradas a realizar.
 \end{itemize}
 
 Para cada um destes eventos deve existir uma estampa de tempo associada para
@@ -81,17 +81,17 @@ fatores complicadores - como, por exemplo, a dificuldade em lidar com as
 diferenças de iluminação, baixa qualidade de vídeo, baixa precisão de sensores,
 etc - e o resultado obtido não compensa o custo.
 
-Neste contexto, a simulação de sistemas de elevadores ganha destaque neste
-contexto, tornando-se uma alternativa atraente para obter métricas e avaliar o
-desempenho de um sistema na fase de projeto, antes da sua construção. Por
-exemplo, supondo que em um prédio de 10 andares com 2 elevadores exista uma fila
-de 20 pessoas que desejam ir a andares variados do prédio; cada uma destas
-pessoas chegou à fila em um momento distinto; porém, a chamada de corredor foi
-realizado apenas pela primeira pessoa da fila. Como medir o tempo que cada
-passageiro ficou esperando pelo elevador ou levou para chegar ao seu destino? A
-modelagem do problema e simulação em ambiente computacional permitem obter dados
-estruturados e estatísticos que em um ambiente real seriam impossíveis de se
-conseguir. Tais dados podem compreender:
+Neste contexto, a simulação de sistemas de elevadores ganha destaque, tornando-
+se uma alternativa atraente para obter métricas e avaliar o desempenho de um
+sistema na fase de projeto, antes da sua construção. Por exemplo, supondo que em
+um prédio de 10 andares com 2 elevadores exista uma fila de 20 pessoas que
+desejam ir a andares variados do prédio; cada uma destas pessoas chegou à fila
+em um momento distinto; porém, a chamada de corredor foi realizado apenas pela
+primeira pessoa da fila. Como medir o tempo que cada passageiro ficou esperando
+pelo elevador ou levou para chegar ao seu destino? A modelagem do problema e
+simulação em ambiente computacional permitem obter dados estruturados e
+estatísticos que em um ambiente real seriam impossíveis de se conseguir. Tais
+dados podem compreender:
 
 \begin{itemize}
   \item Para cada passageiro:
@@ -156,7 +156,7 @@ um baixo tempo de jornada~\cite{KOEHLEROTTIGER02}. Isto por que, uma vez dentro
 do elevador, o passageiro não se sente mais esperando: ele sente que já está
 sendo servido. Ainda assim, embora uma redução de 32 para 28 segundos de espera
 não seja considerada uma grande melhoria, é psicologicamente importante evitar
-esperas longas, i.~e.~60 segundos ou mais.
+esperas longas, i.e.,~60 segundos ou mais.
 
 \section{Cenários de Testes}
 
@@ -185,48 +185,47 @@ um cenário são:
 
 Logo, há tantos cenários possíveis quanto há prédios ao redor do mundo.
 Entretanto, por limitação de tempo e de recursos computacionais, vamos limitar
-os cenários em algumas categorias. A escolha destas divisões é arbitrária, com
-fim didático, exceto pelo limite inferior de 4 andares devido à exigência legal
-do Município de Porto Alegre\footnote{http://www2.portoalegre.rs.gov.br/netahtml
+os cenários em algumas categorias. A escolha destas divisões segue a
+classificação sugerida pela empresa \textbf{Emporis GmbH}, uma empresa de
+mineração de dados sobre imóveis com sede em Frankfurt, exceto pelo limite
+inferior de 4 andares devido à exigência legal do Município de Porto
+Alegre\footnote{http://www2.portoalegre.rs.gov.br/netahtml
 /sirel/atos/Lei\%201344} onde prédios deste tamanho ou maiores (mas não menores
 que isto) de serem construídos com elevadores. O limite superior\footnote{O
 maior arranha-céu do mundo em 2015 é o Burj Khalif, localizado em Dubai, com
 mais de 800m de altura distribuídos em 160 andares habitáveis.} fica em aberto.
 
-\begin{savenotes}
 \begin{table}[htb!]
 \centering
 \caption{Cenários de Testes}
 \label{tab:cenarios}
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-{\bf Cenário\footnote{Classificações de prédios de acordo com a definição da
-consultoria Emporis GMBH~\cite{Emporis15}.}} & {\bf Altura} & {\bf N}  & {\bf M}
-& {\bf K} & {\bf P por andar} \\ \hline
+{\bf Cenário} & {\bf Altura} & {\bf N}  & {\bf M} & {\bf K} & {\bf P por andar}
+\\ \hline
 {\it Low-rise}   & menor que 35 m    & 4 a 11         & 1  & 6  & 20 \\ \hline
 {\it High-rise}  & entre 35 e 100 m  & 12 a 39        & 5  & 10 & 40 \\ \hline
 {\it Skyscraper} & maior que 100 m   & a partir de 40 & 10 & 12 & 60 \\ \hline
 \end{tabular}
 \end{table}
-\end{savenotes}
 
 \section{Possíveis Complicadores}
 
 Existem fatores humanos cujas ocorrências geram situações especiais que aumentam
-a complexidade do problema e prejudicam o desempenho geral do sistema. Por
+a complexidade do problema e podem prejudicar o desempenho geral do sistema. Por
 exemplo, podem ser destacadas as seguintes situações:
 
 \begin{itemize}
-  \item Um passageiro segura a porta do elevador aberta para um colega que se
-        atrasou - deste modo, o passageiro que segura a porta está sendo
-        altruísta para com seu colega, porém egoísta em relação aos outros
-        passageiros que estão aguardando nos demais andares;
-  \item Passageiros acidentalmente fazem uma chamada de corredor no sentido
+  \item Um passageiro segura a porta do elevador aberta alguém atrasado - deste
+        modo, o passageiro que segura a porta está sendo altruísta com o
+        atrasado, porém egoísta em relação aos outros passageiros que estão
+        aguardando nos demais andares;
+  \item Um passageiros acidentalmente faz uma chamada de corredor no sentido
         errado;
-  \item Passageiros fazem uma chamada de corredor, desistem de aguardar pelo
-        elevador e utilizam as escadas - ou seja, não embarcam no elevador;
-  \item Passageiros acidentalmente fazem chamadas de cabine para andares
-        errados;
+  \item Um passageiro faz uma chamada de corredor, desiste de aguardar pelo
+        elevador e utiliza as escadas - ou seja, não embarca no elevador;
+  \item Um passageiro acidentalmente faz uma chamada de cabine para o andar
+        errado;
   \item Etc.
 \end{itemize}
 
@@ -238,6 +237,6 @@ de cabine.
 
 No entanto, propor este tipo de análise e alteração de interfaces e
 comportamentos não está no escopo deste estudo. O objetivo aqui é analisar e
-propor alterações somente nos sistema de controle que regem o comportamento dos
+propor alterações somente nos sistemas de controle que regem o comportamento dos
 elevadores da maneira com que estão atualmente instalados na vasta maioria dos
 prédios.
