@@ -1,34 +1,32 @@
-\chapter{label{chap:proposal}Proposta do Trabalho}
+\chapter{\label{chap:proposal}Proposta do Trabalho}
 
-A proposta deste trabalho é implementar um simulador de elevadores e alguns
-algoritmos de Inteligência Artificial, de modo a podermos testar sua eficiência
-e compará-los entre si e contra um algoritmo trivial.
+A proposta deste trabalho é comparar, através de simulações, diferentes
+estratégias de controle de elevadores utilizando Inteligência Artificial em
+cenários distintos pré-definidos. Os resultados das simulações serão avaliados
+e, dentre as opções possíveis, serão verificadas quais estratégias resultam em
+um melhor desempenho no transporte de passageiros para cada cenário. O objetivo
+é que esta solução reduza significamente o tempo que passageiros vivem em função
+dos elevadores (seja aguardando ou em viagem) e possa ser implementado em grupos
+de elevadores já existentes.
 
-O objetivo é encontrar uma solução que reduza significativamente o tempo de
-viagem dos passageiros e possa ser implementado em conjuntos existentes de
-elevadores.
+Para realizar tais simulações, será modelado e desenvolvido um simulador de
+elevadores. Esta ferramenta irá expor uma \textit{Application Programming
+Interface} (API) com elementos que permitam ao usuário definir um cenário
+utilizando os parâmetros \textbf{F}, \textbf{E}, \textbf{C}, \textbf{P},
+\textbf{D} e \textbf{Pu}\footnote{Seção 2.3.}. Além disto, a API permitirá que o
+usuário selecione a estratégia a ser utilizada pelo sistema de controle de
+grupos de elevadores. implementação desta estratégia será fornecida pela própria
+API. Alternativamente, o usuário poderá utilizar suas próprias implementações.
 
-Para isto, será modelado e desenvolvido um simulador, que irá expor uma API para
-o usuário instanciar grupos de elevadores em prédios de tamanhos e
-comportamentos diferentes e comparar estratégias de alocação e movimentação dos
-mesmos.
+O simulador deverá fornecer como saída as métricas\footnote{Seção 2.2} de
+desempenho para sistemas de controle de grupo de elevadores. Será possível
+simular uma estratégia em um conjunto de cenários ou comparar N estratégias em
+um mesmo cenário. Estes dados darão base para uma análise e potencial proposta
+de uma estratégia (ou um conjunto de estratégias) que pode ser imediatamente
+implementada em um prédio existente.
 
-O usuário poderá, também, implementar seus próprios algoritmos e utilizar o
-simulador para compará-los entre si ou contra aqueles já implementados. Além
-disso, o usuário poderá comparar a execução de uma estratégia entre vários
-cenários. Isso permitirá que, por exemplo, fique claro se uma estratégia
-funciona para um prédio residencial, mas não para um prédio comercial; ou ainda,
-se um algoritmo tem um gargalo em número de usuários ou quantidade de andares.
-
-O simulador deverá retornar estatísticas sobre a execução de cada estratégia,
-como tempo médio de viagem, tempo médio de espera, ocupação de cada carro e
-ociosidade total do sistema.
-
-Este simulador dará base para uma análise e potencial proposta de uma estratégia
-(ou um conjunto de estratégias) que pode ser imediatamente implementada em um
-prédio existente.
-
-Por fim, utilizando-nos deste simulador, avaliaremos o desempenho de pelo menos
-duas estratégias de Inteligência Artificial em vários cenários diferentes, de
-modo a determinar se há um ganho significativo em se utilizar uma delas em
-prédios de baixa, média e alta densidade, tanto residenciais quanto comerciais.
+Juntamente com o simulador de elevadores, pretende-se implementar, pelo menos,
+duas diferentes estratégias de Inteligência Artificial para realização da
+análise de desempenho nos cenários definidos anteriormente\footnote{Seção 2.3.},
+de modo a determinar se há um ganho significativo em se utilizar uma delas em
+prédios de baixo, médio e grande porte, tanto residenciais quanto comerciais.

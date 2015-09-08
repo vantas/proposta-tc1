@@ -164,23 +164,23 @@ Pode-se dizer que cada prédio é um cenário em potencial no contexto deste
 trabalho. Alguns dos principais atributos que podem ser utilizados para definir
 um cenário são:
 
-\begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Propósito}]
-  \item[N]
+\begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Pu}]
+  \item[F]
   Número total de andares do prédio.
-  \item[M]
+  \item[E]
   Número total de elevadores que compõem o sistema.
-  \item[K]
+  \item[C]
   Capacidade\footnote{Como efeito de redução de escopo, consideram-se todos os
   elevadores de um mesmo sistema como tendo a mesma capacidade.} (em número de
   pessoas\footnote{Considerando uma pessoa com peso médio de 70 kg.}) máxima de
   passageiros que cada elevador é capaz de transportar.
   \item[P]
   População total do prédio.
-  \item[F]
+  \item[D]
   Função de distribuição de probabilidade de chegada/saída de passageiros.
-  \item[Propósito]
-  Propósito do prédio: residencial, comercial com múltiplas empresas, comercial
-  com única empresa, etc;
+  \item[Pu]
+  Propósito do prédio: \textit{residencial} (com baixo fluxo entre os andares superiores), \textit{comercial com múltiplas empresas} (com médio fluxo entre andares superiores) ou \textit{comercial
+    com única empresa} (com alto fluxo entre andares superiores).
 \end{description}
 
 Logo, há tantos cenários possíveis quanto há prédios ao redor do mundo.
@@ -201,7 +201,7 @@ mais de 800m de altura distribuídos em 160 andares habitáveis.} fica em aberto
 \label{tab:cenarios}
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-{\bf Cenário} & {\bf Altura} & {\bf N}  & {\bf M} & {\bf K} & {\bf P por andar}
+{\bf Cenário} & {\bf Altura} & {\bf F}  & {\bf E} & {\bf C} & {\bf P por andar}
 \\ \hline
 {\it Low-rise}   & menor que 35 m    & 4 a 11         & 1  & 6  & 20 \\ \hline
 {\it High-rise}  & entre 35 e 100 m  & 12 a 39        & 5  & 10 & 40 \\ \hline
