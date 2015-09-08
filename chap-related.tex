@@ -4,16 +4,15 @@ Alguns trabalhos já abordaram a temática de Inteligência Artificial aplicada 
 elevadores. % TODO: Linguiça
 
 \section{An AI-based Approach to Destination Control in
-  Elevators}
-O artigo ``\textit{}''~\cite{KOEHLEROTTIGER02} descreve o problema e o classifica como
-NP-Hard. Também fala das tentativas feitas de se contar os passageiros que estão
-esperando, bem como os padrões de tráfego dos mesmos. O artigo segue descrevendo
-o histórico de pesquisa em Inteligência Artificial aplicada a Elevadores,
-passando por Lógica~\textit{Fuzzy} e Redes~Neurais. 
+Elevators~\cite{KOEHLEROTTIGER02}} O artigo descreve o problema e o classifica
+como NP-Hard. Também fala das tentativas feitas de se contar os passageiros que
+estão esperando, bem como os padrões de tráfego dos mesmos. O artigo segue
+descrevendo o histórico de pesquisa em Inteligência Artificial aplicada a
+Elevadores, passando por Lógica~\textit{Fuzzy} e Redes~Neurais.
 
-Além disso, segundo este artigo, algoritmos genéticos foram utilizados para definir Zonas de
-Atuação de elevadores. Por exemplo, um elevador só irá atender do sétimo ao
-décimo quarto andares, e isto seria ajustado dinamicamente.
+Além disso, segundo este artigo, algoritmos genéticos foram utilizados para
+definir Zonas de Atuação de elevadores. Por exemplo, um elevador só irá atender
+do sétimo ao décimo quarto andares, e isto seria ajustado dinamicamente.
 
 Outra alternativa apresentada pelo artigo é a de Controle de Destino, onde o
 destino do passageiro é selecionado do lado de fora do elevador, em vez de
@@ -30,32 +29,31 @@ HC\textsubscript{5\%} do que quando não utilizado.
 Tanto o sistema de Zonas de Atuação quanto o de Controle de Destino têm a
 desvantagem de onerar o usuário. O potencial passageiro deve atentar para qual
 elevador foi alocado para ele, no caso do Controle de Destino, ou qual elevador
-estará servindo o andar para qual deseja ir, no caso do sistema de Zonas de Atuação~\cite{KOEHLEROTTIGER02}.
+estará servindo o andar para qual deseja ir, no caso do sistema de Zonas de
+Atuação~\cite{KOEHLEROTTIGER02}.
 
-\section{Elevator Group Control with Artificial Intelligence}
+\section{Elevator Group Control with Artificial Intelligence~\cite{marja97}}
 
-O artigo ``Elevator Group Control with Artificial Intelligence''~\cite{marja97}
-se preocupa em utilizar análise de comportamento passado do grupo de elevadores
-e, com base nessas estatístiticas, aplicar Lógica~\textit{Fuzzy} para reconhecer
-padrões de tráfego.
+O artigo  se preocupa em utilizar análise de comportamento passado do grupo de
+elevadores e, com base nessas estatístiticas, aplicar Lógica~\textit{Fuzzy} para
+reconhecer padrões de tráfego.
 
 Como principal variável observada, foi escolhido o número de passageiros que
 entram e que saem em cada andar. Para realizar esta medida, foi utilizado a
 balança interna de cada carro, além do sensor da porta, que é normalmente
-utilizado para evitar fechar a porta com algum passageiro bloqueando a mesma~\cite{marja97}.
+utilizado para evitar fechar a porta com algum passageiro bloqueando a
+mesma~\cite{marja97}.
 
 Com base nestes dados, e dividindo o dia em períodos de 15 minutos, este
 trabalho conseguiu explicar 97\% das mudanças de comportamento como padrões e,
 então, prevê-los e mudar o comportamento dos carros de acordo.
 
 \section{Marginalizing Out Future Passengers in Group Elevator
-Control}
+Control~\cite{DBLP:journals/corr/abs-1212-2499}}
 
-Em ``Marginalizing Out Future Passengers in Group Elevator
-Control''~\cite{DBLP:journals/corr/abs-1212-2499}, o problema é novamente
-definido como NP-Hard. Um modelo de como a chegada de novos passageiros ao
-\textit{lobby} afeta o tráfego e tempo de espera é definido e utilizado para
-reduzir o tempo de espera total dos passageiros.
+Neste artigo, o problema é novamente definido como NP-Hard. Um modelo de como a
+chegada de novos passageiros ao \textit{lobby} afeta o tráfego e tempo de espera
+é definido e utilizado para reduzir o tempo de espera total dos passageiros.
 
 Este artigo descreve os passageiros como um conjunto de três variáveis~-~horário
 de chegada, andar de chegada e destino. Também caracteriza a chegada de
