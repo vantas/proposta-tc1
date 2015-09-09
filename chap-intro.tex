@@ -13,10 +13,10 @@ cotidiano da maioria da população, os elevadores\footnote{Dispositivos de
 transporte vertical que movimenta pessoas ou cargas entre andares ou níveis de
 um prédio ou estrutura.} passam a um papel de destaque.
 
-Uma pesquisa realizada pela IBM no ano de 2010 em 16 cidades norte-americanas
-constatou que, durante 12 meses, o tempo estimado no qual trabalhadores de
-escritórios\footnote{Em uma força de trabalho total de 51 milhões de
-trabalhadores, dos quais 12,7 milhões são usuários de elevadores
+Uma pesquisa realizada pela IBM (figura \ref{fig:fig1}) no ano de 2010 em 16
+cidades norte-americanas constatou que, durante 12 meses, o tempo estimado no
+qual trabalhadores de escritórios\footnote{Em uma força de trabalho total de 51
+milhões de trabalhadores, dos quais 12,7 milhões são usuários de elevadores
 diariamente~\cite{IBM10}.} aguardaram por elevadores foi de 92
 anos~\cite{IBM10}. Em uma economia onde o salário horário médio de um
 trabalhador é de US\$ 24,99, o tempo de espera por elevadores representa custos
@@ -59,13 +59,12 @@ Entretanto, este tipo de alteração não é sempre realizável em função de
 limitações na estrutura do prédio ou inviabilidade financeira. Uma solução de
 mais fácil aplicação é otimizar o sistema de controle dos elevadores.
 
-A função do sistema de controle dos elevadores é resolver um problema de
-otimização: atribuir elevadores para atender chamadas feitas pelos passageiros
-minimizando alguma métrica - mais adiante serão apresentadas as métricas de
-desempenho utilizadas. Entretanto, este problema encontra-se no conjunto de
-problemas NP-difícil (ou NP-hard, ou NP-complexo)~\cite{SeKo99}. Portanto, uma
-solução ótima, decidível em tempo polinomial, ainda não é conhecida para este
-problema.
+A função deste sistema é resolver um problema de otimização: atribuir elevadores
+para atender chamadas feitas pelos passageiros minimizando alguma métrica - mais
+adiante serão apresentadas as métricas de desempenho utilizadas. Entretanto,
+este problema encontra-se no conjunto de problemas NP-difícil (ou NP-hard, ou
+NP-complexo)~\cite{SeKo99}. Portanto, uma solução ótima, computável em tempo
+polinomial, ainda não é conhecida para este problema.
 
 Desde meados dos anos 1980, a indústria de elevadores vem estudando e
 implementando estratégias para encontrar soluções sub-ótimas para o problema de
@@ -74,7 +73,7 @@ redes neurais, algoritmos genéticos, lógicas \textit{fuzzy} e, mais
 recentemente, sistemas multi-agentes, planejamento e aprendizado de
 máquina~\cite{KOEHLEROTTIGER02}. Porém, melhorias significativas apenas são
 encontradas nos modelos de ponta, que adotam novos paradigmas de utilização e
-interface com usuários, e acabam ficando de fora dos modelos mais simples e
+interface com usuários, e acabam ausentes dos modelos mais simples e
 legados, i.e.,~que já estão instalados nos prédios.
 
 Ao analisar a tecnologia atual, percebe-se que houve pouca evolução nos
@@ -89,13 +88,13 @@ das últimas décadas.
 
 Acredita-se que tais técnicas permitam trazer uma evolução grande para os
 sistemas de controle de grupos de elevadores, assim como os motores elétricos
-foram para a tração dos elevadores. Por isto, o objetivo desde trabalho é
-comparar, através de simulações, diferentes estratégias de controle de
-elevadores utilizando Inteligência Artificial em alguns cenários. Assim, espera-
-se ser possível avaliar, dentre as opções possíveis, quais combinações resultam
-em um melhor desempenho no transporte de passageiros para cada cenário.
+foram para a tração. Por isto, o objetivo desde trabalho é comparar, através de
+simulações, diferentes estratégias de controle de elevadores utilizando
+Inteligência Artificial em alguns cenários. Assim, espera-se ser possível
+avaliar, dentre as opções possíveis, quais combinações resultam em um melhor
+desempenho no transporte de passageiros para cada cenário.
 
-\section{Motivação Prática}
+\section{\label{section:motivation}Motivação Prática}
 
 O uso de elevadores é presente na vida de grande parte dos habitantes de grandes
 metrópoles. Uma parcela significativa do dia-a-dia desta população é passada em
