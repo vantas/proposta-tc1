@@ -13,7 +13,7 @@ Para realizar tais simulações, será modelado e desenvolvido um simulador de
 elevadores. Esta ferramenta irá expor uma \textit{Application Programming
 Interface} (API) com elementos que permitam ao usuário definir um cenário
 utilizando os parâmetros \textbf{F}, \textbf{E}, \textbf{C}, \textbf{P},
-\textbf{D} e \textbf{Pu}\footnote{Seção \ref{section:data}.}. Além disto, a API
+\textbf{D} e \textbf{Pu}\footnote{Seção~\ref{section:data}.}. Além disto, a API
 permitirá que o usuário selecione a estratégia a ser utilizada pelo sistema de
 controle de grupos de elevadores. implementação desta estratégia será fornecida
 pela própria API. Alternativamente, o usuário poderá utilizar suas próprias
@@ -28,10 +28,11 @@ ser imediatamente implementada em um prédio existente.
 
 Juntamente com o simulador de elevadores, pretende-se implementar, pelo menos,
 duas diferentes estratégias de Inteligência Artificial para realização da
-análise de desempenho nos cenários definidos anteriormente\footnote{Seção
-\ref{section:scenarios}.}, de modo a determinar se há um ganho significativo em
-se utilizar uma delas em prédios de baixo, médio e grande porte, tanto
-residenciais quanto comerciais. As estratégias pretendidas são:
+análise de desempenho nos cenários definidos
+anteriormente\footnote{Seção~\ref{section:scenarios}.}, de modo a determinar se
+há um ganho significativo em se utilizar uma delas em prédios de baixo, médio e
+grande porte, tanto residenciais quanto comerciais. As estratégias pretendidas
+são:
 
 \section{\label{section:multiagentes}Sistemas multi-agentes}
 \section{\label{section:machinelearning}Aprendizado de máquina}
@@ -46,3 +47,7 @@ dois andares. Subtamente, o tráfego~\textit{interfloor}\footnote{Tráfego entre
   andares, oposto a tráfego do \textit{lobby} para um andar ou de um andar para
   o \textit{lobby}.} se torna significativo em algumas horas do dia, quando
 antes era negligenciável.
+
+Além de lidarem bem com mudanças graduais, as tecnicas de Aprendizado de Máquina
+tendem a obter resultados melhores com o tempo, conforme vão descobrindo padrões
+existentes, mas que não foram anteriormente notados.
