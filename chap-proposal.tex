@@ -5,28 +5,30 @@ estratégias de controle de elevadores utilizando Inteligência Artificial em
 cenários distintos pré-definidos. Os resultados das simulações serão avaliados
 e, dentre as opções possíveis, serão verificadas quais estratégias resultam em
 um melhor desempenho no transporte de passageiros para cada cenário. O objetivo
-é que esta solução reduza significamente o tempo que passageiros vivem em função
-dos elevadores (seja aguardando ou em viagem) e possa ser implementado em grupos
-de elevadores já existentes.
+é que esta solução reduza significamente o tempo que passageiros dependem de
+elevadores (seja aguardando ou em viagem) e possa ser implementado em grupos de
+elevadores já existentes.
 
 Para realizar tais simulações, será modelado e desenvolvido um simulador de
 elevadores. Esta ferramenta irá expor uma \textit{Application Programming
 Interface} (API) com elementos que permitam ao usuário definir um cenário
 utilizando os parâmetros \textbf{F}, \textbf{E}, \textbf{C}, \textbf{P},
-\textbf{D} e \textbf{Pu}\footnote{Seção 2.3.}. Além disto, a API permitirá que o
-usuário selecione a estratégia a ser utilizada pelo sistema de controle de
-grupos de elevadores. implementação desta estratégia será fornecida pela própria
-API. Alternativamente, o usuário poderá utilizar suas próprias implementações.
+\textbf{D} e \textbf{Pu}\footnote{Seção \ref{section:data}.}. Além disto, a API
+permitirá que o usuário selecione a estratégia a ser utilizada pelo sistema de
+controle de grupos de elevadores. implementação desta estratégia será fornecida
+pela própria API. Alternativamente, o usuário poderá utilizar suas próprias
+implementações.
 
-O simulador deverá fornecer como saída as métricas\footnote{Seção 2.2} de
-desempenho para sistemas de controle de grupo de elevadores. Será possível
-simular uma estratégia em um conjunto de cenários ou comparar N estratégias em
-um mesmo cenário. Estes dados darão base para uma análise e potencial proposta
-de uma estratégia (ou um conjunto de estratégias) que pode ser imediatamente
-implementada em um prédio existente.
+O simulador deverá fornecer como saída as métricas\footnote{Seção
+\ref{section:data}.} de desempenho para sistemas de controle de grupo de
+elevadores. Será possível simular uma estratégia em um conjunto de cenários ou
+comparar várias estratégias em um mesmo cenário. Estes dados darão base para
+análise e proposta de uma estratégia (ou um conjunto de estratégias) que pode
+ser imediatamente implementada em um prédio existente.
 
 Juntamente com o simulador de elevadores, pretende-se implementar, pelo menos,
 duas diferentes estratégias de Inteligência Artificial para realização da
-análise de desempenho nos cenários definidos anteriormente\footnote{Seção 2.3.},
-de modo a determinar se há um ganho significativo em se utilizar uma delas em
-prédios de baixo, médio e grande porte, tanto residenciais quanto comerciais.
+análise de desempenho nos cenários definidos anteriormente\footnote{Seção
+\ref{section:scenarios}.}, de modo a determinar se há um ganho significativo em
+se utilizar uma delas em prédios de baixo, médio e grande porte, tanto
+residenciais quanto comerciais.

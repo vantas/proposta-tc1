@@ -3,12 +3,14 @@
 Alguns trabalhos já abordaram a temática de Inteligência Artificial aplicada a
 elevadores. % TODO: Linguiça
 
-\section{An AI-based Approach to Destination Control in
-Elevators~\cite{KOEHLEROTTIGER02}} O artigo descreve o problema e o classifica
-como NP-Hard. Também fala das tentativas feitas de se contar os passageiros que
-estão esperando, bem como os padrões de tráfego dos mesmos. O artigo segue
-descrevendo o histórico de pesquisa em Inteligência Artificial aplicada a
-Elevadores, passando por Lógica~\textit{Fuzzy} e Redes~Neurais.
+\section{\label{section:koehler}An AI-based Approach to Destination Control in
+Elevators~\cite{KOEHLEROTTIGER02}}
+
+O artigo descreve o problema e o classifica como NP-Hard. Também fala das
+tentativas feitas de se contar os passageiros que estão esperando, bem como os
+padrões de tráfego dos mesmos. O artigo segue descrevendo o histórico de
+pesquisa em Inteligência Artificial aplicada a Elevadores, passando por
+Lógica~\textit{Fuzzy} e Redes~Neurais.
 
 Além disso, segundo este artigo, algoritmos genéticos foram utilizados para
 definir Zonas de Atuação de elevadores. Por exemplo, um elevador só irá atender
@@ -32,23 +34,22 @@ elevador foi alocado para ele, no caso do Controle de Destino, ou qual elevador
 estará servindo o andar para qual deseja ir, no caso do sistema de Zonas de
 Atuação~\cite{KOEHLEROTTIGER02}.
 
-\section{Elevator Group Control with Artificial Intelligence~\cite{marja97}}
+\section{\label{section:marja}Elevator Group Control with Artificial Intelligence~\cite{marja97}}
 
-O artigo  se preocupa em utilizar análise de comportamento passado do grupo de
+O artigo  se preocupa em utilizar análise do comportamento passado do grupo de
 elevadores e, com base nessas estatístiticas, aplicar Lógica~\textit{Fuzzy} para
 reconhecer padrões de tráfego.
 
 Como principal variável observada, foi escolhido o número de passageiros que
-entram e que saem em cada andar. Para realizar esta medida, foi utilizado a
-balança interna de cada carro, além do sensor da porta, que é normalmente
-utilizado para evitar fechar a porta com algum passageiro bloqueando a
-mesma~\cite{marja97}.
+entram e que saem em cada andar. Para esta medida, foi utilizada a balança
+interna de cada carro, além do sensor da porta, que é normalmente utilizado para
+evitar fechar a porta com algum passageiro bloqueando a mesma~\cite{marja97}.
 
 Com base nestes dados, e dividindo o dia em períodos de 15 minutos, este
 trabalho conseguiu explicar 97\% das mudanças de comportamento como padrões e,
 então, prevê-los e mudar o comportamento dos carros de acordo.
 
-\section{Marginalizing Out Future Passengers in Group Elevator
+\section{\label{section:dblp}Marginalizing Out Future Passengers in Group Elevator
 Control~\cite{DBLP:journals/corr/abs-1212-2499}}
 
 Neste artigo, o problema é novamente definido como NP-Hard. Um modelo de como a
@@ -60,9 +61,9 @@ de chegada, andar de chegada e destino. Também caracteriza a chegada de
 passageiros como um problema estocástico, que introduz muita incerteza no
 processo de decisão.
 
-O resultado do algoritmo~-~descrito em detalhe no artigo~-~ é bastante promissor,
-reduzindo o tempo de espera dos passageiros em entre 5\% e 55\%.
+O resultado do algoritmo~-~descrito em detalhe no artigo~-~ é bastante
+promissor, reduzindo o tempo de espera dos passageiros entre 5\% e 55\%.
 
-\section{Estado da Arte}
+\section{\label{section:art}Estado da Arte}
 
 Falar do Schindler PORT Technology.
