@@ -61,7 +61,7 @@ de chegada, andar de chegada e destino. Também caracteriza a chegada de
 passageiros como um problema estocástico, que introduz muita incerteza no
 processo de decisão.
 
-O resultado do algoritmo~-~descrito em detalhe no artigo~-~ é bastante
+O resultado do algoritmo~-~descrito em detalhe no artigo~-~é bastante
 promissor, reduzindo o tempo de espera dos passageiros entre 5\% e 55\%.
 
 \section{\label{section:art}Estado da Arte}
@@ -71,12 +71,12 @@ de PORT, um acrônimo para \textit{Personal Occupant Requirement Terminal}, ou
 terminal de requisição de ocupantes pessoais em uma tradução livre. De acordo
 com o fabricante, a tecnologia PORT representa o estado da arte em sistemas de
 gerenciamento de elevadores, ao mesmo tempo em que reduz o consumo de energia a
-níveis até então nunca alcançados \cite{Schindler14}.
+níveis até então nunca alcançados~\cite{Schindler14}.
 
 A tecnologia PORT tem por objetivo analisar e prever a necessidade de cada
 passageiro de forma individual e personalizada. Os passageiros simplesmente
 encostam seus cartões de acesso em um terminal de leitura do sistema. Após, o
-usuário seleciona o seu andar de destino - tudo isso \textbf{antes} de entrar no
+usuário seleciona o seu andar de destino~-~tudo isso \textbf{antes} de entrar no
 elevador. Neste momento, o sistema PORT calcula qual a rota mais rápida para o
 destino do passageiro e aloca um elevador específico para atender a solicitação.
 
@@ -88,4 +88,20 @@ como, por exemplo, agrupamento de passageiros, controle de acesso, entre outras.
 
 \section{\label{section:aprendemos}O que aprendemos com os outros trabalhos?}
 
-{\color{red}Concluir o que aprendemos com eles. Dar exemplos de comportamentos dos elevadores; dizer claramento o que não dá certo; podemos comparar resultados p/ saber se estamos no caminho certo?}
+Fica claro, com base nestes artigos, que algumas idéias são mais promissoras que
+outras. Por exemplo, o uso de algoritmos genéticos~\cite{KOEHLEROTTIGER02} (visto
+em~\ref{section:koehler}) para a definição de Zonas de Atuação não é uma boa
+solução, bem como todas as outras que forçam o usuário a descobrir qual carro
+atenderá seu chamado.
+
+O sistema de Controle de Destino~\cite{KOEHLEROTTIGER02} obtém bons resultados,
+mas também sofre do problema de onerar o usuário.
+
+Uma das soluções mais promissoras foi a de se utilizar Lógica~\textit{Fuzzy}
+para reconhecimento de padrões de tráfego e ajuste dinâmico do comportamento dos
+carros~\cite{marja97}, como visto em~\ref{section:marja}
+
+O modelo estatístico descrito no artigo da
+Seção~\ref{sec:dblp}~\ref{DBLP:journals/corr/abs-1212-2499} também é promissor,
+e nos dá uma métrica para sucesso: o tempo de espera do usuário sendo reduzido
+de 5\% a 55\% em comparação com o algoritmo trivial~\ref{DBLP:journals/corr/abs-1212-2499}.
