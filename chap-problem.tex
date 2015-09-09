@@ -5,10 +5,10 @@ A maior parte dos prédios possui instalações de grupos com 2 a 8 elevadores
 primário entre andares, visto que escadas são menos práticas e, muitas vezes,
 menos acessíveis ou exclusivas para situações de emergência. Dado o seu uso em
 larga escala, a ineficiência dos sistemas de controle de elevadores é sentida
-diariamente por seus usuários. Neste cenário, deseja-se encontrar formas de
-otimizar estes sistemas de controle de modo a refletir positivamente no
-desempenho geral do sistema e na percepção da qualidade do sistema na visão de
-seus usuários.
+diariamente por seus usuários sob a forma de tempo despendido em função dos
+mesmos. Neste cenário, deseja-se encontrar formas de otimizar estes sistemas de
+controle de modo a refletir positivamente no desempenho geral do sistema e na
+percepção da qualidade do sistema na visão de seus usuários.
 
 O problema estudado neste trabalho é modelado da seguinte forma: seja um prédio
 com \textbf{F} andares e \textbf{E} elevadores, cada um com capacidade para
@@ -27,8 +27,9 @@ a todas as \textbf{chamadas de corredor}\footnote{Passageiros estão fora dos
 elevadores e realizam uma chamada para subir ou descer a partir do andar em que
 se encontram.} e \textbf{chamadas de cabine}\footnote{Passageiros estão dentro
 do elevador e realizam uma chamada para desembarcar em um andar destino.} em um
-dado instante. O \textbf{estado} do sistema pode ser modelado, minimamente, pelo
-seguinte conjunto de informações:
+dado instante. Para isto, utiliza como entrada um conjunto de dados que modelam
+o \textbf{estado atual do sistema}. Este conjunto de dados pode ser modelado,
+minimamente, pelas seguintes informações:
 
 \begin{itemize}
   \item Para cada andar:
@@ -42,11 +43,13 @@ seguinte conjunto de informações:
           passageiros;
     \item O andar em que se encontra;
     \item Se está parado, subindo ou descendo;
-    \item Sua lotação atual.
+    \item Sua lotação atual\footnote{A capacidade máxima \textbf{C} é uma
+          propriedade do problema e é igual para todos os elevadores que compõem
+          o sistema.}.
   \end{itemize}
 \end{itemize}
 
-Sobre estes dados, o EGCS utiliza-se de algoritmos e técnicas para fornecer como
+Com base nestes dados o EGCS utiliza-se de algoritmos e técnicas para fornecer como
 saída:
 
 \begin{itemize}
@@ -71,16 +74,18 @@ fins estatísticos e cálculos de métricas, conforme apresentado à seguir.
 
 \section{\label{section:data}Aquisição de Dados e Métricas}
 
-A aquisição dos dados sobre o estado atual\footnote{Seção \ref{section:egcs}.}
-de um sistema de elevadores é um problema em aberto na
-indústria~\cite{KOEHLEROTTIGER02}. Em casos simples é possível designar pessoas
-para observar e contar passageiros entrando e saindo dos elevadores. Já em casos
-mais complexos foram aplicadas soluções mais engenhosas, como contagem de
-pessoas aplicando algoritmos de visão computacional em câmeras de segurança e
-sensores de carga. Estas abordagens possuem fatores complicadores - como, por
-exemplo, a dificuldade em lidar com as diferenças de iluminação, baixa qualidade
-de vídeo, baixa precisão de sensores, etc - e o resultado obtido não compensa o
-custo~\cite{KOEHLEROTTIGER02}.
+Embora a aquisição dos dados sobre o estado atual do sistema\footnote{Conforme
+visto na seção \ref{section:egcs}.} seja trivial para a tecnologia atual,
+através dos sensores e atuadores distribuídos ao longo da instalação do sistema,
+obter dados mais complexos sobre o tráfego de um sistema de elevadores ainda é
+um problema em aberto na indústria~\cite{KOEHLEROTTIGER02}. Em casos simples é
+possível designar pessoas para observar e contar passageiros entrando e saindo
+dos elevadores. Já em casos mais complexos foram aplicadas soluções mais
+engenhosas, como contagem de pessoas aplicando algoritmos de visão computacional
+em câmeras de segurança e sensores de carga. Estas abordagens possuem fatores
+complicadores~-~como, por exemplo, a dificuldade em lidar com as diferenças de
+iluminação, baixa qualidade de vídeo, baixa precisão de sensores, etc - e o
+resultado obtido não compensa o custo~\cite{KOEHLEROTTIGER02}.
 
 Neste contexto, a simulação de sistemas de elevadores ganha destaque, tornando-
 se uma alternativa atraente para obter métricas e avaliar o desempenho de um
@@ -95,15 +100,21 @@ estatísticos que em um ambiente real seriam impossíveis de se conseguir. Tais
 dados podem compreender:
 
 \begin{itemize}
+  \item Para cada andar:
+  \begin{itemize}
+    \item O conjunto dos passageiros que encontram-se esperando naquele andar;
+  \end{itemize}
   \item Para cada passageiro:
   \begin{itemize}
-    \item A hora de sua chegada ao prédio;
+    \item A hora de sua chegada;
+    \item O andar de origem;
     \item O andar de destino;
     \item A hora de embarque no elevador;
     \item A hora de desembarque no andar de destino;
   \end{itemize}
   \item Para cada elevador:
   \begin{itemize}
+    \item O conjunto dos passageiros que encontram-se dentro daquele elevador;
     \item A hora em que partiu do lobby.
   \end{itemize}
 \end{itemize}
@@ -214,7 +225,7 @@ Os cenários são definidos na tabela \ref{tab:cenarios}.
 \end{tabular}
 \end{table}
 
-\section{\label{section:difficulties}Possíveis Complicadores}
+\section{\label{section:difficulties}Situações fora do escopo deste trabalho}
 
 Existem fatores humanos cujas ocorrências geram situações especiais que aumentam
 a complexidade do problema e podem prejudicar o desempenho geral do sistema. Por
@@ -244,6 +255,3 @@ comportamentos não está no escopo deste estudo. O objetivo aqui é analisar e
 propor alterações somente nos sistemas de controle que regem o comportamento dos
 elevadores da maneira com que estão atualmente instalados na vasta maioria dos
 prédios.
-
-{\color{red}como vamos lidar com elas? vamos lidar? se ficarão fora do escopo
-então não são complicadores pra nós, certo?}
