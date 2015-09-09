@@ -15,9 +15,8 @@ Interface} (API) com elementos que permitam ao usuário definir um cenário
 utilizando os parâmetros \textbf{F}, \textbf{E}, \textbf{C}, \textbf{P},
 \textbf{D} e \textbf{Pu}\footnote{Seção~\ref{section:data}.}. Além disto, a API
 permitirá que o usuário selecione a estratégia a ser utilizada pelo sistema de
-controle de grupos de elevadores. implementação desta estratégia será fornecida
-pela própria API. Alternativamente, o usuário poderá utilizar suas próprias
-implementações.
+controle de grupos de elevadores. Alternativamente, o usuário poderá utilizar
+suas próprias implementações.
 
 O simulador deverá fornecer como saída as métricas\footnote{Seção
 \ref{section:data}.} de desempenho para sistemas de controle de grupo de
@@ -43,17 +42,17 @@ Além disto, estes agentes podem ser inteligentes. A inteligência de um agente 
 \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Pró-ativa}]
   \item[Reativa]    O agente percebe o ambiente e responde à mudanças no estado
                     do sistema de forma a atingir seus objetivos;
-  \item[Pró-ativa]  Ao agente é permitida a iniciativa de ações para atingir
-                    seus objetivos sem que ocorra alguma mudança no estado atual
-                    antes;
+  \item[Pró-ativa]  Ao agente é permitida a iniciativa para tomar ações sem que
+                    necessariamente ocorra uma mudança no ambiente
+                    anterioremente;
   \item[Social]     Os agentes são capazes de interagir entre si de modo a
-                    agingirem seus objetivos.
+                    atingirem seus objetivos.
 \end{description}
 
-Estes conceitos podem ser aplicados à um sistema de controle de elevadores
-descentralizado, removendo toda a tarefa de coordenação do EGCS e trazendo para
-dentro dos elevadores, onde cada um é um agente inteligente. Portanto, julga-se
-que uma modelagem multi-agentes pode ser interessante no contexto.
+Estes conceitos podem ser aplicados a um sistema de controle de elevadores
+descentralizado, removendo toda a tarefa de coordenação do EGCS e trazendo-a
+para dentro dos elevadores, onde cada um é um agente inteligente. Portanto,
+julga-se que uma modelagem multi-agentes pode ser interessante no contexto.
 
 \section{\label{section:machinelearning}Aprendizado de máquina}
 
