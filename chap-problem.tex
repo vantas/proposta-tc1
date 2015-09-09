@@ -100,15 +100,21 @@ estatísticos que em um ambiente real seriam impossíveis de se conseguir. Tais
 dados podem compreender:
 
 \begin{itemize}
+  \item Para cada andar:
+  \begin{itemize}
+    \item O conjunto dos passageiros que encontram-se esperando naquele andar;
+  \end{itemize}
   \item Para cada passageiro:
   \begin{itemize}
-    \item A hora de sua chegada ao prédio;
+    \item A hora de sua chegada;
+    \item O andar de origem;
     \item O andar de destino;
     \item A hora de embarque no elevador;
     \item A hora de desembarque no andar de destino;
   \end{itemize}
   \item Para cada elevador:
   \begin{itemize}
+    \item O conjunto dos passageiros que encontram-se dentro daquele elevador;
     \item A hora em que partiu do lobby.
   \end{itemize}
 \end{itemize}
