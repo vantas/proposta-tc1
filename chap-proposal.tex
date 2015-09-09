@@ -36,8 +36,24 @@ são:
 
 \section{\label{section:multiagentes}Sistemas multi-agentes}
 
-{\color{red}Por que é interessante esta abordagem?}
+Um \textit{agente} é um sistema computacional que está situado em um \textit{ambiente} e é capaz de tomar \textit{ações autônomas} neste ambiente de modo a atingir seus \textit{objetivos}~\cite{Woolridge:2001:IMS:559667}. Ou seja, dadas as condições do ambiente (entradas), o agente é capaz de decidir qual ação tomar (saídas). Logo, qualquer \textit{sistema de controle} pode ser considerado um agente.
 
+Além disto, estes agentes podem ser inteligentes. A inteligência de um agente pode ser classificada das seguintes formas:
+
+\begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Pró-ativa}]
+  \item[Reativa]    O agente percebe o ambiente e responde à mudanças no estado
+                    do sistema de forma a atingir seus objetivos;
+  \item[Pró-ativa]  Ao agente é permitida a iniciativa de ações para atingir
+                    seus objetivos sem que ocorra alguma mudança no estado atual
+                    antes;
+  \item[Social]     Os agentes são capazes de interagir entre si de modo a
+                    agingirem seus objetivos.
+\end{description}
+
+Estes conceitos podem ser aplicados à um sistema de controle de elevadores
+descentralizado, removendo toda a tarefa de coordenação do EGCS e trazendo para
+dentro dos elevadores, onde cada um é um agente inteligente. Portanto, julga-se
+que uma modelagem multi-agentes pode ser interessante no contexto.
 
 \section{\label{section:machinelearning}Aprendizado de máquina}
 
