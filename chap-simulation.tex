@@ -1,6 +1,10 @@
 \chapter{\label{chap:simulation}Sistemas e Simulações}
 
-``Simulação é a imitação da operação de um sistema ou processo do mundo real ao longo do tempo.'' \cite{Banks}. Em outras palavras, simulação envolve a geração de uma história artificial de um sistema e a observação desta história de modo a obter inferências a respeito das características operacionais do sistema real ali representado. Entretanto, simular um sistema não é a única forma de analisá-lo. \cite{BanksGibson} define 10 situações onde a simulação \textbf{não} é indicada:
+``Simulação é a imitação da operação de um sistema ou processo do mundo real ao longo do tempo.'' \cite{Banks}. Em outras palavras, simulação envolve a geração de uma história artificial de um sistema e a observação desta história de modo a obter inferências a respeito das características operacionais do sistema real ali representado.
+
+\section{Quando Simulação Não é Indicada}
+
+Para estudar e compreender um sistema e suas características, existem diversas abordagens - dentre elas a simulação. Entretanto, é de suma importância que cada sistema seja analisado com a melhor ferramenta em cada caso. Existe uma infinidade de sistemas onde a simulação não é a forma apropriada para estudo. \cite{BanksGibson} define 10 situações onde a simulação \textbf{não} é indicada:
 
 \begin{enumerate}
 \item Quando o problema puder ser resolvido utilizando-se de bom senso;
@@ -15,7 +19,9 @@
 \item Quando o comportamento do sistema é muito complexo ou não pode ser definido (e.~g. seres humanos).
 \end{enumerate}
 
-Por outro lado, \cite{Law} oferece 3 perguntas para decidir se a simulação de um sistema é a forma apropriada de estudá-lo (figura \ref{fig:systemstudy}). São elas:
+\section{Formas de Estudar um Sistema}
+
+Por outro lado, \cite{Law} oferece 3 perguntas para decidir qual a melhor forma de se estudar um sistema específico (figura \ref{fig:systemstudy}). São elas:
 
 \begin{figure}[htb!]
 \centering\includegraphics{img/systemstudy.png}
@@ -63,16 +69,37 @@ De posse de um modelo matemático, o mesmo deve ser examinado de modo a verifica
 Portanto, se uma solução analítica para um problema é conhecida e possui eficiência computacional, é mais apropriado estudar este sistema desta forma do que através de simulação. Do contrário, o sistema deve ser estudado através de simulações - ou seja, exercitar numericamente as entradas do modelo matemático do sistema e observar de que forma estes exercícios afetam as saídas.
 \end{enumerate}
 
+\subsection{Formas de Estudar um \textit{Elevator Group Control System}}
+
+De modo a justificar a escolha pelo uso da simulação ao estudar um \textit{Elevator Group Control System}, as perguntas feitas na seção anterior são respondidas:
+
 \begin{enumerate}
-\item Modelo Estático vs. Modelo Dinâmico
+\item Experimentar com o próprio sistema ou experimentar com um modelo do mesmo?
+
+Entre os recursos de pesquisa deste trabalho não está disponível um sistema de elevadores instalado para realizar as experimentações. Logo, optou-se pela utilização de um modelo.
+
+\item Experimentar utilizando um modelo físico do sistema ou utilizar um modelo matemático?
+
+Um modelo físico de um sistema de elevadores poderia ser constituído pela maquete de um prédio, mini-elevadores movidos por motores de passo que por sua vez seriam controlados por microcontroladores. Entretanto, este projeto por si só já seria grandioso demais - além de, obviamente, fugir do escopo da Ciência da Computação e ser mais adequado à um trabalho de conclusão de Engenharia Elétrica ou Engenharia de Controle e Automação. Além disso, os experimentos estariam limitados pelo número de andares e elevadores da maquete. Portanto, optou-se por um modelo matemático do sistema, reproduzível em ambiente computacional e facilmente parametrizável para diferentes cenários.
+
+\item O problema pode ser resolvido de forma analítica?
+
+Dada a complexidade de situações possíveis em um sistema de elevadores e os esforços da indústria em procurar soluções engenhosas para resolver o problema, pode-se inferir que não existe uma solução analítica conhecida para este problema. Portanto, a simulação é uma alternativa indicada para o estudo de problemas desta natureza.
+
+\end{enumerate}
+
+\section{Classificação do Modelo de Simulação}
+
+Portanto, dado um modelo matemático a ser estudado por meio de simulação (doravante chamado de modelo de simulação), o mesmo pode ser classificado em três dimensões \cite{Banks,Law}:
+
+\begin{enumerate}
+\item Estático ou Dinâmico
 
 Muitas vezes, bla bla bla.
-\item Modelo Determinístico vs. Modelo Estocástico
+\item Determinístico ou Estocástico
 
 Muitas vezes, bla bla bla.
-\item Simulação Contínua vs. Simulação Discreta
+\item Contínuo ou Discreto
 
 Muitas vezes, bla bla bla.
 \end{enumerate}
-
-Portanto, se os experimentos apropriados darão-se em um modelo matemático sem solução analítica, a simulação é uma alternativa de estudo apropriada.
