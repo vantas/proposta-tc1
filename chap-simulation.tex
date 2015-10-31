@@ -1,11 +1,78 @@
 \chapter{\label{chap:simulation}Sistemas e Simulações}
 
-Aqui vamos apresentar:
+``Simulação é a imitação da operação de um sistema ou processo do mundo real ao longo do tempo.'' \cite{Banks}. Em outras palavras, simulação envolve a geração de uma história artificial de um sistema e a observação desta história de modo a obter inferências a respeito das características operacionais do sistema real ali representado. Entretanto, simular um sistema não é a única forma de analisá-lo. \cite{BanksGibson} define 10 situações onde a simulação \textbf{não} é indicada:
+
+\begin{enumerate}
+\item Quando o problema puder ser resolvido utilizando-se de bom senso;
+\item Quando o problema puder ser resolvido de forma analítica;
+\item Quando o problema puder ser resolvido através de experimentos diretamente no sistema;
+\item Quando seus custos da simulação excederem os seus ganhos;
+\item Quando não há recursos financeiros suficientes;
+\item Quando não há tempo suficiente;
+\item Quando não há dados suficientes, nem mesmo estimativas;
+\item Quando não há possibilidade de verificar a validade do modelo;
+\item Quando as expectativas e o poder da simulação são superestimados - ou seja, \textbf{simulação não é bala de prata};
+\item Quando o comportamento do sistema é muito complexo ou não pode ser definido (e.~g. seres humanos).
+\end{enumerate}
+
+Por outro lado, \cite{Law} oferece 3 perguntas para decidir se a simulação de um sistema é a forma apropriada de estudá-lo (figura \ref{fig:systemstudy}). São elas:
+
+\begin{figure}[htb!]
+\centering\includegraphics{img/systemstudy.png}
+\caption{\label{fig:systemstudy}Formas de estudar um sistema. Fonte:~\cite{Law}}
+\end{figure}
+
+\begin{enumerate}
+\item Experimentar com o próprio sistema ou experimentar com um modelo do mesmo?
+
+Se houver viabilidade técnica e financeira na alteração de um sistema e na
+observação de sua operação sob as novas condições, é desejável que se faça as
+experimentações com o próprio sistema. Entretanto, frequentemente esta
+alternativa é inviável por diversas razões:
 
 \begin{itemize}
-  \item Explicar e ilustrar os conceitos de modelagem de simuladores que darão base para nosso trabalho;
-  \item Justificar por que a simulação de tempo-discreto e com avanço de tempo de um modelo matemático do sistema foi escolhida para nossas experimentações e análises;
-  \item Introduzir e explicar quais são os componentes básicos de um sistema de simulação.
+  \item O custo dos experimentos é muito elevado:
+
+  % TODO - indentar no texto
+  Exemplo: construir um novo módulo na Estação Espacial Internacional.
+
+  \item O impacto causado pelos experimentos pode ser prejudicial ao sistema:
+
+  % TODO - indentar no texto
+  Exemplo: um mercado deseja reduzir o número de caixas a fim de diminuir seus
+custos operacionais. Porém, esta medida pode causar um aumento significativo no
+tamanho das filas - e consequentemente uma piora no tempo de espera dos clientes
+e causar desistências.
+
+  \item O sistema não existe:
+
+  % TODO - indentar no texto
+  Exemplo: o sistema ainda está nas fases de \textit{inception}, projeto ou desenvolvimento.
 \end{itemize}
 
-\cite{Banks} \cite{Law} \cite{Ross}
+Por isto, muitas vezes é necessário realizar os experimentos utilizando um \textit{modelo} como substituto ao sistema real.
+
+\item Experimentar utilizando um modelo físico do sistema ou utilizar um modelo matemático?
+
+Cockpits de aviões desacoplados do resto da nave, automóveis em escala em túneis de vento e miniaturas funcioneis de sistemas de elevadores são alguns exemplos de modelos físicos de sistemas. Ocasionalmente, este tipo de modelo é utilizado é utilizado para estudar sistemas de engenharia ou logística \cite{Law}. Entretanto, a vasta maioria de modelos são matemáticos, representando um sistema em termos de relações lógicas e quantitativas (equações matemáticas e notações simbólicas), que são então manipuladas e alteradas para observar de que forma o sistema real reagiria - isto se o modelo matemático for válido.
+
+\item O problema pode ser resolvido de forma analítica?
+
+De posse de um modelo matemático, o mesmo deve ser examinado de modo a verificar de qual modo ele pode ser utilizado para dar solução ao problema que ele representa. Segundo \cite{Law}, se o modelo for simples o suficiente, possivelmente é possível trabalhar com suas relações e equações para obter uma solução exata, anaĺitica. \cite{Law} cita como exemplo o modelo $d = vt$, onde $d$ é a distância, $v$ é a velocidade média e $t$ é o tempo de viagem. Se soubermos a distância a ser viajada e a velocidade, podemos trabalhar no modelo e encontrar a equação $t = d/r$ para encontrar, exatamente, o tempo de viagem. Embora esta solução seja simples, não é incomum a busca por soluções analíticas tornar-se extraordinariamente complexa, exigindo vastos recursos computacionais.
+
+Portanto, se uma solução analítica para um problema é conhecida e possui eficiência computacional, é mais apropriado estudar este sistema desta forma do que através de simulação. Do contrário, o sistema deve ser estudado através de simulações - ou seja, exercitar numericamente as entradas do modelo matemático do sistema e observar de que forma estes exercícios afetam as saídas.
+\end{enumerate}
+
+\begin{enumerate}
+\item Modelo Estático vs. Modelo Dinâmico
+
+Muitas vezes, bla bla bla.
+\item Modelo Determinístico vs. Modelo Estocástico
+
+Muitas vezes, bla bla bla.
+\item Simulação Contínua vs. Simulação Discreta
+
+Muitas vezes, bla bla bla.
+\end{enumerate}
+
+Portanto, se os experimentos apropriados darão-se em um modelo matemático sem solução analítica, a simulação é uma alternativa de estudo apropriada.
