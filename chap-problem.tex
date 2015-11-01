@@ -5,10 +5,10 @@ elevadores \cite{KOEHLEROTTIGER02}. Em muitos prédios, esses são o meio de
 transporte primário entre andares, visto que escadas são menos práticas e,
 muitas vezes, menos acessíveis ou exclusivas para situações de emergência. Dado
 o seu uso em larga escala, a ineficiência dos sistemas de controle de elevadores
-é sentida diariamente por seus usuários sob a forma de tempo despendido em
-função dos mesmos. Neste cenário, deseja-se encontrar formas de otimizar estes
-sistemas de controle de modo a refletir positivamente no desempenho geral do
-sistema e na percepção da qualidade do sistema na visão de seus usuários.
+é percebida sentida diariamente por seus usuários sob a forma de tempo
+despendido. Neste cenário, deseja-se encontrar formas de otimizar estes sistemas
+de controle e refletir positivamente no desempenho geral do sistema e na
+percepção da qualidade por seus usuários.
 
 O problema estudado neste trabalho é modelado da seguinte forma: seja um prédio
 com \textbf{F} andares e \textbf{E} elevadores, cada um com capacidade para
@@ -16,7 +16,7 @@ transportar \textbf{C} pessoas simultaneamente; sabe-se que a população total 
 prédio é \textbf{P} e está distribuída de maneira uniforme nos andares do
 prédio; também sabe-se que a chegada ou saídas destas pessoas obedece uma função
 de distribuição de probabilidade \textbf{D}. De que forma o sistema pode atender
-esta população de modo a minimizar o tempo médio de atendimento de cada pessoa?
+esta população de modo a minimizar o tempo médio de atendimento das pessoas?
 
 \section{\label{section:egcs}Sistema de Controle de Grupo de Elevadores}
 
@@ -70,7 +70,7 @@ dos elevadores de modo a atender as novas solicitações. Tais eventos são:
 \end{itemize}
 
 Para cada um destes eventos deve existir uma estampa de tempo associada para
-fins estatísticos e cálculos de métricas, conforme apresentado à seguir.
+fins estatísticos e cálculos de métricas, conforme apresentado a seguir.
 
 \section{\label{section:data}Aquisição de Dados e Métricas}
 
@@ -87,17 +87,16 @@ complicadores~-~como, por exemplo, a dificuldade em lidar com as diferenças de
 iluminação, baixa qualidade de vídeo, baixa precisão de sensores, etc - e o
 resultado obtido não compensa o custo~\cite{KOEHLEROTTIGER02}.
 
-Neste contexto, a simulação de sistemas de elevadores ganha destaque, tornando-
-se uma alternativa atraente para obter métricas e avaliar o desempenho de um
-sistema na fase de projeto, antes da sua construção. Por exemplo, supondo que em
-um prédio de 10 andares com 2 elevadores exista uma fila de 20 pessoas que
-desejam ir a andares variados do prédio; cada uma destas pessoas chegou à fila
-em um momento distinto; porém, a chamada de corredor foi realizado apenas pela
-primeira pessoa da fila. Como medir o tempo que cada passageiro ficou esperando
-pelo elevador ou levou para chegar ao seu destino? A modelagem do problema e
-simulação em ambiente computacional permitem obter dados estruturados e
-estatísticos que em um ambiente real seriam impossíveis de se conseguir. Tais
-dados podem compreender:
+Neste contexto, a simulação de sistemas de elevadores torna-se uma alternativa
+atraente para obter métricas e avaliar o desempenho de um sistema na fase de
+projeto, antes da sua construção. Por exemplo, supondo que em um prédio de 10
+andares com 2 elevadores exista uma fila de 20 pessoas que desejam ir a andares
+variados do prédio; cada uma destas pessoas chegou à fila em um momento
+distinto; porém, a chamada de corredor foi realizada apenas pela primeira pessoa
+da fila. Como medir o tempo que cada passageiro ficou esperando pelo elevador ou
+levou para chegar ao seu destino? A modelagem do problema e simulação em
+ambiente computacional permitem obter dados que em um ambiente real seriam
+impossíveis ou muito caros de se conseguir. Tais dados podem compreender:
 
 \begin{itemize}
   \item Para cada andar:
@@ -132,7 +131,7 @@ de elevadores para avaliar o desempenho de seus sistemas podem ser calculadas:
 
   \item[WT]
   \textit{Waiting Time}, ou tempo de espera; está compreendido entre a
-  requisição de um passageiro e o seu embarque em um elevador.
+  requisição por passageiro e o seu embarque em um elevador.
 
   \item[JT]
   \textit{Journey Time}, ou tempo de jornada; está compreendido entre o embarque
@@ -197,12 +196,11 @@ um cenário são:
   fins didáticos, principalmente.}
 \end{description}
 
-Logo, há tantos cenários possíveis quanto há prédios ao redor do mundo.
-Entretanto, por limitação de tempo e de recursos computacionais, vamos limitar
-os cenários em algumas categorias. A escolha destas divisões segue a
-classificação\cite{Emporis15} sugerida pela empresa \textbf{Emporis GmbH}, uma empresa de
-mineração de dados sobre imóveis com sede em Frankfurt, exceto pelo limite
-inferior de 4 andares devido à exigência legal do município de Porto
+Logo, há tantos cenários possíveis quanto há prédios ao redor do mundo. Vamos
+limitar os cenários em algumas categorias. A escolha destas divisões segue a
+classificação\cite{Emporis15} sugerida pela empresa \textbf{Emporis GmbH}, uma
+empresa de mineração de dados sobre imóveis com sede em Frankfurt, exceto pelo
+limite inferior de 4 andares devido à exigência legal do município de Porto
 Alegre\footnote{http://www2.portoalegre.rs.gov.br/netahtml
 /sirel/atos/Lei\%201344} onde prédios deste tamanho ou maiores (mas não menores
 que isto) de serem construídos com elevadores. O limite superior\footnote{O
@@ -232,8 +230,8 @@ a complexidade do problema e podem prejudicar o desempenho geral do sistema. Por
 exemplo, podem ser destacadas as seguintes situações:
 
 \begin{itemize}
-  \item Um passageiro segura a porta do elevador aberta alguém atrasado - deste
-        modo, o passageiro que segura a porta está sendo altruísta com o
+  \item Um passageiro segura a porta do elevador aberta para alguém atrasado~-~
+        deste modo, o passageiro que segura a porta está sendo altruísta com o
         atrasado, porém egoísta em relação aos outros passageiros que estão
         aguardando nos demais andares;
   \item Um passageiros acidentalmente faz uma chamada de corredor no sentido
