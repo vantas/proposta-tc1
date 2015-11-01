@@ -4,42 +4,28 @@
 longo do tempo.'' \cite{Banks}. Em outras palavras, simulação envolve a geração
 de uma história artificial de um sistema ou processo e a observação desta
 história de modo a obter inferências a respeito das características operacionais
-da realidade ali representada.
+da realidade ali representada. Para estudar tal sistema, frequentemente existe a
+necessidade de realizar uma série de suposições sobre o seu funcionamento. Estas
+suposições, que normalmente possuem a forma de relações matemáticas e lógicas,
+constituem um modelo do sistema. Este modelo, por sua vez, é avaliado
+numericamente enquanto são coletados dados de modo a tentar obter algum
+entendimento sobre como o sistema correspondente se comporta.
 
-A fim de estudar um sistema, frequentemente existe a necessidade de realizar uma
-série de suposições sobre como ele funciona. Estas suposições, que normalmente
-assumem a forma de relações matemáticas ou lógicas, constituem um modelo que é
-utilizado para se tentar obter algum entendimento sobre como o sistema
-correspondente se comporta.
+Entretanto, existem diversas abordagens para se estudar e compreender um sistema
+e suas características, dentre as quais a simulação. Entretanto, é senso comum
+que cada sistema deve ser analisado através da ferramenta correta. Logo, embora
+a simulação pareça ser uma boa alternativa à primeira vista, existe um extenso
+conjunto de sistemas onde ela não é a forma mais apropriada para o seu estudo.
+Assim, surge a importância métodos objetivos de verificar se a simulação é
+apropriada para o caso estudado.
 
-\section{Quando Simulação Não é Indicada}
+\section{\label{chap:waystostudy}Formas de Estudar um Sistema}
 
-Para estudar e compreender um sistema e suas características, existem diversas
-abordagens - dentre elas a simulação. Entretanto, é de suma importância que cada
-sistema seja analisado com a melhor ferramenta em cada caso. Existe uma
-infinidade de sistemas onde a simulação não é a forma apropriada para estudo.
-\cite{BanksGibson} define 10 situações onde a simulação \textbf{não} é indicada:
-
-\begin{enumerate}
-\item Quando o problema puder ser resolvido utilizando-se de bom senso;
-\item Quando o problema puder ser resolvido de forma analítica;
-\item Quando o problema puder ser resolvido através de experimentos diretamente
-      no sistema;
-\item Quando seus custos da simulação excederem os seus ganhos;
-\item Quando não há recursos financeiros suficientes;
-\item Quando não há tempo suficiente;
-\item Quando não há dados suficientes, nem mesmo estimativas;
-\item Quando não há possibilidade de verificar a validade do modelo;
-\item Quando as expectativas e o poder da simulação são superestimados - ou
-      seja, \textbf{simulação não é bala de prata};
-\item Quando o comportamento do sistema é muito complexo ou não pode ser
-      definido (e.~g. seres humanos).
-\end{enumerate}
-
-\section{Formas de Estudar um Sistema}
-
-Por outro lado, \cite{Law} oferece 3 perguntas para decidir qual a melhor forma
-de se estudar um sistema específico (figura \ref{fig:systemstudy}). São elas:
+Existem diversas abordagens possíveis para se estudar o sistema: experimentar
+com o próprio sistema; experimentar com um modelo físico do sistema;
+experimentar com um modelo matemático do sistema; etc. A fim de decidir de forma
+objetiva qual a melhor abordagem para um dado sistema, \cite{Law} propõe esta
+reflexão através de 3 perguntas (figura~\ref{fig:systemstudy}). São elas:
 
 \begin{figure}[htb!]
 \centering\includegraphics{img/systemstudy.png}
@@ -110,39 +96,120 @@ simulações - ou seja, exercitar numericamente as entradas do modelo matemátic
 do sistema e observar de que forma estes exercícios afetam as saídas.
 \end{enumerate}
 
-\subsection{Formas de Estudar um \textit{Elevator Group Control System}}
+Em outra abordagem, \cite{BanksGibson} define 10 situações onde a simulação
+\textbf{não} é indicada. Tais situações são:
 
-De modo a justificar a escolha pelo uso da simulação ao estudar um
-\textit{Elevator Group Control System}, as perguntas feitas na seção anterior
-são respondidas:
+\begin{enumerate}
+\item Quando o problema puder ser resolvido utilizando-se de bom senso;
+\item Quando o problema puder ser resolvido de forma analítica;
+\item Quando o problema puder ser resolvido através de experimentos diretamente
+      no sistema;
+\item Quando seus custos da simulação excederem os seus ganhos;
+\item Quando não há recursos financeiros suficientes;
+\item Quando não há tempo suficiente;
+\item Quando não há dados suficientes, nem mesmo estimativas;
+\item Quando não há possibilidade de verificar a validade do modelo;
+\item Quando as expectativas e o poder da simulação são superestimados - ou
+      seja, \textbf{simulação não é bala de prata};
+\item Quando o comportamento do sistema é muito complexo ou não pode ser
+      definido (e.~g. seres humanos).
+\end{enumerate}
+
+\section{Validação da Abordagem de Simulação de um EGCS}
+
+De modo a validar a escolha pelo uso da simulação ao estudar um \textit{Elevator
+Group Control System} (\textbf{EGCS}), os questionamentos feitos por
+\cite{Banks,Law} na seção \ref{chap:waystostudy} são respondidos:
 
 \begin{enumerate}
 \item Experimentar com o próprio sistema ou experimentar com um modelo do mesmo?
 
-Entre os recursos de pesquisa deste trabalho não está disponível um sistema de
-elevadores instalado para realizar as experimentações. Logo, optou-se pela
-utilização de um modelo.
+Um sistema de elevadores instalado e pronto para realizar as experimentações não
+encontra-se entre os recursos disponíveis para pesquisa neste trabalho. Além
+disso, mesmo que tal estrutura estivesse disponível, o número de cenários de
+testes possíveis é limitado pelas restrições físicas do sistema. Logo, optou-se
+pela utilização de um modelo do sistema real.
 
 \item Experimentar utilizando um modelo físico do sistema ou utilizar um modelo
 matemático?
 
 Um modelo físico de um sistema de elevadores poderia ser constituído pela
-maquete de um prédio, mini-elevadores movidos por motores de passo que por sua
-vez seriam controlados por microcontroladores. Entretanto, este projeto por si
-só já seria grandioso demais - além de, obviamente, fugir do escopo da Ciência
-da Computação e ser mais adequado à um trabalho de conclusão de Engenharia
-Elétrica ou Engenharia de Controle e Automação. Além disso, os experimentos
-estariam limitados pelo número de andares e elevadores da maquete. Portanto,
-optou-se por um modelo matemático do sistema, reproduzível em ambiente
+maquete de um prédio com mini-elevadores movidos à motores de passo - que por
+sua vez seriam controlados por microcontroladores. Entretanto, este projeto por
+si só já seria grandioso demais - além de, obviamente, fugir do escopo da
+Ciência da Computação e ser mais adequado à um trabalho de conclusão de
+Engenharia Elétrica ou Engenharia de Controle e Automação. Além disso, da mesma
+forma que um sistema real de elevadores, o número de cenários de testes é
+limitado pelas restrições físicas do modelo do sistema. Portanto, optou-se pela
+utilização de um modelo matemático do sistema, reproduzível em ambiente
 computacional e facilmente parametrizável para diferentes cenários.
 
 \item O problema pode ser resolvido de forma analítica?
 
-Dada a complexidade de situações possíveis em um sistema de elevadores e os
-esforços da indústria em procurar soluções engenhosas para resolver o problema,
-pode-se inferir que não existe uma solução analítica conhecida para este
-problema. Portanto, a simulação é uma alternativa indicada para o estudo de
-problemas desta natureza.
+De acordo com~\cite{SeKo99}, o problema de otimização em atribuir elevadores
+para atender chamadas minimizando o tempo de espera encontra-se no conjunto de
+problemas NP-difícil (ou NP-hard, ou NP-complexo). Assim, uma solução ótima,
+computável em tempo polinomial, ainda não é conhecida para este problema. Logo,
+o problema não pode ser resolvido de forma anaĺitica. Este fato vai ao encontro
+dos grandes esforços da indústria em procurar soluções para resolver o problema
+ao longo das décadas. Portanto, a simulação é a alternativa mais indicada para o
+estudo de problemas desta natureza.
+
+\end{enumerate}
+
+Já para as situações onde a simulação é uma contra-indicação~\cite{Banks}:
+
+\begin{enumerate}
+\item Quando o problema puder ser resolvido utilizando-se de bom senso:
+
+Dada a complexidade do problema (NP-completo), não é possível encontrar a
+solução apenas utilizando o bom senso. Portanto, não se enquadra nesta situação.
+
+\item Quando o problema puder ser resolvido de forma analítica:
+
+Conforme discutido anteriormente, o fato do problema estar no conjunto dos
+problemas NP-completo implica no desconhecimento de uma forma analítica para a
+sua resolução. Portanto, não se enquadra nesta situação.
+
+\item Quando o problema puder ser resolvido através de experimentos diretamente
+      no sistema:
+
+      TO-DO % TO-DO
+
+\item Quando seus custos da simulação excederem os seus ganhos
+
+      TO-DO % TO-DO
+
+\item Quando não há recursos financeiros suficientes
+
+      TO-DO % TO-DO
+
+\item Quando não há tempo suficiente
+
+      TO-DO % TO-DO
+
+\item Quando não há dados suficientes, nem mesmo estimativas
+
+      TO-DO % TO-DO
+
+\item Quando não há possibilidade de verificar a validade do modelo
+
+      TO-DO % TO-DO
+
+\item Quando as expectativas e o poder da simulação são superestimados:
+
+Neste estudo o foco das expectativas está nos ganhos que a Inteligência
+Artificial pode trazer para estes sistemas. A simulação é vista apenas como uma
+forma para avaliar os resultados obtidos. Portanto, a simulação não é
+superestimada e o caso não se enquadra nesta situação.
+
+\item Quando o comportamento do sistema é muito complexo ou não pode ser
+      definido (e.~g. seres humanos):
+
+Um \textbf{EGCS} não é um sistema de alta complexidade, possuindo um conjunto de
+comportamentos limitado e um espaço de estados finito. Portanto, não se enquadra
+nesta situação.
+
 
 \end{enumerate}
 
