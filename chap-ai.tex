@@ -8,3 +8,67 @@ Aqui vamos apresentar:
 prédio+andares+elevadores (e não a modelagem do simulador propriamente dito);
 \item Apresentar em detalhe o algoritmo e descrever como esperamos que seja o resultado de seu uso junto ao sistema.
 \end{itemize}
+
+\section{\label{sec:ai:nn}Nearest Neighbour}
+
+O algoritmo de \textit{Nearest Neighbour} é o mais ingênuo de todos, e servirá
+de base para a avaliação dos demais algoritmos.
+
+Seu funcionamento é muito trivial: o elevador mais próximo do chamado sempre
+atenderá este.
+
+\section{\label{sec:ai:nnm}Nearest Neighbour Melhorado}
+
+Uma melhoria óbvia que pode ser feita ao algoritmo de \textit{Nearest Neighbour}
+é considerar o sentido em que o elevador está indo para atender o chamado.
+
+\section{\label{sec:ai:minimize-cost-function}Minimização da Função de Custo}
+
+O primeiro algoritmo de IA a ser testado é bastante simples: definimos uma
+função de custo, que descreve matematicamente quão vantajoso é atender um
+pedido, comparado a não atendê-lo. A decisão de qual elevador é escolhido para
+atender o pedido é feita com base única e exclusivamente em qual deles terá o
+menor valor da função de custo.
+
+Várias funções de custo podem ser experimentadas e comparadas.
+
+Um exemplo de função de custo é:
+
+\[
+  J(f) = \sum_{i=0}^{i=n} g_{i}f
+\]
+
+Onde $g_{i}$ é cada grupo no sistema e $f$ é a distância, em número de andares,
+entre a posição atual do elevador e o pedido que se está avaliando.
+
+Outras funções de custo levariam em consideração mudanças de direção de viagem
+\footnote{\textit{e.g.}, pode ser vantajoso um elevador mudar de direção para atender um
+pedido a um andar de distância, caso a alternativa seja fazer o pedido esperar
+um deslocamendo de dezenas de andares de outro elevador.}, ou ainda tentar
+manter todos os custos o mais baixo possível, ao mesmo tempo que sejam todos o
+mais próximos um dos outro.\footnote{Podemos elevar cada termo do somatório ao
+  quadrado para obermos isto.}
+
+\section{Planning}
+
+% TODO: essa explicação tá uma merda
+
+A idéia do algoritmo de planning é extender o de função de custo, calculando a
+mesma para vários passos no futuro~-~como em um jogo de xadrez.
+
+O horizonte de cálculo deve ser selecionado, dado que é um fator limitante no
+tamanho do cálculo do algoritmo.
+
+Cada decisão diferente, para cada elevador, é um nodo novo na árvore. Ao
+escolher-se uma das alternativas (\textit{i.e.} a que, ao final de $x$ eventos
+no futuro tem o menor custo), avança-se um passo na simulação e executa-se o
+algoritmo novamente.
+
+\section{Planning Multi-Agente}
+
+Este algoritmo é uma extensão do algoritmo de Planning, onde, em vez de termos
+um processamento central que decide que um elevador deve atender o pedido, temos
+todos os elevadores calculando por conta própria se vale a pena atender um
+pedido ou não~-~sem conhecimento do estado dos demais.
+
+A literatura neste tópico é bastante escassa ainda.
