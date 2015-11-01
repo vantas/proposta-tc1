@@ -1,5 +1,5 @@
 before_install:
-  - "sudo apt-get update && sudo apt-get install --no-install-recommends texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra texlive-latex-recommended dvipng latex-xcolor texlive-full"
+  - "sudo apt-get update && sudo apt-get install --no-install-recommends texlive-full dvipng latex-xcolor"
 script:
   - make
 
@@ -7,8 +7,8 @@ deploy:
   provider: releases
   api_key:
     secure: n9esQMLU3oUH3Bon5dreO2tHC/R0zk3ndrHdE0dZr8xOIy864pVo6lRjAcKmCeG+Geooo574tS7tr9LffMdNHYb8Qt1nObCSbrulHekXmTUoofgkUNSzAVdxNmDIxkuOjnKRUVhMaLgTJC4WZRqPWpzZTG2w9BzHqDaIV56oakliowDf4QHpQI0t/n56xwG7AacOno8I4ZAeYpsRL1pA6yPwSlaLyWDbTvcGd6CjkWy2DSw7WaDD3+RabzF0GrSVo/WWUUvP1edygqU6kV0zCEJPXZFhyeb82PKCTFRlIVvo0NTZH3qgijZx12SG/dFgTyiDT+xTgXfCMNQqQslNIFrz2FPMoQew1tRUQ1MUzPzVuoW8BdHiepj1ZgiNSDKsXh94Z9Lwsjgg514klkU+FsDxXveqmVXYPoWyU5uczjOqipC6MqIqI0eYg4d8RhL/s/8rUF7u7cr8Ft1m59wWX5znIbPQM8FzQu/EBfFjMvODZDGdaIFGy04n16KFOAv084tV5uW/W/xMnDQ7EmoWLxsd7hbb5aFgJfSZt6BkIWgI9PU9ydbupl8hYXyTAB9OJ2c+OtK93GmDeC7O2s/4UJUieX8FE4qahnIw8EM55Ea6YOkqxNe+P/I1I9YblnWpgvaNg0G6WHonWv/pGq+IrnFZGDknkmbhWAjm0onRRPI=
-  file: pdf/proposta-tc1.pdf
+  file: pdf/tc1.pdf
   skip_cleanup: true
   on:
-    repo: vantas/proposta-tc1
+    repo: vantas/tc1
     tags: true
