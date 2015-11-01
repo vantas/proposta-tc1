@@ -24,7 +24,7 @@ Uma melhoria que pode ser feita ao algoritmo de \textit{Nearest Neighbour}
 
 \section{\label{sec:ai:minimize-cost-function}Minimização da Função de Custo}
 
-O primeiro algoritmo de IA a ser testado é simples: definimos uma
+O primeiro algoritmo de IA a ser testado é simples: defini-se uma
 função de custo, que descreve matematicamente quão vantajoso é atender um
 pedido, comparado a não atendê-lo. A decisão de qual elevador é escolhido para
 atender o pedido é feita com base única e exclusivamente em qual deles terá o
@@ -46,8 +46,8 @@ Outras funções de custo levariam em consideração mudanças de direção de v
 pedido a um andar de distância, caso a alternativa seja fazer o pedido esperar
 um deslocamendo de dezenas de andares de outro elevador.}, ou ainda tentar
 manter todos os custos o mais baixo possível, ao mesmo tempo que sejam todos o
-mais próximos uns dos outros.\footnote{Podemos elevar cada termo do somatório ao
-  quadrado para obermos isto.}
+mais próximos uns dos outros.\footnote{É possível elevar cada termo do somatório ao
+  quadrado para obter-se isto.}
 
 \section{Planning}
 
@@ -63,6 +63,8 @@ Cada decisão diferente, para cada elevador, é um nodo novo na árvore. Ao
 escolher-se uma das alternativas (\textit{i.e.} a que, ao final de $x$ eventos
 no futuro tem o menor custo), avança-se um passo na simulação e executa-se o
 algoritmo novamente.
+
+% TODO: Ilustração
 
 \section{Planning Multi-Agente}
 
