@@ -9,7 +9,7 @@ prédio+andares+elevadores (e não a modelagem do simulador propriamente dito);
 \item Apresentar em detalhe o algoritmo e descrever como esperamos que seja o resultado de seu uso junto ao sistema.
 \end{itemize}
 
-% TODO: Introdução
+% TODO: Mais introdução
 A literatura fala em alguns algoritmos utilizados para a escolha de qual
 elevador atenderá um pedido. Alguns deles são triviais e não devem ser
 enquadrados no termo Inteligência Artificial, no entanto, sua implementação é
@@ -71,9 +71,11 @@ manter todos os custos o mais baixo possível, ao mesmo tempo que sejam todos o
 mais próximos uns dos outros.\footnote{É possível elevar cada termo do somatório ao
   quadrado para obter-se isto.}
 
+% TODO: outros exemplos de função de custo?
+
 \section{Planning}
 
-% TODO: essa explicação tá uma merda
+% TODO: essa explicação pode melhorar ainda
 
 A idéia do algoritmo de planning é estender o de função de custo, calculando a
 mesma para vários passos no futuro~-~como em um jogo de xadrez.
@@ -86,7 +88,28 @@ escolher-se uma das alternativas (\textit{i.e.} a que, ao final de $x$ eventos
 no futuro tem o menor custo), avança-se um passo na simulação e executa-se o
 algoritmo novamente.
 
-% TODO: Ilustração
+Na Figura~\ref{fig:planning}, vemos um exemplo de planning sendo executado com
+horizonte 3 e dois elevadores. Para cada passo do algoritmo, a decisão a ser
+tomada é ``qual elevador deve atender o próximo pedido da fila?'', e, para isto,
+calcula-se a função de custo. O resultado da função pode ser visto entre
+parênteses em cada nodo da árvore da Figura~\ref{fig:planning}.
+
+Ao encontrarmos o horizonte (no caso da Figura~\ref{fig:planning}, no nível 3 da
+árvore), vemos quem tem o menor custo (neste caso, E2, filho de E2, filho de
+E1). Toma-se então a decisão de descer um nível na árvore apenas, em direção ao
+menor custo.
+
+Veja que, ao fazer isto, poderá tomar-se uma decisão diferente do algoritmo que apenas
+considera a função de custo. No caso da Figura~\ref{fig:planning}, o elevador E1
+atenderá o próximo chamado, mesmo tendo um custo superior a E2.
+
+\begin{figure}[htb!]
+  \centering
+  \includegraphics[scale=0.8]{img/planning.eps}
+  \caption{Exemplo de planning com horizonte 3 e dois elevadores}
+\label{fig:planning}
+\end{figure}
+
 \section{Planning Multi-Agente}
 
 Este algoritmo é uma extensão do algoritmo de Planning, onde, em vez de termos
