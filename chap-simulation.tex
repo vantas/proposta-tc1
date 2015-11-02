@@ -1,23 +1,23 @@
 \chapter{\label{chap:simulation}Sistemas e Simulações}
 
 ``Simulação é a imitação da operação de um sistema ou processo do mundo real ao
-longo do tempo.''~\cite{Banks}. Em outras palavras, simulação envolve a geração
-de uma história artificial de um sistema ou processo e a observação desta
-história de modo a obter inferências a respeito das características operacionais
-da realidade ali representada. Para estudar tal sistema, frequentemente existe a
-necessidade de realizar uma série de suposições sobre o seu funcionamento. Estas
-suposições, que normalmente possuem a forma de relações matemáticas e lógicas,
-constituem um modelo do sistema. Este modelo, por sua vez, é avaliado
-numericamente enquanto são coletados dados de modo a tentar obter algum
-entendimento sobre como o sistema correspondente se comporta.
+longo do tempo.''~\cite{Banks}. Ela envolve a geração de uma história artificial
+de um sistema ou processo e a observação desta história de modo a realizar
+inferências a respeito das características operacionais da realidade ali
+representada. Para estudar um sistema, frequentemente existe a necessidade de
+realizar uma série de suposições sobre o seu funcionamento. Estas suposições,
+que normalmente possuem a forma de relações matemáticas e lógicas, constituem um
+\textit{modelo do sistema}. Este modelo, por sua vez, é avaliado numericamente
+enquanto são coletados dados de modo a tentar obter algum entendimento sobre
+como o sistema correspondente se comporta na prática.
 
-Entretanto, existem diversas abordagens para se estudar e compreender um sistema
-e suas características, dentre as quais a simulação. Entretanto, é senso comum
-que cada sistema deve ser analisado através da ferramenta correta. Logo, embora
-a simulação pareça ser uma boa alternativa à primeira vista, existe um extenso
-conjunto de sistemas onde ela não é a forma mais apropriada para o seu estudo.
-Assim, surge a importância métodos objetivos de verificar se a simulação é
-apropriada para o caso estudado.
+Entretanto, a simulação não é a única abordagem existente para se estudar e
+compreender um sistema e suas características. É senso comum que cada sistema
+deve ser analisado através da ferramenta correta. Logo, embora a simulação
+pareça ser uma boa alternativa à primeira vista em diversos casos, é possível
+que ela não seja a forma mais apropriada para o seu estudo. Assim, se faz
+importante a existência de métodos objetivos para que se possa verificar se a
+simulação é realmente a ferramenta apropriada para cada caso estudado.
 
 \section{\label{chap:waystostudy}Formas de Estudar um Sistema}
 
@@ -26,8 +26,8 @@ estratégias podem ser colocadas em prática, dentre as quais podemos citar:
 experimentar com o próprio sistema; experimentar com um modelo físico do
 sistema; experimentar com um modelo matemático do sistema; etc. A fim de decidir
 de forma objetiva qual a melhor abordagem para um dado sistema,~\cite{Law}
-propõe esta reflexão através de 3 perguntas (figura~\ref{fig:systemstudy}). São
-elas:
+propõe uma reflexão (figura~\ref{fig:systemstudy}) através das seguintes
+perguntas:
 
 \begin{figure}[htb!]
 \centering\includegraphics{img/systemstudy.eps}
@@ -37,84 +37,84 @@ elas:
 \begin{enumerate}
 \item \textit{Experimentar com o próprio sistema ou experimentar com um modelo do mesmo?}
 
-Se houver viabilidade técnica e financeira na alteração de um sistema e na
-observação de sua operação sob as novas condições, é desejável que se faça as
+Caso haja viabilidade técnica e financeira na alteração de um sistema e na
+observação de sua operação sob estas novas condições, é desejável que se faça as
 experimentações com o próprio sistema. Entretanto, frequentemente esta
 alternativa é inviável por diversas razões:
 
 \begin{itemize}
   \item O custo dos experimentos é muito elevado:
 
-  % TODO - indentar no texto
   Exemplo: construir um novo módulo na Estação Espacial Internacional.
 
   \item O impacto causado pelos experimentos pode ser prejudicial ao sistema:
 
-  % TODO - indentar no texto
   Exemplo: um mercado deseja reduzir o número de caixas a fim de diminuir seus
 custos operacionais. Porém, esta medida pode causar um aumento significativo no
-tamanho das filas - e consequentemente uma piora no tempo de espera dos clientes
-e causar desistências.
+tamanho das filas - e, consequentemente, um aumento no tempo de espera dos
+cliente, podendo até causar desistências.
 
   \item O sistema não existe:
 
-  % TODO - indentar no texto
-  Exemplo: o sistema ainda está nas fases de \textit{inception}, projeto ou
-  desenvolvimento.
+  Exemplo: o sistema ainda está nas fases de concepção, projeto ou
+desenvolvimento.
+
 \end{itemize}
 
 Por isto, muitas vezes é necessário realizar os experimentos utilizando um
-\textit{modelo} como substituto ao sistema real. Entretanto, um sistema de
+\textit{modelo} em substituição ao sistema real. Para este estudo, um sistema de
 elevadores instalado e pronto para realizar as experimentações não encontra-se
-entre os recursos disponíveis para a pesquisa neste estudo. Ainda, mesmo que tal
-estrutura estivesse disponível, o número de cenários de testes possíveis seria
-limitado pelas restrições físicas do sistema. Logo, optou-se pela utilização de
-um modelo do sistema real.
+entre os recursos disponíveis para a elaboração da pesquisa. Ainda, mesmo que
+tal estrutura estivesse disponível, os cenários de testes possíveis seriam
+limitados pelas restrições físicas do sistema, tornando o estudo de melhorias
+mais caso e menos flexível. Logo, optou-se pela utilização de um \textit{modelo do
+sistema real}.
 
 \item \textit{Experimentar utilizando um modelo físico do sistema ou utilizar um modelo
 matemático?}
 
-Cockpits de aviões desacoplados do resto da nave, automóveis em escala em túneis
-de vento e miniaturas funcioneis de sistemas de elevadores são alguns exemplos
-de modelos físicos de sistemas. Ocasionalmente, este tipo de modelo é utilizado
-é utilizado para estudar sistemas de engenharia ou logística~\cite{Law}.
-Entretanto, a vasta maioria de modelos são matemáticos, representando um sistema
-em termos de relações lógicas e quantitativas (equações matemáticas e notações
+Cockpits de aviões desacoplados do resto da nave, automóveis construídos em
+escala em túneis de vento e miniaturas funcionais de sistemas de elevadores são
+alguns exemplos de modelos físicos de sistemas. Ocasionalmente, este tipo de
+modelo é utilizado para estudar sistemas de engenharia ou logística~\cite{Law}.
+Porém, a vasta maioria de modelos são matemáticos, representando um sistema em
+termos de relações lógicas e quantitativas (equações matemáticas e notações
 simbólicas), que são então manipuladas e alteradas para observar de que forma o
 sistema real reagiria - isto se o modelo matemático for válido.
 
 No contexto deste estudo, um modelo físico de um sistema de elevadores poderia
-ser constituído pela maquete de um prédio com mini-elevadores movidos à motores
-de passo - que por sua vez seriam controlados por microcontroladores.
-Entretanto, este projeto por si só já seria grandioso demais - além de,
-obviamente, fugir do escopo da Ciência da Computação e ser mais adequado à um
-trabalho de conclusão de Engenharia Elétrica ou Engenharia de Controle e
-Automação. Além disso, da mesma forma que em um sistema real de elevadores, o
-número de cenários de testes seria limitado pelas restrições físicas do modelo
-do sistema. Portanto, optou-se pela utilização de um modelo matemático do
-sistema, reproduzível em ambiente computacional e facilmente parametrizável para
-diferentes cenários.
+ser constituído por uma maquete de um prédio com mini-elevadores movidos à
+motores de passo, que por sua vez seriam controlados por microcontroladores
+programáveis conectados à uma rede de sensores. Este projeto por si só,
+entretanto, já seria grandioso demais - além de, obviamente, fugir do escopo da
+Ciência da Computação e ser mais adequado à um trabalho de conclusão de
+Engenharia Elétrica ou Engenharia de Controle e Automação. Além disso, da mesma
+forma que em um sistema real de elevadores, os cenários de testes possíveis
+seriam limitados pelas restrições físicas do modelo do sistema. Portanto, optou-
+se pela utilização de um \textit{modelo matemático do sistema}, reproduzível em
+ambiente computacional e facilmente parametrizável para diferentes cenários.
 
 \item \textit{O problema pode ser resolvido de forma analítica?}
 
-De posse de um modelo matemático, o mesmo deve ser examinado de modo a verificar
-de qual modo ele pode ser utilizado para dar solução ao problema que ele
-representa. Segundo~\cite{Law}, se o modelo for simples o suficiente,
-possivelmente é possível trabalhar com suas relações e equações para obter uma
-solução exata, anaĺitica.~\cite{Law} cita como exemplo o modelo $d = vt$, onde
-$d$ é a distância, $v$ é a velocidade média e $t$ é o tempo de viagem. Se
-soubermos a distância a ser viajada e a velocidade, podemos trabalhar no modelo
-e encontrar a equação $t = d/r$ para encontrar, exatamente, o tempo de viagem.
-Embora esta solução seja simples, não é incomum a busca por soluções analíticas
-tornar-se extraordinariamente complexa, exigindo vastos recursos computacionais.
+De posse de um \textit{modelo matemático de um sistema}, o mesmo deve ser
+examinado de modo a verificar de qual modo ele pode ser utilizado para dar
+solução ao problema que ele representa. Segundo~\cite{Law}, se o modelo for
+simples o suficiente, provavelmente é possível trabalhar com suas relações
+matemáticas e equações para obter uma solução exata, anaĺitica. \cite{Law} cita
+como exemplo o modelo de mecânica básica $d = vt$, onde $d$ é a distância, $v$ é
+a velocidade média e $t$ é o tempo de viagem. Se soubermos a distância a ser
+viajada e a velocidade, podemos trabalhar com as equações do modelo e encontrar
+a equação $t = d/r$ para encontrar, exatamente, o tempo de viagem. Embora esta
+solução seja simples, não é incomum a busca por soluções analíticas tornar-se
+extraordinariamente complexa, exigindo vastos recursos computacionais.
 
 Portanto, se uma solução analítica para um problema é conhecida e possui
 eficiência computacional, é mais apropriado estudar este sistema desta forma do
 que através de simulação. Do contrário, o sistema deve ser estudado através de
-simulações~-~ou~seja, exercitar numericamente as entradas do modelo matemático
-do sistema e observar de que forma estes exercícios afetam as saídas.
-Entretanto, conforme afirmado no capítulo \ref{chap:intro} deste estudo, o
-problema de atribuir elevadores para atender chamadas feitas pelos passageiros
+simulações~-~ou~seja, através do exercício numérico das entradas do modelo
+matemático do sistema e da observação da forma com que tais exercícios afetam as
+saídas. Conforme afirmado no capítulo \ref{chap:intro} deste estudo, o problema
+de atribuir elevadores para atender chamadas feitas pelos passageiros
 minimizando alguma métrica encontra-se no conjunto de problemas NP- difícil (ou
 NP-hard, ou NP-complexo)~\cite{SeKo99}. Assim, uma solução ótima, computável em
 tempo polinomial, ainda não é conhecida para este problema. Logo, o problema não
@@ -131,28 +131,30 @@ Em outra abordagem,~\cite{BanksGibson} define 10 situações onde a simulação
 \item \textit{Quando o problema puder ser resolvido utilizando-se de bom senso}
 
 Conforme discutido anteriormente neste capítulo, dada a complexidade do problema
-(NP-completo), não é possível encontrar a solução apenas utilizando o bom senso.
+(NP-completo), não é possível encontrar a solução apenas utilizando o bom senso
+e operações básicas.
 
 \item \textit{Quando o problema puder ser resolvido de forma analítica}
 
-Ainda sobre a complexidade NP-completo, este fato implica no desconhecimento de
-uma forma analítica para encontrar a sua solução.
+Ainda sobre a complexidade NP-completo do problema em questão, uma solução
+anaĺítica ainda é desconhecida.
 
 \item \textit{Quando o problema puder ser resolvido através de experimentos
 diretamente no sistema}
 
 Como já constatado, não há um sistema de elevadores instalado para realizar as
 experimentações entre os recursos disponíveis para este estudo. E, mesmo que
-houvesse, haveria um limite nos cenários de testes em função das restrições
-físicas do sistema. Logo, não é possível realizar experimentos diretamente no
-sistema.
+houvesse, haveria uma imposição de limites nos cenários de testes em função das
+restrições físicas do sistema. Logo, não é possível realizar os experimentos
+diretamente no sistema.
 
 \item \textit{Quando seus custos da simulação excederem os seus ganhos}
 
-Embora os custos de modelagem, projeto e implementação do simulador deste estudo
-não tenham sido avaliados de forma direta, acredita-se que os resultados trarão
-benefícios aos usuários de elevadores, conforme explicitado nos capítulos
-\ref{chap:intro}, \ref{chap:problem} e \ref{chap:proposal} deste estudo.
+Não foi realizado um estudo e avaliação a respeito dos custos deste estudo,
+compreendendo o embasamento, modelagem, projeto e implementação do simuadlro.
+Entretanto, acredita-se que os resultados trarão benefícios aos usuários de
+elevadores, conforme defendido nos capítulos \ref{chap:intro},
+\ref{chap:problem} e \ref{chap:proposal}.
 
 \item \textit{Quando não há recursos financeiros suficientes}
 
@@ -172,10 +174,11 @@ TO-DO % TO-DO
 
 \item \textit{Quando as expectativas e o poder da simulação são superestimados}
 
-Neste estudo o foco das expectativas está nos ganhos que a Inteligência
-Artificial pode trazer para estes sistemas. A simulação é vista apenas como uma
-forma para avaliar os resultados obtidos. Portanto, a simulação não é
-superestimada e o caso não se enquadra nesta situação.
+Neste estudo, o foco das expectativas está nos ganhos que o uso de algoritmos de
+Inteligência Artificial poderão trazer para estes sistemas de elevadores. A
+simulação é vista apenas como uma forma para avaliar os resultados obtidos.
+Portanto, ela não é superestimada e o objeto de estudo não se enquadra nesta
+situação.
 
 \item \textit{Quando o comportamento do sistema é muito complexo ou não pode ser
 definido (e.~g. seres humanos)}
@@ -196,7 +199,7 @@ chamado de \textit{modelo de simulação}), o mesmo pode ser classificado em tr�
 dimensões~\cite{Banks,Law}:
 
 \begin{enumerate}
-\item Estático ou Dinâmico
+\item \textit{Estático ou Dinâmico}
 
 Um modelo de simulação estático é uma representação de um sistema em um ponto
 particular no tempo, ou então um sistema onde o tempo simplesmente é
@@ -208,7 +211,7 @@ verificar o comportamento do sistema ao longo de um intervalo de tempo finito,
 na medida em que passageiros chegam e elevadores os transportam através dos
 andares do prédio.
 
-\item Determinístico ou Estocástico
+\item \textit{Determinístico ou Estocástico}
 
 Um modelo de simulação que não possua nenhum componente probabilístico (i.~e,~
 aleatoriedade) é chamado de \textit{determinístico}. Em um modelo de simulação
@@ -229,7 +232,7 @@ sistema, quando eles chegarão e tampouco para qual andar irão. Portanto, um
 modelo de simulação válido neste escopo deve ser \textit{estocástico} de modo a
 lidar com a aleatoridade da entrada de passageiros no sistema.
 
-\item Contínuo ou Discreto
+\item \textit{Contínuo ou Discreto}
 
 A figura \ref{fig:disccont} ilustra o comportamento de uma variável de estado em
 modelos de simulação \textit{contínuos} e \textit{discretos}. O modelo
