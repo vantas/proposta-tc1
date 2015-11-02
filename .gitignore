@@ -36,6 +36,7 @@
 *.vrb
 *.xdy
 *.tdo
+img/*eps-converted-to.pdf
 pdf/
 proposta-tc1.pdf
 tc1.pdf
