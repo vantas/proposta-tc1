@@ -9,6 +9,13 @@ prédio+andares+elevadores (e não a modelagem do simulador propriamente dito);
 \item Apresentar em detalhe o algoritmo e descrever como esperamos que seja o resultado de seu uso junto ao sistema.
 \end{itemize}
 
+% TODO: Mais introdução
+A literatura fala em alguns algoritmos utilizados para a escolha de qual
+elevador atenderá um pedido. Alguns deles são triviais e não devem ser
+enquadrados no termo Inteligência Artificial, no entanto, sua implementação é
+interessante, no mínimo para fins de comparação com os demais algoritmos.
+% TODO: Referências
+
 \section{\label{sec:ai:nn}Nearest Neighbour}
 
 O algoritmo de \textit{Nearest Neighbour} é o mais ingênuo de todos, e servirá
@@ -17,14 +24,29 @@ de base para a avaliação dos demais algoritmos.
 Seu funcionamento é trivial: o elevador mais próximo do chamado sempre
 atenderá este.
 
+Um dos muitos problemas deste algoritmo é que ele pode causar muitas mudanças de
+direção de um elevador, bem como um uso não justo dos elevadores, onde um
+elevador fica maior parte do tempo parado.
+
+% TODO: Quem fala nele?
+
 \section{\label{sec:ai:nnm}Nearest Neighbour Melhorado}
 
 Uma melhoria que pode ser feita ao algoritmo de \textit{Nearest Neighbour}
 é considerar o sentido em que o elevador está indo para atender o chamado.
 
+Este algoritmo resolve o problema de mudanças de direção que o algoritmo de
+\textit{Nearest Neighbour} sofre, mas ainda pode resultar num uso pouco justo de
+um elevador. % TODO: tirei isto do meu chapéu
+
+No entanto, sua escolha para este trabalho também se dá para fim de comparação
+com os outros e validação do simulador. Como seu comportamento é diferente do
+caso mais trivial, mas ainda assim bastante simples, poderá ser visto com clareza
+algum tipo de melhora no tempo de resposta do sistema, bem como a validade do simulador.
+
 \section{\label{sec:ai:minimize-cost-function}Minimização da Função de Custo}
 
-O primeiro algoritmo de IA a ser testado é simples: defini-se uma
+O primeiro algoritmo de IA a ser testado é simples: define-se uma
 função de custo, que descreve matematicamente quão vantajoso é atender um
 pedido, comparado a não atendê-lo. A decisão de qual elevador é escolhido para
 atender o pedido é feita com base única e exclusivamente em qual deles terá o
@@ -49,9 +71,11 @@ manter todos os custos o mais baixo possível, ao mesmo tempo que sejam todos o
 mais próximos uns dos outros.\footnote{É possível elevar cada termo do somatório ao
   quadrado para obter-se isto.}
 
+% TODO: outros exemplos de função de custo?
+
 \section{Planning}
 
-% TODO: essa explicação tá uma merda
+% TODO: essa explicação pode melhorar ainda
 
 A idéia do algoritmo de planning é estender o de função de custo, calculando a
 mesma para vários passos no futuro~-~como em um jogo de xadrez.
@@ -64,7 +88,28 @@ escolher-se uma das alternativas (\textit{i.e.} a que, ao final de $x$ eventos
 no futuro tem o menor custo), avança-se um passo na simulação e executa-se o
 algoritmo novamente.
 
-% TODO: Ilustração
+Na Figura~\ref{fig:planning}, vemos um exemplo de planning sendo executado com
+horizonte 3 e dois elevadores. Para cada passo do algoritmo, a decisão a ser
+tomada é ``qual elevador deve atender o próximo pedido da fila?'', e, para isto,
+calcula-se a função de custo. O resultado da função pode ser visto entre
+parênteses em cada nodo da árvore da Figura~\ref{fig:planning}.
+
+Ao encontrarmos o horizonte (no caso da Figura~\ref{fig:planning}, no nível 3 da
+árvore), vemos quem tem o menor custo (neste caso, E2, filho de E2, filho de
+E1). Toma-se então a decisão de descer um nível na árvore apenas, em direção ao
+menor custo.
+
+Veja que, ao fazer isto, poderá tomar-se uma decisão diferente do algoritmo que apenas
+considera a função de custo. No caso da Figura~\ref{fig:planning}, o elevador E1
+atenderá o próximo chamado, mesmo tendo um custo superior a E2.
+
+\begin{figure}[htb!]
+  \centering
+  \includegraphics[scale=0.8]{img/planning.eps}
+  \caption{Exemplo de planning com horizonte 3 e dois elevadores}
+\label{fig:planning}
+\end{figure}
+
 \section{Planning Multi-Agente}
 
 Este algoritmo é uma extensão do algoritmo de Planning, onde, em vez de termos
