@@ -1,33 +1,37 @@
 \chapter{\label{chap:simulation}Sistemas e Simulações}
 
-``Simulação é a imitação da operação de um sistema ou processo do mundo real ao
-longo do tempo.''~\cite{Banks}. Ela envolve a geração de uma história artificial
-de um sistema ou processo e a observação desta história de modo a realizar
-inferências a respeito das características operacionais da realidade ali
-representada. Para estudar um sistema, frequentemente existe a necessidade de
-realizar uma série de suposições sobre o seu funcionamento. Estas suposições,
-que normalmente possuem a forma de relações matemáticas e lógicas, constituem um
-\textit{modelo do sistema}. Este modelo, por sua vez, é avaliado numericamente
-enquanto são coletados dados de modo a tentar obter algum entendimento sobre
-como o sistema correspondente se comporta na prática.
+De acordo com Banks~(2005, p.~3):
+
+\begin{directcite}
+Simulação é a imitação da operação de um sistema ou processo do mundo real ao
+longo do tempo. Ela envolve a geração de uma história artificial de um sistema
+ou processo e a observação desta história de modo a realizar inferências a
+respeito das características operacionais da realidade ali representada.
+\end{directcite}
 
 Entretanto, a simulação não é a única abordagem existente para se estudar e
-compreender um sistema e suas características. É senso comum que cada sistema
-deve ser analisado através da ferramenta correta. Logo, embora a simulação
-pareça ser uma boa alternativa à primeira vista em diversos casos, é possível
-que ela não seja a forma mais apropriada para o seu estudo. Assim, se faz
-importante a existência de métodos objetivos para que se possa verificar se a
-simulação é realmente a ferramenta apropriada para cada caso estudado.
+compreender um sistema e suas características. É senso comum que cada sistema,
+possuindo suas próprias características e idiossincrasias, deve ser analisado
+através da ferramenta correta. Logo, embora a simulação pareça ser uma boa
+alternativa à primeira vista em diversos casos, é possível que ela não seja a
+forma mais apropriada para o seu estudo. Assim, se faz importante a existência
+de métodos objetivos para que se possa verificar se a simulação é realmente a
+ferramenta apropriada para cada caso estudado.
 
 \section{\label{chap:waystostudy}Formas de Estudar um Sistema}
 
 Ao realizar o estudo sobre um sistema e seu comportamento, uma gama de
 estratégias podem ser colocadas em prática, dentre as quais podemos citar:
-experimentar com o próprio sistema; experimentar com um modelo físico do
-sistema; experimentar com um modelo matemático do sistema; etc. A fim de decidir
-de forma objetiva qual a melhor abordagem para um dado sistema,~\cite{Law}
-propõe uma reflexão (figura~\ref{fig:systemstudy}) através das seguintes
-perguntas:
+
+\begin{itemize}
+\item Experimentar com o próprio sistema;
+\item Experimentar com um modelo físico do sistema;
+\item Experimentar com um modelo matemático do sistema.
+\end{itemize}
+
+A fim de decidir de forma objetiva qual a melhor abordagem para um dado
+sistema,~\cite{Law} propõe uma reflexão (figura~\ref{fig:systemstudy}) através
+das seguintes perguntas:
 
 \begin{figure}[htb!]
 \centering\includegraphics{img/systemstudy.eps}
@@ -37,50 +41,53 @@ perguntas:
 \begin{enumerate}
 \item \textit{Experimentar com o próprio sistema ou experimentar com um modelo do mesmo?}
 
-Caso haja viabilidade técnica e financeira na alteração de um sistema e na
+Caso exista viabilidade técnica e financeira na alteração de um sistema e na
 observação de sua operação sob estas novas condições, é desejável que se faça as
-experimentações com o próprio sistema. Entretanto, frequentemente esta
-alternativa é inviável por diversas razões:
+experimentações diretamente no próprio sistema. Entretanto, frequentemente esta
+alternativa é inviável por diversas razões, dentre as quais encontram-se:
 
 \begin{itemize}
   \item O custo dos experimentos é muito elevado:
 
-  Exemplo: construir um novo módulo na Estação Espacial Internacional.
+  \textbf{Exemplo}: construir um novo módulo na Estação Espacial Internacional.
 
   \item O impacto causado pelos experimentos pode ser prejudicial ao sistema:
 
-  Exemplo: um mercado deseja reduzir o número de caixas a fim de diminuir seus
-custos operacionais. Porém, esta medida pode causar um aumento significativo no
-tamanho das filas - e, consequentemente, um aumento no tempo de espera dos
-cliente, podendo até causar desistências.
+  \textbf{Exemplo}: um mercado deseja reduzir o número de atendentes em caixas a
+fim de diminuir seus custos operacionais e aumentar seus lucros. Porém, esta
+medida pode causar um aumento significativo no tamanho das filas - e,
+consequentemente, um aumento no tempo de espera dos cliente, podendo até causar
+desistências.
 
   \item O sistema não existe:
 
-  Exemplo: o sistema ainda está nas fases de concepção, projeto ou
+  \textbf{Exemplo}: o sistema ainda está nas fases de concepção, projeto ou
 desenvolvimento.
 
 \end{itemize}
 
 Por isto, muitas vezes é necessário realizar os experimentos utilizando um
-\textit{modelo} em substituição ao sistema real. Para este estudo, um sistema de
-elevadores instalado e pronto para realizar as experimentações não encontra-se
-entre os recursos disponíveis para a elaboração da pesquisa. Ainda, mesmo que
-tal estrutura estivesse disponível, os cenários de testes possíveis seriam
-limitados pelas restrições físicas do sistema, tornando o estudo de melhorias
-mais caso e menos flexível. Logo, optou-se pela utilização de um \textit{modelo do
-sistema real}.
+\textit{modelo} em substituição ao sistema real. No escopo desde estudo, um
+sistema de elevadores operacional e pronto para realizar as experimentações não
+encontra-se entre os recursos disponíveis para a elaboração da pesquisa. Ainda,
+mesmo que tal estrutura estivesse disponível, os cenários de testes possíveis
+seriam limitados pelas restrições físicas do sistema, tornando o estudo das
+melhorias mais caro e menos flexível. Logo, optou-se pela utilização de um
+\textit{modelo do sistema}.
 
 \item \textit{Experimentar utilizando um modelo físico do sistema ou utilizar um modelo
 matemático?}
 
 Cockpits de aviões desacoplados do resto da nave, automóveis construídos em
 escala em túneis de vento e miniaturas funcionais de sistemas de elevadores são
-alguns exemplos de modelos físicos de sistemas. Ocasionalmente, este tipo de
-modelo é utilizado para estudar sistemas de engenharia ou logística~\cite{Law}.
-Porém, a vasta maioria de modelos são matemáticos, representando um sistema em
-termos de relações lógicas e quantitativas (equações matemáticas e notações
-simbólicas), que são então manipuladas e alteradas para observar de que forma o
-sistema real reagiria - isto se o modelo matemático for válido.
+alguns exemplos de \textit{modelos físicos} de sistemas. Ocasionalmente, este
+tipo de modelo é utilizado para estudar sistemas de engenharia ou
+logística~\cite{Law}. Porém, a vasta maioria dos casos exigem \textit{modelos
+matemáticos}. Estes modelos são criados baseados em suposições realizadas a
+respeito do funcionamento do sistema. Tais suposições, que normalmente possuem a
+forma de relações lógicas e quantitativas (equações matemáticas e notações
+simbólicas), são então avaliadas numericamente enquanto são coletados dados com
+o intuito de observar de que forma o sistema real reagiria.
 
 No contexto deste estudo, um modelo físico de um sistema de elevadores poderia
 ser constituído por uma maquete de um prédio com mini-elevadores movidos à
@@ -166,7 +173,8 @@ TO-DO % TO-DO
 
 \item \textit{Quando não há dados suficientes, nem mesmo estimativas}
 
-TO-DO % TO-DO
+Neste estudo serão utilizadas distribuições de probabilidade baseadas em
+estimativas baseadas em observação e senso comum.
 
 \item \textit{Quando não há possibilidade de verificar a validade do modelo}
 
@@ -194,7 +202,7 @@ para estudar um \textbf{EGCS}.
 
 \section{Classificação do Modelo de Simulação}
 
-De posse de um modelo matemático a ser estudado por meio de simulação (doravante
+À partir de um modelo matemático a ser estudado por meio de simulação (doravante
 chamado de \textit{modelo de simulação}), o mesmo pode ser classificado em três
 dimensões~\cite{Banks,Law}:
 
@@ -257,28 +265,110 @@ Portanto, no escopo deste estudo utilizaremos um modelo de simulação
 
 \end{enumerate}
 
-Portanto, será utilizado um modelo de simulação \textit{dinâmico},
-\textit{estocástico} e \textit{discreto} para representar um \textbf{EGCS}.
+\section{Simulação Baseada em Eventos Discretos}
 
-\section{Simulação de Eventos Discretos com Avanço de Tempo}
+Segundo Law~(2000, p.~6):
 
-Conceitos \cite{Banks}:
+\begin{directcite}
+A Simulação de Eventos Discretos (\textit{Discrete-Event Simulation}) compreende
+a modelagem de um sistema na medida em que ele \textbf{evolui ao longo do tempo}
+através de uma representação na qual as variáveis de estado são alteradas
+instantaneamente em \textbf{instantes separados no tempo}.
+\end{directcite}
 
-\begin{description}
-\item[Sistema] TO-DO % TO-DO
-\item[Modelo] TO-DO % TO-DO
-\item[Estado do Sistema] TO-DO % TO-DO
-\item[Entidade] TO-DO % TO-DO
-\item[Atributo] TO-DO % TO-DO
-\item[Lista] TO-DO % TO-DO
-\item[Evento] TO-DO % TO-DO
-\item[Notificação de Evento] TO-DO % TO-DO
-\item[Lista de Eventos] TO-DO % TO-DO
-\item[Atividade] TO-DO % TO-DO
-\item[Atraso] TO-DO % TO-DO
-\item[Relógio] TO-DO % TO-DO
-\end{description}
+A abordagem sugerida por Law é o padrão de projeto de simuladores ao utilizar-se
+um modelo de simulação \textit{dinâmico}, \textit{estocástico} e
+\textit{discreto} para representar o sistema do mundo real. Em função da
+natureza dinâmica desta abordagem, é necessário acompanhar o valor atual do
+tempo da simulação na medida em que a simulação é executada. Também se faz
+necessário um mecanismo de avanço de tempo para avançar este tempo de um valor
+para o outro. Esta variável, que armazena o valor atual do tempo de simulação, é
+chamada de \textit{relógio da simulação} \cite{Law}. Geralmente, não há relação
+entre o tempo de simulação e o tempo necessário para a simulação ser executada.
+Por exemplo, um experimento pode simular o funcionamento de um banco entre 9h e
+17h (tempo de simulação), mas o tempo necessário para executar a simulação foi
+de 4 minutos.
 
 \subsection{Mecanismo de Avanço de Tempo}
 
-\subsection{Componentes de um Modelo de Simulação de Eventos Discretos}
+Existem duas principais abordagens para o mecanismo de avanço de tempo em um sistema de simulação de eventos discretos. São eles:
+
+\begin{description}
+\item[Avanço de tempo para o próximo evento] \hfill
+
+Na abordagem de \textit{avanço de tempo para o próximo evento}, o
+\textit{relógio da simulação} é inicializado em 0 (zero) e é determinado o tempo
+em que ocorrerão futuros. Então, o \textit{relógio da simulação} é avançado para
+o tempo da ocorrência do \textit{mais iminente} (primeiro) destes eventos
+futuros. Neste ponto do tempo, o estado do modelo é atualizado de acordo com o
+evento que ocorreu e novas ocorrências eventos futuros são geradas. Então,
+\textit{relógio da simulação} avança novamente do (novo) \textit{mais iminente}
+dos eventos futuros e o estado do sistema é atualizado em função da ocorrência
+deste evento. Este processo repete-se até que uma condição de parada previamente
+definida seja satisfeita.
+
+\begin{figure}[htb!]
+\centering\includegraphics{img/nextevent.eps}
+\caption{\label{fig:nextevent}Ilustração da evolução do \textit{relógio da simulação} utilizando a abordagem de \textit{avanço de tempo para o próximo evento}. Fonte:~\cite{Law}}
+\end{figure}
+
+\textbf{TO-DO: O PRÓXIMO PARÁGRAFO ESTÁ MAL ESCRITO. MELHORAR!}
+
+Na medida em que todas as alterações no estado do sistema ocorrem na ocasião da
+ocorrência de algum evento, os períodos de inatividade são descartados pelo fato
+do valor do \textit{relógio da simulação} pular para o tempo de cada evento,
+evento após evento - i.~e.~, o tempo compreendido entre eventos, onde não
+ocorreu nenhuma alteração no estado do sistema, não necessita ser computado
+\cite{Sim}.
+
+\item[Avanço de tempo de incremento fixo] \hfill
+
+Na abordagem de \textit{avanço de tempo de incremento fixo}, o \textit{relógio
+da simulação} é alterado sempre no mesmo incremento de tamanho fixo,
+independente de ocorrência de eventos. A cada avanço é feita uma varredura para
+verificar se haviam eventos agendados dentro daquele intervalo. Se um ou mais
+eventos estavam agendados para ocorrer no decorrer do intervalo, considera-se
+que sua ocorrência ocorreu no \textit{fim} do intervalo e o estado do sistema é
+alterado de forma correspondente.
+
+\begin{figure}[htb!]
+\centering\includegraphics{img/fixed.eps}
+\caption{\label{fig:fixedtime}Ilustração da evolução do \textit{relógio da simulação} utilizando a abordagem de \textit{avanço de tempo de incremento fixo}. Fonte:~\cite{Law}}
+\end{figure}
+
+Algumas desvantagens desta abordagem são os erros introduzidos ao processar
+eventos no fim do intervalo em que eles ocorreram e a necessidade de decidir
+qual evento processar primeiro quando eventos que não ocorrem simultaneamente na
+realidade são tratados como tal pelo modelo. Tais problemas poderiam ser
+mitigados ao utilizar incrementos menores. Entretanto, esta medida também
+aumenta o número de varreduras em intervalos para localizar eventos, o que pode
+tornar sua execução muito mais custosa em termos computacionais.
+
+Em função disto, esta abordagem é frequentemente descartada em detrimento do
+\textit{avanço de tempo para o próximo evento} em modelos onde o tempo de
+ocorrência de eventos pode variar bastante - que é o caso de modelos
+estocásticos.
+
+\end{description}
+
+Sendo assim, o modelo deste estudo será uma simulação de eventos discretos com avanço de tempo para o próximo evento.
+
+\subsection{Componentes e Organização da Simulação}
+
+\begin{description}
+\item[Estado do Sistema] Coleção de variáveis necessárias para descrever o estado do sistema em um instante em particular;
+\item[Relógio de Simulação] Variável contendo o valor atual do tempo de simulação;
+\item[Lista de Eventos] Uma lista contendo o próximo tempo em que cada tipo de evento ocorrerá;
+\item[Contadores Estatísticos] Conjunto de variáveis utilizados para armazenar informações estatísticas a respeito do funcionamento do sistema;
+\item[Rotina de Inicialização] Subprograma para inicializar a simulação no instante de simulação 0 (zero);
+\item[Rotina de Temporização] Subprograma para determinar qual o próximo evento e avançar o relógio de simulação até o instante da ocorrência deste evento;
+\item[Rotina de Evento] Subprograma que modifica o estado do sistema quando um tipo particular de evento ocorre (existe uma rotina de evento para cada tipo de vento);
+\item[Rotinas Auxiliares] Conjunto de subprogramas utilizados para gerar observações aleatórias sobre distribuições de probabilidade determinadas como parte do modelo de simulação;
+\item[Gerador de Relatórios] Subprograma que computa estimativas das métricas desejadas e dão origem ao relatório quando a simulação termina;
+\item[Programa Principal] Subprograma que invoca as rotinas de inicialização e temporização e delega o tratamento de cada evento à sua rotina correspondente, repetindo o processo até que a condição de parada da simulação seja verificada.
+\end{description}
+
+\begin{figure}[htb!]
+\centering\includegraphics{img/simulation_flow.eps}
+\caption{\label{fig:simflow}Fluxo básico de um simulador com avanço de tempo para o próximo evento. Fonte:~\cite{Law}}
+\end{figure}
