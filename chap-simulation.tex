@@ -29,9 +29,9 @@ estratégias podem ser colocadas em prática, dentre as quais podemos citar:
 \item Experimentar com um modelo matemático do sistema.
 \end{itemize}
 
-A fim de decidir de forma objetiva qual a melhor abordagem para um dado
-sistema,~\cite{Law} propõe uma reflexão (figura~\ref{fig:systemstudy}) através
-das seguintes perguntas:
+A fim de decidir de forma objetiva qual a melhor abordagem para um dado sistema,
+Law~\cite{Law} propõe uma reflexão (figura~\ref{fig:systemstudy}) através das
+seguintes perguntas:
 
 \begin{figure}[htb!]
 \centering\includegraphics{img/systemstudy.eps}
@@ -49,7 +49,8 @@ alternativa é inviável por diversas razões, dentre as quais encontram-se:
 \begin{itemize}
   \item O custo dos experimentos é muito elevado:
 
-  \textbf{Exemplo}: construir um novo módulo na Estação Espacial Internacional.
+  \textbf{Exemplo}: construir uma instalação para um novo elevador em um prédio
+já existente.
 
   \item O impacto causado pelos experimentos pode ser prejudicial ao sistema:
 
@@ -85,9 +86,9 @@ tipo de modelo é utilizado para estudar sistemas de engenharia ou
 logística~\cite{Law}. Porém, a vasta maioria dos casos exigem \textit{modelos
 matemáticos}. Estes modelos são criados baseados em suposições realizadas a
 respeito do funcionamento do sistema. Tais suposições, que normalmente possuem a
-forma de relações lógicas e quantitativas (equações matemáticas e notações
-simbólicas), são então avaliadas numericamente enquanto são coletados dados com
-o intuito de observar de que forma o sistema real reagiria.
+forma de relações lógicas e quantitativas, são então avaliadas numericamente
+enquanto são coletados dados com o intuito de observar de que forma o sistema
+real reagiria.
 
 No contexto deste estudo, um modelo físico de um sistema de elevadores poderia
 ser constituído por uma maquete de um prédio com mini-elevadores movidos à
@@ -99,7 +100,7 @@ Engenharia Elétrica ou Engenharia de Controle e Automação. Além disso, da me
 forma que em um sistema real de elevadores, os cenários de testes possíveis
 seriam limitados pelas restrições físicas do modelo do sistema. Portanto, optou-
 se pela utilização de um \textit{modelo matemático do sistema}, reproduzível em
-ambiente computacional e facilmente parametrizável para diferentes cenários.
+ambiente computacional e parametrizável para diferentes cenários.
 
 \item \textit{O problema pode ser resolvido de forma analítica?}
 
@@ -124,27 +125,26 @@ saídas. Conforme afirmado no capítulo \ref{chap:intro} deste estudo, o problem
 de atribuir elevadores para atender chamadas feitas pelos passageiros
 minimizando alguma métrica encontra-se no conjunto de problemas NP- difícil (ou
 NP-hard, ou NP-complexo)~\cite{SeKo99}. Assim, uma solução ótima, computável em
-tempo polinomial, ainda não é conhecida para este problema. Logo, o problema não
-pode ser resolvido de forma anaĺitica. Este fato vai ao encontro dos grandes
-esforços da indústria em procurar soluções para resolver o problema ao longo das
-décadas, não poupando esforços e investimentos em busca desta solução.
+tempo polinomial, ainda não é conhecida para este problema. Este fato vai ao
+encontro dos grandes esforços da indústria em procurar soluções para resolver o
+problema ao longo das décadas, não poupando esforços e investimentos em busca
+desta solução.
 
 \end{enumerate}
 
-Em outra abordagem,~\cite{BanksGibson} define 10 situações onde a simulação
+Em outra abordagem, Banks~\cite{BanksGibson} define 10 situações onde a simulação
 \textbf{não} é indicada. Tais situações são:
 
 \begin{enumerate}
 \item \textit{Quando o problema puder ser resolvido utilizando-se de bom senso}
 
 Conforme discutido anteriormente neste capítulo, dada a complexidade do problema
-(NP-completo), não é possível encontrar a solução apenas utilizando o bom senso
-e operações básicas.
+(NP-completo), não parece ser possível encontrar a solução apenas utilizando o
+bom senso e operações básicas.
 
 \item \textit{Quando o problema puder ser resolvido de forma analítica}
 
-Ainda sobre a complexidade NP-completo do problema em questão, uma solução
-anaĺítica ainda é desconhecida.
+Sobre o problema em questão, uma solução anaĺítica ainda é desconhecida.
 
 \item \textit{Quando o problema puder ser resolvido através de experimentos
 diretamente no sistema}
@@ -158,7 +158,7 @@ diretamente no sistema.
 \item \textit{Quando seus custos da simulação excederem os seus ganhos}
 
 Não foi realizado um estudo e avaliação a respeito dos custos deste estudo,
-compreendendo o embasamento, modelagem, projeto e implementação do simuadlro.
+compreendendo o embasamento, modelagem, projeto e implementação do simulador.
 Entretanto, acredita-se que os resultados trarão benefícios aos usuários de
 elevadores, conforme defendido nos capítulos \ref{chap:intro},
 \ref{chap:problem} e \ref{chap:proposal}.
@@ -174,11 +174,13 @@ TO-DO % TO-DO
 \item \textit{Quando não há dados suficientes, nem mesmo estimativas}
 
 Neste estudo serão utilizadas distribuições de probabilidade baseadas em
-estimativas baseadas em observação e senso comum.
+estimativas obtidas através de observação e senso comum.
+
+TO-DO: Onde observaremos? % TO-DO
 
 \item \textit{Quando não há possibilidade de verificar a validade do modelo}
 
-TO-DO % TO-DO
+TO-DO: Como verificaremos a validade do modelo? % TO-DO
 
 \item \textit{Quando as expectativas e o poder da simulação são superestimados}
 
@@ -192,17 +194,17 @@ situação.
 definido (e.~g. seres humanos)}
 
 Um \textbf{EGCS} não é um sistema de alta complexidade, possuindo um conjunto de
-comportamentos limitado e um espaço de estados finito. Portanto, não se enquadra
-nesta situação.
+comportamentos limitado e um espaço de estados moderado. Portanto, não se
+enquadra nesta situação.
 
 \end{enumerate}
 
-Em função destas reflexões justifica-se a simulação como uma forma apropriada
+Em função destas reflexões acredita-se que a simulação como uma forma apropriada
 para estudar um \textbf{EGCS}.
 
 \section{Classificação do Modelo de Simulação}
 
-À partir de um modelo matemático a ser estudado por meio de simulação (doravante
+A partir de um modelo matemático a ser estudado por meio de simulação (doravante
 chamado de \textit{modelo de simulação}), o mesmo pode ser classificado em três
 dimensões~\cite{Banks,Law}:
 
@@ -215,9 +217,9 @@ irrelevante. Por outro lado, um modelo de simulação dinâmico representa um
 sistema que evolui e se modifica com o passar do tempo.
 
 No escopo deste trabalho, o modelo de simulação é claramento dinâmico. Deseja-se
-verificar o comportamento do sistema ao longo de um intervalo de tempo finito,
-na medida em que passageiros chegam e elevadores os transportam através dos
-andares do prédio.
+verificar o comportamento do sistema ao longo de um intervalo de tempo finito, à
+medida que passageiros chegam e elevadores os transportam através dos andares do
+prédio.
 
 \item \textit{Determinístico ou Estocástico}
 
@@ -245,11 +247,11 @@ lidar com a aleatoridade da entrada de passageiros no sistema.
 A figura \ref{fig:disccont} ilustra o comportamento de uma variável de estado em
 modelos de simulação \textit{contínuos} e \textit{discretos}. O modelo
 \textit{contínuo} é aquele onde os valores das variáveis mudam continuamente ao
-longo do tempo. Já em um modelo \textit{discreto} as variáveis de estado teu sem
-valor alterado instantaneamente em determinados instantes separados do tempo
-\cite{Banks}. É importante salientar que modelos discretos não necessariamente
-representam sistemas discretos e vice-versa \cite{Law}. A decisão por um modelo
-ou outro se dá especificamente pelos objetivos do estudo.
+longo do tempo. Já em um modelo \textit{discreto} as variáveis de estado tem seu
+valor alterado em instantes separados do tempo \cite{Banks}. É importante
+salientar que modelos discretos não necessariamente representam sistemas
+discretos e vice-versa \cite{Law}. A decisão por um modelo ou outro se dá
+especificamente pelos objetivos do estudo.
 
 Para este projeto, não há a necessidade - tampouco a disposição de tempo
 computacional - de informações instantâneas a respeito da movimentação de
@@ -271,7 +273,7 @@ Segundo Law~(2000, p.~6):
 
 \begin{directcite}
 A Simulação de Eventos Discretos (\textit{Discrete-Event Simulation}) compreende
-a modelagem de um sistema na medida em que ele \textbf{evolui ao longo do tempo}
+a modelagem de um sistema à medida que ele \textbf{evolui ao longo do tempo}
 através de uma representação na qual as variáveis de estado são alteradas
 instantaneamente em \textbf{instantes separados no tempo}.
 \end{directcite}
@@ -280,14 +282,14 @@ A abordagem sugerida por Law é o padrão de projeto de simuladores ao utilizar-
 um modelo de simulação \textit{dinâmico}, \textit{estocástico} e
 \textit{discreto} para representar o sistema do mundo real. Em função da
 natureza dinâmica desta abordagem, é necessário acompanhar o valor atual do
-tempo da simulação na medida em que a simulação é executada. Também se faz
-necessário um mecanismo de avanço de tempo para avançar este tempo de um valor
-para o outro. Esta variável, que armazena o valor atual do tempo de simulação, é
-chamada de \textit{relógio da simulação} \cite{Law}. Geralmente, não há relação
-entre o tempo de simulação e o tempo necessário para a simulação ser executada.
-Por exemplo, um experimento pode simular o funcionamento de um banco entre 9h e
-17h (tempo de simulação), mas o tempo necessário para executar a simulação foi
-de 4 minutos.
+tempo da simulação à medida que a simulação é executada, armazenando este valor
+em uma variável. Esta variável é chamada de \textit{relógio da simulação}
+\cite{Law}. Também se faz necessário um mecanismo de avanço de tempo que
+gerencie o valor desta variável. Geralmente, não há relação entre o tempo de
+simulação e o tempo necessário para a simulação ser executada. Por exemplo, um
+experimento pode simular o funcionamento de um banco entre 9h e 17h (tempo de
+simulação), mas o tempo necessário para executar a simulação poderia ser de 4
+minutos.
 
 \subsection{Mecanismo de Avanço de Tempo}
 
@@ -297,44 +299,59 @@ Existem duas principais abordagens para o mecanismo de avanço de tempo em um si
 \item[Avanço de tempo para o próximo evento] \hfill
 
 Na abordagem de \textit{avanço de tempo para o próximo evento}, o
-\textit{relógio da simulação} é inicializado em 0 (zero) e é determinado o tempo
-em que ocorrerão futuros. Então, o \textit{relógio da simulação} é avançado para
-o tempo da ocorrência do \textit{mais iminente} (primeiro) destes eventos
-futuros. Neste ponto do tempo, o estado do modelo é atualizado de acordo com o
-evento que ocorreu e novas ocorrências eventos futuros são geradas. Então,
-\textit{relógio da simulação} avança novamente do (novo) \textit{mais iminente}
+\textit{relógio da simulação} é inicializado em 0 e é determinado em que ponto
+tempo ocorrerão eventos futuros - em outras palavras, é feito o agendamento de
+eventos. Então, o \textit{relógio da simulação} é avançado para o tempo da
+ocorrência do \textit{primeiro} destes eventos futuros. Neste ponto do tempo, o
+estado do modelo é atualizado de acordo com o evento que ocorreu e novas
+ocorrências de eventos futuros são agendadas. Então, o \textit{relógio da
+simulação} avança para o instante exato da ocorrência do \textit{novo} primeiro
 dos eventos futuros e o estado do sistema é atualizado em função da ocorrência
 deste evento. Este processo repete-se até que uma condição de parada previamente
 definida seja satisfeita.
+
+Uma vez que todas e qualquer alteração no estado do sistema ocorre na ocasião de
+um evento, os períodos de espera - ou seja, o tempo entre a ocorrência de um
+evento e o próximo - não são relevantes para a simulação. Afinal, o estado do
+sistema não foi alterado neste ínterim - ou seja, nada de interessante ocorreu
+durante aquele tempo \cite{Sim}. Deste modo, é possível reduzir o esforço
+computacional necessário para executar a simulação.
 
 \begin{figure}[htb!]
 \centering\includegraphics{img/nextevent.eps}
 \caption{\label{fig:nextevent}Ilustração da evolução do \textit{relógio da simulação} utilizando a abordagem de \textit{avanço de tempo para o próximo evento}. Fonte:~\cite{Law}}
 \end{figure}
 
-\textbf{TO-DO: O PRÓXIMO PARÁGRAFO ESTÁ MAL ESCRITO. MELHORAR!}
-
-Na medida em que todas as alterações no estado do sistema ocorrem na ocasião da
-ocorrência de algum evento, os períodos de inatividade são descartados pelo fato
-do valor do \textit{relógio da simulação} pular para o tempo de cada evento,
-evento após evento - i.~e.~, o tempo compreendido entre eventos, onde não
-ocorreu nenhuma alteração no estado do sistema, não necessita ser computado
-\cite{Sim}.
+Um exemplo desta dinâmica é ilustrado pela figura \ref{fig:nextevent}. O eixo do
+tempo, iniciado em 0, marca os tempos agendados para os eventos $\{e_{0}, e_{1},
+e_{2}, e_{3}, e_{4}, e_{5}\}$. As setas indicam os valores assumidos pelo
+\textit{relógio da simulação}, ou seja, $\{t_{0}, t_{1}, t_{2}, t_{3}, t_{4},
+t_{5}\}$. Observa-se que $t_{0} = e_{0}$, $t_{1} = e_{1}$ e assim sucessivamente
+- ou seja, o \textit{relógio da simulação} ``salta'' diretamente para o momento
+da ocorrência do próximo evento.
 
 \item[Avanço de tempo de incremento fixo] \hfill
 
 Na abordagem de \textit{avanço de tempo de incremento fixo}, o \textit{relógio
-da simulação} é alterado sempre no mesmo incremento de tamanho fixo,
-independente de ocorrência de eventos. A cada avanço é feita uma varredura para
-verificar se haviam eventos agendados dentro daquele intervalo. Se um ou mais
-eventos estavam agendados para ocorrer no decorrer do intervalo, considera-se
-que sua ocorrência ocorreu no \textit{fim} do intervalo e o estado do sistema é
-alterado de forma correspondente.
+da simulação} é alterado sempre no mesmo incremento, independente de ocorrência
+de eventos. A cada avanço é feita uma varredura para verificar se haviam eventos
+agendados dentro daquele intervalo. Se um ou mais eventos estavam agendados para
+ocorrer no decorrer do intervalo, considera-se que sua ocorrência ocorreu no
+\textit{fim} do intervalo e o estado do sistema é alterado de forma
+correspondente.
 
 \begin{figure}[htb!]
 \centering\includegraphics{img/fixed.eps}
 \caption{\label{fig:fixedtime}Ilustração da evolução do \textit{relógio da simulação} utilizando a abordagem de \textit{avanço de tempo de incremento fixo}. Fonte:~\cite{Law}}
 \end{figure}
+
+A representação ilustrada pela figura \ref{fig:fixedtime} mostra a diferença
+deste mecanismo para o anterior. O eixo do tempo, iniciado em 0, marca os tempos
+agendados para os eventos $\{e_{0}, e_{1}, e_{2}, e_{3}, e_{4}, e_{5}\}$. As
+setas indicam os valores assumidos pelo \textit{relógio da simulação}. Observa-
+se que, diferentemente da abordagem anterior, o valor do \textit{relógio da
+simulação} não coincide com a ocorrência de qualquer evento, e sim valores
+múltiplos do incremento fixo $\Delta t$.
 
 Algumas desvantagens desta abordagem são os erros introduzidos ao processar
 eventos no fim do intervalo em que eles ocorreram e a necessidade de decidir
@@ -360,9 +377,9 @@ Sendo assim, o modelo deste estudo será uma simulação de eventos discretos co
 \item[Relógio de Simulação] Variável contendo o valor atual do tempo de simulação;
 \item[Lista de Eventos] Uma lista contendo o próximo tempo em que cada tipo de evento ocorrerá;
 \item[Contadores Estatísticos] Conjunto de variáveis utilizados para armazenar informações estatísticas a respeito do funcionamento do sistema;
-\item[Rotina de Inicialização] Subprograma para inicializar a simulação no instante de simulação 0 (zero);
+\item[Rotina de Inicialização] Subprograma para inicializar a simulação no instante zero de simulação;
 \item[Rotina de Temporização] Subprograma para determinar qual o próximo evento e avançar o relógio de simulação até o instante da ocorrência deste evento;
-\item[Rotina de Evento] Subprograma que modifica o estado do sistema quando um tipo particular de evento ocorre (existe uma rotina de evento para cada tipo de vento);
+\item[Rotina de Evento] Subprograma que modifica o estado do sistema quando um tipo particular de evento ocorre (existe uma rotina de evento para cada tipo de evento);
 \item[Rotinas Auxiliares] Conjunto de subprogramas utilizados para gerar observações aleatórias sobre distribuições de probabilidade determinadas como parte do modelo de simulação;
 \item[Gerador de Relatórios] Subprograma que computa estimativas das métricas desejadas e dão origem ao relatório quando a simulação termina;
 \item[Programa Principal] Subprograma que invoca as rotinas de inicialização e temporização e delega o tratamento de cada evento à sua rotina correspondente, repetindo o processo até que a condição de parada da simulação seja verificada.
