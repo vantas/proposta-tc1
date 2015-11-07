@@ -327,7 +327,7 @@ tempo, iniciado em 0, marca os tempos agendados para os eventos $\{e_{0}, e_{1},
 e_{2}, e_{3}, e_{4}, e_{5}\}$. As setas indicam os valores assumidos pelo
 \textit{relógio da simulação}, ou seja, $\{t_{0}, t_{1}, t_{2}, t_{3}, t_{4},
 t_{5}\}$. Observa-se que $t_{0} = e_{0}$, $t_{1} = e_{1}$ e assim sucessivamente
-- ou seja, o \textit{relógio da simulação} ``salta'' diretamente para o momento
+- ou seja, o \textit{relógio da simulação} avança diretamente para o momento
 da ocorrência do próximo evento.
 
 \item[Avanço de tempo de incremento fixo] \hfill
@@ -389,3 +389,52 @@ Sendo assim, o modelo deste estudo será uma simulação de eventos discretos co
 \centering\includegraphics{img/simulation_flow.eps}
 \caption{\label{fig:simflow}Fluxo básico de um simulador com avanço de tempo para o próximo evento. Fonte:~\cite{Law}}
 \end{figure}
+
+%\begin{algorithm}[htb]
+%\begin{center}
+%\begin{algorithmic}[1]
+%\Function{Initialize}{$clock, state, statistics$}
+%  \State $clock \gets 0.0$
+%  \State Initialize $state$
+%  \State Initialize $statistics$
+%\EndFunction
+%\Statex
+%\Function{Timing}{$clock, state, statistics$}
+%  \State $clock \gets 0.0$
+%  \State Initialize $state$
+%  \State Initialize $statistics$
+%\EndFunction
+%\Statex
+%\Function{Main}{}
+%  \State $clock \gets null$
+%  \State $state \gets null$
+%  \State $statistics \gets null$
+%  \State $eventList \gets \text(new queue<Event>)$
+%  \State \Call{InitializationRoutine}{clock, state, statistics}
+%  \While{$\Call{ShouldSimulationRun}{clock, state}$}
+%    \State $nextEvent \gets \Call{GetNextEvent}{}$
+%    \If{<text>}
+%    <body>
+%    \ElsIf{<text>}
+%    <body>
+%    \Else
+%    <body>
+%    \EndIf
+%  \EndWhile
+%\EndFunction
+%\Procedure{Euclid}{$a,b$}\Comment{The g.c.d. of a and b}
+%\State $r\gets a\bmod b$
+%\While{$r\not=0$}\Comment{We have the answer if r is 0}
+%\State $a\gets b$
+%\State $b\gets r$
+%\State $r\gets a\bmod b$
+%\EndWhile\label{euclidendwhile}
+%\State \textbf{return} $b$\Comment{The gcd is b}
+%\EndProcedure
+%\end{algorithmic}
+%\end{center}
+%\caption[An algorithm with an optional, shorter caption]%
+%    {\label{alg:alg1}This is an algorithm with a very long
+%    caption. However, we replaced it with a shorter version
+%    in the Outline for legibility reasons}%
+%\end{algorithm}
