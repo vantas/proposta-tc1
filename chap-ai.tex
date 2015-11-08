@@ -148,10 +148,21 @@ Outras funções de custo levariam em consideração mudanças de direção de v
 pedido a um andar de distância, caso a alternativa seja fazer o pedido esperar
 um deslocamendo de dezenas de andares de outro elevador.}, ou ainda tentar
 manter todos os custos o mais baixo possível, ao mesmo tempo que sejam todos o
-mais próximos uns dos outros.\footnote{É possível elevar cada termo do somatório ao
-  quadrado para obter-se isto.}
+mais próximos uns dos outros.
 
-% TODO: outros exemplos de função de custo?
+Uma outra função de custo possível seria:
+
+\[J(e) = \sqrt{g_{e}f_{e}^{2}}\]
+
+Esta função penaliza mais o movimento, elevando ele ao quadrado.
+
+Para o exemplo da Figura~\ref{fig:elevadores-1}, temos:
+
+\[J(1) = \sqrt{g_{1}f_{1}^{2}} = \sqrt{0.2 \times 2^2} = \sqrt{0.8} = 0.8944\]
+\[J(2) = \sqrt{g_{2}f_{2}^{2}} = \sqrt{0.1 \times 8^2} = \sqrt{6.4} = 2.5298\]
+\[J(3) = \sqrt{g_{3}f_{3}^{2}} = \sqrt{0.9 \times 2^2} = \sqrt{3.6} = 1.8973\]
+
+Novamente, para esta função, o Elevador $E_{1}$ é eleito para atender o pedido.
 
 \section{Planning}
 
