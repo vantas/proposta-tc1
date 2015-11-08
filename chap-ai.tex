@@ -118,13 +118,11 @@ calcula-se a função de custo. O resultado da função pode ser visto entre
 parênteses em cada nodo da árvore da Figura~\ref{fig:planning}.
 
 Ao encontrarmos o horizonte (no caso da Figura~\ref{fig:planning}, no nível 3 da
-árvore), vemos quem tem o menor custo (neste caso, E2, filho de E2, filho de
-E1). Toma-se então a decisão de descer um nível na árvore apenas, em direção ao
-menor custo.
-
-Veja que, ao fazer isto, poderá tomar-se uma decisão diferente do algoritmo que apenas
-considera a função de custo. No caso da Figura~\ref{fig:planning}, o elevador E1
-atenderá o próximo chamado, mesmo tendo um custo superior a E2.
+árvore), soma-se os custos até lá (na Figura~\ref{fig:planning}, os círculos
+abaixo do nível mais baixo indicam a soma dos custos). O caminho que leva ao
+menor custo é o que deve ser tomado. No exemplo da Figura~\ref{fig:planning}, o
+elevador $E2$ atenderá o primeiro e o segundo chamados da fila, e então o
+elevador $E1$ atenderá o terceiro chamado, como pode ser visto pelo caminho destacado.
 
 \begin{figure}[htb!]
   \centering
