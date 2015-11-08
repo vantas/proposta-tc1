@@ -1,12 +1,12 @@
 \chapter{\label{chap:ai}Algoritmos de Inteligência Artificial para Elevadores}
 
-Aqui vamos apresentar:
+Neste capítulo vamos apresentar:
 
 \begin{itemize}
-\item Detalhar o(s) algoritmo(s) selecionados e justificar a sua escolha perante o problema;
-\item Introduzir o modelo de simulação do sistema - ou seja, a modelagem do
-prédio+andares+elevadores (e não a modelagem do simulador propriamente dito);
-\item Apresentar em detalhe o algoritmo e descrever como esperamos que seja o resultado de seu uso junto ao sistema.
+\item Os detalhes dos algoritmos selecionados e justificar a suas escolhas perante o problema;
+\item Introduzir o modelo de simulação do sistema~-~ou seja, a modelagem
+prédio/andares/elevadores (e não a modelagem do simulador propriamente dito);
+\item Detalhes de cada algoritmo e descrever como esperamos que seja o resultado de seu uso junto ao sistema.
 \end{itemize}
 
 % TODO: Mais introdução
@@ -22,11 +22,16 @@ O algoritmo de \textit{Nearest Neighbour} é o mais ingênuo de todos, e servir�
 de base para a avaliação dos demais algoritmos.
 
 Seu funcionamento é trivial: o elevador mais próximo do chamado sempre
-atenderá este.
+atenderá este chamado.
 
 Um dos muitos problemas deste algoritmo é que ele pode causar muitas mudanças de
 direção de um elevador, bem como um uso não justo dos elevadores, onde um
 elevador fica maior parte do tempo parado.
+
+O único propósito deste algoritmo é servir de base de comparação com outros
+algoritmos propostos, de modo a validarmos o simulador. Espera-se que uma
+melhora clara de desempenho seja notado ao comparar-se este com o próximo dos
+mais triviais, o \textit{Nearest Neighbour Melhorado}.
 
 % TODO: Quem fala nele?
 
