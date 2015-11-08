@@ -35,10 +35,8 @@ Seu funcionamento é trivial: o elevador mais próximo do chamado sempre
 atenderá este chamado.
 
 Um dos muitos problemas deste algoritmo é que ele pode causar muitas mudanças de
-direção de um elevador, bem como um uso não justo dos elevadores, onde um
-elevador fica maior parte do tempo parado.
-
-% TODO: Exemplo de uso injusto
+direção de um elevador, o que acarreta num tempo de espera maior para os
+passageiros dele.
 
 O único propósito deste algoritmo é servir de base de comparação com outros
 algoritmos propostos, de modo a validarmos o simulador. Espera-se que uma
@@ -57,32 +55,36 @@ sentido~-~apenas sabe-se que há pedidos no andar, e como destinos tem-se ``para
 cima'', ``para baixo'' ou ambos.
 
 Este algoritmo resolve o problema de mudanças de direção que o algoritmo de
-\textit{Nearest Neighbour} sofre, mas ainda pode resultar num uso pouco justo de
-um elevador. % TODO: tirei isto do meu chapéu
+\textit{Nearest Neighbour} sofre.
 
 No entanto, sua escolha para este trabalho também se dá para fim de comparação
 com os outros e validação do simulador. Como seu comportamento é diferente do
 caso mais trivial, mas ainda assim bastante simples, poderá ser visto com clareza
-algum tipo de melhora no tempo de resposta do sistema, bem como a validade do simulador.
+algum tipo de melhora no tempo de resposta do sistema simulado, bem como a validade do simulador.
 
 \section{\label{sec:ai:minimize-cost-function}Minimização da Função de Custo}
 
 O primeiro algoritmo de IA a ser testado é simples: define-se uma
-função de custo, que descreve matematicamente quão vantajoso é atender um
-pedido, comparado a não atendê-lo. A decisão de qual elevador é escolhido para
-atender o pedido é feita com base única e exclusivamente em qual deles terá o
-menor valor da função de custo.
-
-Várias funções de custo podem ser experimentadas e comparadas.
+função de custo, inerente a cada elevador, que descreve matematicamente quão
+vantajoso é atender um pedido, comparado a não atendê-lo. A decisão de qual
+elevador é escolhido para atender o pedido é feita com base única e
+ exclusivamente em qual deles terá o menor valor da função de custo.
 
 Um exemplo de função de custo é:
 
 \[
-  J(f) = \sum_{i=0}^{i=n} g_{i}f
+  J(f) = \sum_{i=0}^{i=n} 2g_{i}f
 \]
 
-Onde $g_{i}$ é cada grupo no sistema e $f$ é a distância, em número de andares,
-entre a posição atual do elevador e o pedido que se está avaliando.
+Onde $g_{i}$ é o tamanho do grupo dentro do elevador (que sabemos graça à
+balança interna) e $f$ é a distância, em número de andares,
+entre a posição atual do elevador e o pedido que se está avaliando. Note que,
+caso haja uma mudança de direção, o valor de $f$ deve ser dobrado, pois o
+elevador deverá ir até o novo pedido e então voltar para onde estava.
+
+% TODO: Ilustração
+
+Várias funções de custo podem ser experimentadas e comparadas.
 
 Outras funções de custo levariam em consideração mudanças de direção de viagem
 \footnote{\textit{e.g.}, pode ser vantajoso um elevador mudar de direção para atender um
