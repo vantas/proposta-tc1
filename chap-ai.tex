@@ -16,6 +16,16 @@ enquadrados no termo Inteligência Artificial, no entanto, sua implementação �
 interessante, no mínimo para fins de comparação com os demais algoritmos.
 % TODO: Referências
 
+Conforme os algoritmos vão ficando mais complexos, mais dados são necessários.
+Em um mundo perfeito, ter-se-ia todos os dados de cada passageiro~-~\textit{i.e.} cada
+pessoa que chegasse ao elevador informaria de antemão para qual andar deseja ir.
+No entanto, isto não é realista nos sistemas atuais. Portanto, os algoritmos
+aqui descritos tentam fazer inferências a respeito de dados que não possuem,
+quando relevante\footnote{\textit{e.g.} Podemos estimar a lotação do elevador
+  com base no peso reportado pela balança interna do elevador, que já se
+  encontra nele por motivos de segurança.}, ou tentar tomar decisões ignorando
+os dados que não estão disponíveis.
+
 \section{\label{sec:ai:nn}Nearest Neighbour}
 
 O algoritmo de \textit{Nearest Neighbour} é o mais ingênuo de todos, e servirá
@@ -28,6 +38,8 @@ Um dos muitos problemas deste algoritmo é que ele pode causar muitas mudanças 
 direção de um elevador, bem como um uso não justo dos elevadores, onde um
 elevador fica maior parte do tempo parado.
 
+% TODO: Exemplo de uso injusto
+
 O único propósito deste algoritmo é servir de base de comparação com outros
 algoritmos propostos, de modo a validarmos o simulador. Espera-se que uma
 melhora clara de desempenho seja notado ao comparar-se este com o próximo dos
@@ -38,7 +50,11 @@ mais triviais, o \textit{Nearest Neighbour Melhorado}.
 \section{\label{sec:ai:nnm}Nearest Neighbour Melhorado}
 
 Uma melhoria que pode ser feita ao algoritmo de \textit{Nearest Neighbour}
-é considerar o sentido em que o elevador está indo para atender o chamado.
+é considerar o sentido em que o elevador está indo para atender o chamado. Isto
+implica em considerar-se agora a informação de sentido dos pedidos. É importante
+notar que ainda não se considera quantas pessoas fizeram um pedido para qual
+sentido~-~apenas sabe-se que há pedidos no andar, e como destinos tem-se ``para
+cima'', ``para baixo'' ou ambos.
 
 Este algoritmo resolve o problema de mudanças de direção que o algoritmo de
 \textit{Nearest Neighbour} sofre, mas ainda pode resultar num uso pouco justo de
