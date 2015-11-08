@@ -169,7 +169,12 @@ Novamente, para esta função, o Elevador $E_{1}$ é eleito para atender o pedid
 % TODO: essa explicação pode melhorar ainda
 
 A idéia do algoritmo de planning é estender o de função de custo, calculando a
-mesma para vários passos no futuro~-~como em um jogo de xadrez.
+mesma para vários passos no futuro~-~como em um jogo de xadrez. Busca-se o
+caminho cuja soma tem o menor custo.
+
+Há duas alternativas para esta árvore de decisões: a decisão pode ser ``qual
+elevador deve atender o próximo pedido'' (Figura~\ref{fig:planning}),
+ou ``qual pedido deve ser atendido por qual elevador''. % TODO: Esta ilustração
 
 O horizonte de cálculo deve ser selecionado, dado que é um fator limitante no
 tamanho do cálculo do algoritmo.
