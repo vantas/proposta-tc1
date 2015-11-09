@@ -73,16 +73,73 @@ elevador é escolhido para atender o pedido é feita com base única e
 Um exemplo de função de custo é:
 
 \[
-  J(f) = \sum_{i=0}^{i=n} 2g_{i}f
+  J(e) = g_{e}f_{e}
 \]
 
-Onde $g_{i}$ é o tamanho do grupo dentro do elevador (que sabemos graça à
-balança interna) e $f$ é a distância, em número de andares,
-entre a posição atual do elevador e o pedido que se está avaliando. Note que,
-caso haja uma mudança de direção, o valor de $f$ deve ser dobrado, pois o
-elevador deverá ir até o novo pedido e então voltar para onde estava.
+Onde:
+\begin{itemize}
+\item \textbf{$g_{e}$} é a lotação do elevador
+\item \textbf{$f_{e}$} é
+  \begin{itemize}
+    \item zero, caso o programa atual do elevador faça com que ele passe por
+      aquele andar
+    \item o número de andares entre onde o elevador está e o pedido, caso o
+      elevador não tenha um programa (\textit{i.e.}, ele esteja ocioso) ou o
+      elevador esteja indo na direção do pedido.
+    \item duas vezes o número de andares entre onde o elevador está e o pedido,
+      caso ele mude de direção para atender este pedido.\footnote{Multiplica-se
+        a distância por dois pois é necessário ir até o andar do pedido e então
+        voltar para o andar onde se estava anteriormente, para só então atender
+        o pedido.}
+  \end{itemize}
+\end{itemize}
 
-% TODO: Ilustração
+\begin{figure}[htb!]
+  \centering
+  \includegraphics[scale=0.6]{img/elevator_example1.eps}
+  \caption{Exemplo de sistema de 3 elevadores com 8 andares, com um pedido para
+    descer a partir do oitavo andar. A lotação dos elevadores está representada
+    em percentual dentro deles, e seus programas são representados por setas.}
+  \label{fig:elevadores-1}
+\end{figure}
+
+Utilizando o exemplo da Figura~\ref{fig:elevadores-1}, podemos calcular o custo
+de cada elevador. Nela, temos 3 elevadores:
+
+\begin{itemize}
+\item \textbf{$E_{1}$}, no sétimo andar, com carga $20\%$ e um destino: o segundo andar;
+\item \textbf{$E_{2}$}, no primeiro andar, com carga $10\%$ e um destino: o sexto andar;
+\item \textbf{$E_{3}$}, no sétimo andar, com carga $90\%$ e um destino: o primeiro andar;
+\end{itemize}
+
+Sabemos que há um pedido no oitavo andar, e que ele quer descer\footnote{Na
+  Figura~\ref{fig:elevadores-1}, representado pelo círculo com um \textbf{D}, de
+\textit{Down}.}.
+
+Para o Elevador $E_{1}$:
+
+\[J(1) = g_{1}f_{1} = 0.2 \times 2 = 0.4\]
+
+$g_{1}$ é $0.2$, pois sua lotação é $20\%$, e $f_{1}$ é $2$, pois o elevador
+$E_{1}$ deve subir do sétimo para o oitavo andar e descer novamente até o sétimo.
+
+Para o Elevador $E_{2}$:
+
+\[J(2) = g_{2}f_{2} = 0.1 \times 8 = 0.8\]
+
+$g_{2}$ é $0.1$, pois sua lotação é $10\%$\footnote{Como não temos informações a
+respeito do futuro, não podemos considerar alterações na carga de um elevador.},
+e $f_{2}$ é $8$, pois o elevador deverá subir oito andares.
+
+Para o Elevador $E_{3}$:
+
+\[J(3) = g_{3}f_{3} = 0.9 \times 2 = 1.8\]
+
+$g_{3}$ é $0.9$, pois sua lotação é $90\%$, e $f_{3}$ é $2$, pois o elevador
+$E_{3}$ deve subir do sétimo para o oitavo andar e descer novamente até o sétimo.
+
+Vemos que, para esta função de custo, neste sistema, é vantajoso mudar o sentido
+de $E_{1}$ para atender o chamado no oitavo andar.
 
 Várias funções de custo podem ser experimentadas e comparadas.
 
@@ -91,17 +148,33 @@ Outras funções de custo levariam em consideração mudanças de direção de v
 pedido a um andar de distância, caso a alternativa seja fazer o pedido esperar
 um deslocamendo de dezenas de andares de outro elevador.}, ou ainda tentar
 manter todos os custos o mais baixo possível, ao mesmo tempo que sejam todos o
-mais próximos uns dos outros.\footnote{É possível elevar cada termo do somatório ao
-  quadrado para obter-se isto.}
+mais próximos uns dos outros.
 
-% TODO: outros exemplos de função de custo?
+Uma outra função de custo possível seria:
+
+\[J(e) = \sqrt{g_{e}f_{e}^{2}}\]
+
+Esta função penaliza mais o movimento, elevando ele ao quadrado.
+
+Para o exemplo da Figura~\ref{fig:elevadores-1}, temos:
+
+\[J(1) = \sqrt{g_{1}f_{1}^{2}} = \sqrt{0.2 \times 2^2} = \sqrt{0.8} = 0.8944\]
+\[J(2) = \sqrt{g_{2}f_{2}^{2}} = \sqrt{0.1 \times 8^2} = \sqrt{6.4} = 2.5298\]
+\[J(3) = \sqrt{g_{3}f_{3}^{2}} = \sqrt{0.9 \times 2^2} = \sqrt{3.6} = 1.8973\]
+
+Novamente, para esta função, o Elevador $E_{1}$ é eleito para atender o pedido.
 
 \section{Planning}
 
 % TODO: essa explicação pode melhorar ainda
 
 A idéia do algoritmo de planning é estender o de função de custo, calculando a
-mesma para vários passos no futuro~-~como em um jogo de xadrez.
+mesma para vários passos no futuro~-~como em um jogo de xadrez. Busca-se o
+caminho cuja soma tem o menor custo.
+
+Há duas alternativas para esta árvore de decisões: a decisão pode ser ``qual
+elevador deve atender o próximo pedido'' (Figura~\ref{fig:planning}),
+ou ``qual pedido deve ser atendido por qual elevador''. % TODO: Esta ilustração
 
 O horizonte de cálculo deve ser selecionado, dado que é um fator limitante no
 tamanho do cálculo do algoritmo.
@@ -129,15 +202,6 @@ elevador $E1$ atenderá o terceiro chamado, como pode ser visto pelo caminho des
   \includegraphics[scale=0.6]{img/planning.eps}
   \caption{Exemplo de planning com horizonte 3 e dois elevadores}
 \label{fig:planning}
-\end{figure}
-
-\begin{figure}[htb!]
-  \centering
-  \includegraphics[scale=0.6]{img/elevator_example1.eps}
-  \caption{Exemplo de sistema de 3 elevadores com 8 andares, com um pedido para
-    descer a partir do oitavo andar. A lotação dos elevadores está representada
-    em percentual dentro deles, e seus trajetos são representados por setas.}
-  \label{fig:elevadores-1}
 \end{figure}
 
 \section{Planning Multi-Agente}
