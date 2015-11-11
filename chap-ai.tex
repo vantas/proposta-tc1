@@ -9,43 +9,143 @@ prédio/andares/elevadores (e não a modelagem do simulador propriamente dito);
 \item Detalhes de cada algoritmo e descrever como esperamos que seja o resultado de seu uso junto ao sistema.
 \end{itemize}
 
-% TODO: Mais introdução
-A literatura fala em alguns algoritmos utilizados para a escolha de qual
-elevador atenderá um pedido. Alguns deles são triviais e não devem ser
-enquadrados no termo Inteligência Artificial, no entanto, sua implementação é
-interessante, no mínimo para fins de comparação com os demais algoritmos.
-% TODO: Referências
+A busca pela solução do problema de atribuir elevadores para atender chamadas
+feitas pelos passageiros, minimizando alguma métrica, é apresentada pela
+literatura pesquisada na forma de algoritmos com complexidades distintas. Tais
+complexidades vão desde algoritmos triviais, que sequer podem ser classificados
+como algoritmos de Inteligência Artificial mas são interessantes para fins de
+comparações, até soluções mais complexas, onde são necessários menores níveis de
+abstração~-~ou seja, mais dados sobre o sistema são necessários para se chegar
+a uma solução.
 
-Conforme os algoritmos vão ficando mais complexos, mais dados são necessários.
-Em um mundo perfeito, ter-se-ia todos os dados de cada passageiro~-~\textit{i.e.} cada
-pessoa que chegasse ao elevador informaria de antemão para qual andar deseja ir.
-No entanto, isto não é realista nos sistemas atuais. Portanto, os algoritmos
-aqui descritos tentam fazer inferências a respeito de dados que não possuem,
-quando relevante\footnote{\textit{e.g.} Podemos estimar a lotação do elevador
-  com base no peso reportado pela balança interna do elevador, que já se
-  encontra nele por motivos de segurança.}, ou tentar tomar decisões ignorando
-os dados que não estão disponíveis.
+Em um hipotético cenário ideal, ter-se-ia todos os dados de cada
+passageiro~-~\textit{i.e.} cada pessoa que chegasse ao elevador informaria de
+antemão para qual andar desejaria ir. No entanto, isto não é realista no
+contexto dos sistemas de elevadoras instalados atualmente, onde cada pessoa
+apenas informa se deseja subir ou descer antes de sequer entrar em um elevador
+e, conforme explicado na \ref{chap:problem}, é muito difícil saber com precisão
+quantas pessoas estão esperando no corredor de cada andar. Portanto, os
+algoritmos aqui descritos tentam fazer inferências a respeito de dados que não
+possuem, quando relevante\footnote{\textit{e.g.} Podemos estimar a lotação do
+elevador com base no peso reportado pela balança interna do elevador, que já se
+encontra nele por motivos de segurança.}, ou tentam tomar decisões ignorando os
+dados que não estão disponíveis.
 
-\section{\label{sec:ai:nn}Nearest Neighbour}
+Neste estudo serão apresentadas duas abordagens para encontrar uma solução para
+o problema referido: a \textit{minimização de uma função de custo} e
+\textit{planning}.
 
-O algoritmo de \textit{Nearest Neighbour} é o mais ingênuo de todos, e servirá
-de base para a avaliação dos demais algoritmos.
+\section{\label{sec:ai:minimize-cost-function}Minimização da Função de Custo}
 
-Seu funcionamento é trivial: o elevador mais próximo do chamado sempre
-atenderá este chamado.
+A primeira abordagem apresentada é simples: define-se uma função de custo,
+inerente a cada elevador, que descreve matematicamente quão vantajoso é atender
+um chamado, comparado a não atendê-lo. A decisão de qual elevador é escolhido
+para atender o chamado é feita com base única e exclusivamente em qual deles
+terá o menor resultado da função de custo. Esta abordagem pode ser representada
+matematicamente por:
+
+\[chooseElevator(c, s) = \argmin{e \in s} costFunction(c, e)\]
+
+Onde:
+\begin{itemize}
+\item \textbf{$c$} é a chamada de corredor originada por uma pessoa;
+\item \textbf{$s$} é o conjunto de todos os elevadores do sistema;
+\item \textbf{$e$} é uma variável local que representa cada elevador.
+\end{itemize}
+
+O algoritmo \ref{alg:base} ilustra um algoritmo com o comportamento desta
+função.
+
+\begin{algorithm}[htb]
+\begin{center}
+\begin{algorithmic}[1]
+\Function{ChooseElevator}{$call, elevatorSet, costFunction$}
+  \State $selectedElevator \leftarrow null$
+  \State $minCost \leftarrow \infty$
+  \For{\textbf{each} $elevator$ in $elevatorSet$}
+    \State $cost \leftarrow \Call{CostFunction}{$call, elevatorSet$}$
+    \If{$cost = 0$}
+      \State \textbf{return} $elevator$
+    \EndIf
+    \If{$cost < minCost$}
+      \State $selectedElevator \leftarrow elevator$
+      \State $minCost \leftarrow cost$
+    \EndIf
+  \EndFor
+  \State \textbf{return} $selectedElevator$
+\EndFunction
+\end{algorithmic}
+\end{center}
+\caption
+   {\label{alg:base}Algoritmo Base}
+\end{algorithm}
+
+Os argumentos para este algoritmo são:
+
+\begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries $costFunction$}]
+  \item[$call$] Abstração de uma chamada;
+  \item[$elevatorset$] Conjunto de todos os elevadores do prédio;
+  \item[$costFunction$] Ponteiro para a função de cálculo de custo.
+\end{description}
+
+Seu funcionamento pode ser descrito como: dada uma chamada, para cada elevador
+presente no conjunto calcula-se o retorno da função de custo e o algoritmo
+retorna o elevador com a menor função de custo correspondente. Além disso, há
+uma otimização (programação dinâmica): se algum elevador possuir custo zero, o
+algoritmo retorna imediatamente, como resultado, este elevador - pois nenhum
+outro elevador poderá ter um retorno da função de custo melhor do que zero.
+
+\subsection{\label{sec:ai:nn}Função de Custo \textit{Nearest Neighbour}}
+
+A função de custo \textit{Nearest Neighbour}, ou \textit{Vizinho Mais Próximo},
+é a mais simples de todas e servirá como base para comparação e avaliação dos
+demais algoritmos e funções. Seu funcionamento é trivial: na ocorrência de uma
+chamada, a mesma será atendida pelo elevador que encontra-se mais próximo do
+andar de origem, independente de quaisquer outras variáveis. Esta função pode
+ser representada matematicamente por:
+
+\[nearestNeighbour(c, e) = d\]
+
+Onde:
+\begin{itemize}
+\item \textbf{$c$} é a chamada de corredor originada por uma pessoa;
+\item \textbf{$e$} é o elevador em questão;
+\item \textbf{$d$} é a distância absoluta entre o andar em que se
+encontra o elevador $e$ e o andar que deu origem ao chamado $c$.
+\end{itemize}
+
+O algoritmo \ref{alg:nn} exibe uma representação em pseudo-código desta função:
+
+\begin{algorithm}[htb]
+\begin{center}
+\begin{algorithmic}[1]
+\Function{NearestNeighbour}{$call, elevatorSet$}
+  \State \textbf{return} \Call{Abs}{$elevator.currentFloor - call.sourceFloor$}
+\EndFunction
+\Statex
+\Function{Abs}{value}
+  \If{$value > 0$}
+    \State \textbf{return} $value$
+  \EndIf
+  \State \textbf{return} $-1 * value$
+\EndFunction
+\end{algorithmic}
+\end{center}
+\caption
+   {\label{alg:nn}Nearest Neighbour}
+\end{algorithm}
 
 Um dos muitos problemas deste algoritmo é que ele pode causar muitas mudanças de
 direção de um elevador, o que acarreta num tempo de espera maior para os
-passageiros dele.
-
-O único propósito deste algoritmo é servir de base de comparação com outros
-algoritmos propostos, de modo a validarmos o simulador. Espera-se que uma
-melhora clara de desempenho seja notado ao comparar-se este com o próximo dos
-mais triviais, o \textit{Nearest Neighbour Melhorado}.
+passageiros dele. O único propósito deste algoritmo é servir de base de
+comparação com outros algoritmos propostos, de modo a validarmos o simulador.
+Espera-se que uma melhora clara de desempenho seja notado ao comparar-se este
+com o próximo dos mais triviais, o \textit{Nearest Neighbour Melhorado}.
 
 % TODO: Quem fala nele?
 
-\section{\label{sec:ai:nnm}Nearest Neighbour Melhorado}
+\subsection{\label{sec:ai:nnm}Função de Custo \textit{Nearest Neighbour
+Melhorado}}
 
 Uma melhoria que pode ser feita ao algoritmo de \textit{Nearest Neighbour}
 é considerar o sentido em que o elevador está indo para atender o chamado. Isto
@@ -53,6 +153,18 @@ implica em considerar-se agora a informação de sentido dos pedidos. É importa
 notar que ainda não se considera quantas pessoas fizeram um pedido para qual
 sentido~-~apenas sabe-se que há pedidos no andar, e como destinos tem-se ``para
 cima'', ``para baixo'' ou ambos.
+
+\begin{algorithm}[htb]
+\begin{center}
+\begin{algorithmic}[1]
+\Function{BetterNearestNeighbour}{$call, elevatorSet$}
+  \State \textbf{return} $???????$
+\EndFunction
+\end{algorithmic}
+\end{center}
+\caption
+   {\label{alg:nnm}Nearest Neighbour Melhorado}
+\end{algorithm}
 
 Este algoritmo resolve o problema de mudanças de direção que o algoritmo de
 \textit{Nearest Neighbour} sofre.
@@ -62,13 +174,13 @@ com os outros e validação do simulador. Como seu comportamento é diferente do
 caso mais trivial, mas ainda assim bastante simples, poderá ser visto com clareza
 algum tipo de melhora no tempo de resposta do sistema simulado, bem como a validade do simulador.
 
-\section{\label{sec:ai:minimize-cost-function}Minimização da Função de Custo}
+\section{\label{sec:ai:lotacao}Função de Custo \textit{Lotação-Deslocamento}}
 
 O primeiro algoritmo de IA a ser testado é simples: define-se uma
 função de custo, inerente a cada elevador, que descreve matematicamente quão
 vantajoso é atender um pedido, comparado a não atendê-lo. A decisão de qual
 elevador é escolhido para atender o pedido é feita com base única e
- exclusivamente em qual deles terá o menor valor da função de custo.
+exclusivamente em qual deles terá o menor valor da função de custo.
 
 Um exemplo de função de custo é:
 
@@ -149,6 +261,9 @@ pedido a um andar de distância, caso a alternativa seja fazer o pedido esperar
 um deslocamendo de dezenas de andares de outro elevador.}, ou ainda tentar
 manter todos os custos o mais baixo possível, ao mesmo tempo que sejam todos o
 mais próximos uns dos outros.
+
+\subsection{\label{sec:ai:lotacaoquadratica}Função de Custo
+\textit{Lotação-Deslocamento Quadrático}}
 
 Uma outra função de custo possível seria:
 
