@@ -15,8 +15,8 @@ literatura pesquisada na forma de algoritmos com complexidades distintas. Tais
 complexidades vão desde algoritmos triviais, que sequer podem ser classificados
 como algoritmos de Inteligência Artificial mas são interessantes para fins de
 comparações, até soluções mais complexas, onde são necessários menores níveis de
-abstração - ou seja, mais dados sobre o sistema são necessários para se chegar
-à uma solução.
+abstração~-~ou seja, mais dados sobre o sistema são necessários para se chegar
+a uma solução.
 
 Em um hipotético cenário ideal, ter-se-ia todos os dados de cada
 passageiro~-~\textit{i.e.} cada pessoa que chegasse ao elevador informaria de
@@ -41,8 +41,20 @@ A primeira abordagem apresentada é simples: define-se uma função de custo,
 inerente a cada elevador, que descreve matematicamente quão vantajoso é atender
 um chamado, comparado a não atendê-lo. A decisão de qual elevador é escolhido
 para atender o chamado é feita com base única e exclusivamente em qual deles
-terá o menor resultado da função de custo. O algoritmo \ref{alg:base} fornece um
-esqueleto utilizado para avaliar diferentes funções de custo.
+terá o menor resultado da função de custo. Esta abordagem pode ser representada
+matematicamente por:
+
+\[chooseElevator(c, s) = \argmin{e \in s} costFunction(c, e)\]
+
+Onde:
+\begin{itemize}
+\item \textbf{$c$} é a chamada de corredor originada por uma pessoa;
+\item \textbf{$s$} é o conjunto de todos os elevadores do sistema;
+\item \textbf{$e$} é uma variável local que representa cada elevador.
+\end{itemize}
+
+O algoritmo \ref{alg:base} ilustra um algoritmo com o comportamento desta
+função.
 
 \begin{algorithm}[htb]
 \begin{center}
@@ -89,10 +101,10 @@ A função de custo \textit{Nearest Neighbour}, ou \textit{Vizinho Mais Próximo
 é a mais simples de todas e servirá como base para comparação e avaliação dos
 demais algoritmos e funções. Seu funcionamento é trivial: na ocorrência de uma
 chamada, a mesma será atendida pelo elevador que encontra-se mais próximo do
-andar de origem, independente de quaisquer outras variáveis. Ou seja, o custo
-para atender uma chamada é a diferença do andar em que o elevador se encontra e
-do andar que originou a chamada, conforme mostra o algoritmo
-\ref{alg:nn}.
+andar de origem, independente de quaisquer outras variáveis. Esta função pode
+ser representada matematicamente por \[nearestNeighbor(c, e) = d_{e}\] onde
+$d_{e}$ é a distância absoluta entre o elevador e o andar origem do chamado. O
+algoritmo \ref{alg:nn} exibe uma representação em pseudo-código desta função:
 
 \begin{algorithm}[htb]
 \begin{center}
