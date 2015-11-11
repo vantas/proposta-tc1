@@ -102,9 +102,19 @@ A função de custo \textit{Nearest Neighbour}, ou \textit{Vizinho Mais Próximo
 demais algoritmos e funções. Seu funcionamento é trivial: na ocorrência de uma
 chamada, a mesma será atendida pelo elevador que encontra-se mais próximo do
 andar de origem, independente de quaisquer outras variáveis. Esta função pode
-ser representada matematicamente por \[nearestNeighbor(c, e) = d_{e}\] onde
-$d_{e}$ é a distância absoluta entre o elevador e o andar origem do chamado. O
-algoritmo \ref{alg:nn} exibe uma representação em pseudo-código desta função:
+ser representada matematicamente por:
+
+\[nearestNeighbor(c, e) = d\]
+
+Onde:
+\begin{itemize}
+\item \textbf{$c$} é a chamada de corredor originada por uma pessoa;
+\item \textbf{$e$} é o elevador em questão;
+\item \textbf{$d$} é a distância absoluta entre o andar em que se
+encontra o elevador $e$ e o andar que deu origem ao chamado $c$.
+\end{itemize}
+
+O algoritmo \ref{alg:nn} exibe uma representação em pseudo-código desta função:
 
 \begin{algorithm}[htb]
 \begin{center}
