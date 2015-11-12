@@ -165,22 +165,24 @@ elevadores, conforme defendido nos capítulos \ref{chap:intro},
 
 \item \textit{Quando não há recursos financeiros suficientes}
 
-TO-DO % TO-DO
+Idem ao item anterior.
 
 \item \textit{Quando não há tempo suficiente}
 
-TO-DO % TO-DO
+De acordo com o cronograma exibido na seção \ref{chap:stages}, acredita-se que
+será possível implementar um sistema simulador capaz de fornecer dados em tempo
+hábil.
 
 \item \textit{Quando não há dados suficientes, nem mesmo estimativas}
 
 Neste estudo serão utilizadas distribuições de probabilidade baseadas em
 estimativas obtidas através de observação e senso comum.
 
-TO-DO: Onde observaremos? % TO-DO
+\textbf{TO-DO: Onde observaremos?} % TO-DO
 
 \item \textit{Quando não há possibilidade de verificar a validade do modelo}
 
-TO-DO: Como verificaremos a validade do modelo? % TO-DO
+\textbf{TO-DO: Como verificaremos a validade do modelo?} % TO-DO
 
 \item \textit{Quando as expectativas e o poder da simulação são superestimados}
 
@@ -372,14 +374,23 @@ Sendo assim, o modelo deste estudo será uma simulação de eventos discretos co
 
 \subsection{Componentes e Organização da Simulação}
 
+Independente do paradigma utilizado em sua implementação, um simulador de
+eventos discretos possui um conjunto de componentes com responsabilidaddes bem
+definidas. São eles:
+
 \begin{description}
 \item[Estado do Sistema] Coleção de variáveis necessárias para descrever o estado do sistema em um instante em particular;
 \item[Relógio de Simulação] Variável contendo o valor atual do tempo de simulação;
-\item[Lista de Eventos] Uma lista contendo o próximo tempo em que cada tipo de evento ocorrerá;
+\item[Lista de Eventos] Lista de eventos futuros, contendo, para cada evento, o
+seu tipo e o instante do tempo no qual este ocorrerá;
 \item[Contadores Estatísticos] Conjunto de variáveis utilizados para armazenar informações estatísticas a respeito do funcionamento do sistema;
-\item[Rotina de Inicialização] Subprograma para inicializar a simulação no instante zero de simulação;
-\item[Rotina de Temporização] Subprograma para determinar qual o próximo evento e avançar o relógio de simulação até o instante da ocorrência deste evento;
-\item[Rotina de Evento] Subprograma que modifica o estado do sistema quando um tipo particular de evento ocorre (existe uma rotina de evento para cada tipo de evento);
+\item[Rotina de Inicialização] Subprograma para inicializar a simulação no
+instante zero do \textit{relógio da simulação};
+\item[Rotina de Temporização] Subprograma responsável por determinar qual o
+próximo evento a ocorrer e avançar o relógio de simulação até o instante da sua
+ocorrência;
+\item[Rotina de Evento] Subprograma que modifica o estado do sistema quando um determinado tipo de evento ocorre - para cada tipo de evento há uma rotina
+correspondente;
 \item[Rotinas Auxiliares] Conjunto de subprogramas utilizados para gerar observações aleatórias sobre distribuições de probabilidade determinadas como parte do modelo de simulação;
 \item[Gerador de Relatórios] Subprograma que computa estimativas das métricas desejadas e dão origem ao relatório quando a simulação termina;
 \item[Programa Principal] Subprograma que invoca as rotinas de inicialização e temporização e delega o tratamento de cada evento à sua rotina correspondente, repetindo o processo até que a condição de parada da simulação seja verificada.
@@ -389,6 +400,42 @@ Sendo assim, o modelo deste estudo será uma simulação de eventos discretos co
 \centering\includegraphics{img/simulation_flow.eps}
 \caption{\label{fig:simflow}Fluxo básico de um simulador com avanço de tempo para o próximo evento. Fonte:~\cite{Law}}
 \end{figure}
+
+A figura \ref{fig:simflow} ilustra a organização existente entre estes
+componentes, bem como o fluxo de execução da simulação. O início da simulação se
+dá pela execução do \textit{Programa Principal}. Este, por sua vez, invoca a
+\textit{Rotina de Inicialização}. Nesta rotina, o \textit{Relógio da Simulação}
+é zerado, marcando o instante inicial. Além disso, são inicializados o
+\textit{Estado Inicial} do sistema, os \textit{Contadores Estatísticos} e são
+gerados os eventos iniciais, sendo adicionados à \textit{Lista de Eventos}.
+
+Após o controle retornar para o \textit{Programa Principal}, o mesmo invoca a
+\textit{Rotina de Temporização}. Esta rotina tem a responsabilidade de avaliar a
+\textit{Lista de Eventos} e determinar qual é o primeiro evento a ser executado.
+Ao determinar qual é o evento, a rotina avança o \textit{Relógio da Simulação}
+para o instante de sua ocorrência e devolve informações a respeito deste evento
+para o \textit{Programa Principal}. De volta ao \textit{Programa Principal}, o
+mesmo avalia o evento retornado pela \textit{Rotina de Temporização} e invoca
+sua \textit{Rotina de Evento} correspondente.
+
+Para cada tipo de evento existe uma \textit{Rotina de Evento} correspondente.
+Todas elas, obrigatoriamente, devem executar as seguintes tarefas: (1) atualizar
+o \textit{Estado do Sistema} em função do evento ocorrido; (2) atualizar os
+\textit{Contadores Estatísticos} em função do evento ocorrido; e (3) gerar
+novos eventos futuros e adicioná-los à \textit{Lista de Eventos}. Para esta
+última tarefa, as \textit{Rotinas Auxiliares} são utilizadas para diversas
+tarefas - dentre elas, a geração de variáveis aleatórias para dar suporte à
+geração de eventos estocásticos.
+
+Após a execução da \textit{Rotina de Evento}, é feita a verificação de uma
+condição de parada da simulação. Caso seja determinado que o fim da simulação
+deve ocorrer, o controle passa para o \textit{Gerador de Relatórios}, cuja
+responsabilidade é computar as estimativas de interesse, baseando-se nos
+\textit{Contadores Estatísticos} e produzir um relatório com estes dados. Em
+caso contrário, o \textit{Programa Principal} é invocado novamente e o ciclo se
+repete. É importante salientar que a \textit{Rotina de Inicialização} somente é
+invocada na primeira execução do \textit{Program Principal}, sendo ignorada nas
+iterações posteriores.
 
 %\begin{algorithm}[htb]
 %\begin{center}
