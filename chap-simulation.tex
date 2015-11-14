@@ -307,22 +307,17 @@ eventos. Então, o \textit{relógio da simulação} é avançado para o tempo da
 ocorrência do \textit{primeiro} destes eventos futuros. Neste ponto do tempo, o
 estado do modelo é atualizado de acordo com o evento que ocorreu e novas
 ocorrências de eventos futuros são agendadas. Então, o \textit{relógio da
-simulação} avança para o instante exato da ocorrência do \textit{novo} primeiro
-dos eventos futuros e o estado do sistema é atualizado em função da ocorrência
-deste evento. Este processo repete-se até que uma condição de parada previamente
+simulação} avança para o instante da ocorrência do \textit{novo} primeiro dos
+eventos futuros e o estado do sistema é atualizado em função da ocorrência deste
+evento. Este processo repete-se até que uma condição de parada previamente
 definida seja satisfeita.
 
-Uma vez que todas e qualquer alteração no estado do sistema ocorre na ocasião de
-um evento, os períodos de espera, que são o tempo entre a ocorrência de um
-evento e o próximo - não são relevantes para a simulação. Afinal, o estado do
-sistema não foi alterado neste ínterim - ou seja, nada de interessante ocorreu
-durante aquele tempo \cite{Sim}. Deste modo, é possível reduzir o esforço
-computacional necessário para executar a simulação.
-
-\begin{figure}[htb!]
-\centering\includegraphics{img/nextevent.eps}
-\caption{\label{fig:nextevent}Ilustração da evolução do \textit{relógio da simulação} utilizando a abordagem de \textit{avanço de tempo para o próximo evento}. Fonte:~\cite{Law}}
-\end{figure}
+Uma vez que toda alteração no estado do sistema ocorre na ocasião de um evento,
+os períodos de espera, que são o tempo entre a ocorrência de um evento e o
+próximo - não são relevantes para a simulação. Afinal, o estado do sistema não
+foi alterado neste ínterim - ou seja, nada de interessante ocorreu durante
+aquele tempo \cite{Sim}. Deste modo, é possível reduzir o esforço computacional
+necessário para executar a simulação.
 
 Um exemplo desta dinâmica é ilustrado pela figura \ref{fig:nextevent}. O eixo do
 tempo, iniciado em 0, marca os tempos agendados para os eventos $\{e_{0}, e_{1},
@@ -331,6 +326,11 @@ e_{2}, e_{3}, e_{4}, e_{5}\}$. As setas indicam os valores assumidos pelo
 t_{5}\}$. Observa-se que $t_{0} = e_{0}$, $t_{1} = e_{1}$ e assim sucessivamente
 - ou seja, o \textit{relógio da simulação} avança diretamente para o momento
 da ocorrência do próximo evento.
+
+\begin{figure}[htb!]
+\centering\includegraphics{img/nextevent.eps}
+\caption{\label{fig:nextevent}Ilustração da evolução do \textit{relógio da simulação} utilizando a abordagem de \textit{avanço de tempo para o próximo evento}. Fonte:~\cite{Law}}
+\end{figure}
 
 \item[Avanço de tempo de incremento fixo] \hfill
 
@@ -342,11 +342,6 @@ ocorrer no decorrer do intervalo, considera-se que sua ocorrência se deu no
 \textit{fim} do intervalo e o estado do sistema é alterado de forma
 correspondente.
 
-\begin{figure}[htb!]
-\centering\includegraphics{img/fixed.eps}
-\caption{\label{fig:fixedtime}Ilustração da evolução do \textit{relógio da simulação} utilizando a abordagem de \textit{avanço de tempo de incremento fixo}. Fonte:~\cite{Law}}
-\end{figure}
-
 A representação ilustrada pela figura \ref{fig:fixedtime} mostra a diferença
 deste mecanismo para o anterior. O eixo do tempo, iniciado em 0, marca os tempos
 agendados para os eventos $\{e_{1}, e_{2}, e_{3}, e_{4}\}$. As
@@ -354,6 +349,11 @@ setas indicam os valores assumidos pelo \textit{relógio da simulação}. Observ
 se que, diferentemente da abordagem anterior, o valor do \textit{relógio da
 simulação} não coincide com a ocorrência de qualquer evento, e sim valores
 múltiplos do incremento fixo $\Delta t$.
+
+\begin{figure}[htb!]
+\centering\includegraphics{img/fixed.eps}
+\caption{\label{fig:fixedtime}Ilustração da evolução do \textit{relógio da simulação} utilizando a abordagem de \textit{avanço de tempo de incremento fixo}. Fonte:~\cite{Law}}
+\end{figure}
 
 Algumas desvantagens desta abordagem são os erros introduzidos ao processar
 eventos no fim do intervalo em que eles ocorreram e a necessidade de decidir
@@ -434,54 +434,7 @@ responsabilidade é computar as estimativas de interesse, baseando-se nos
 \textit{Contadores Estatísticos} e produzir um relatório com estes dados. Em
 caso contrário, o \textit{Programa Principal} é invocado novamente e o ciclo se
 repete. É importante salientar que a \textit{Rotina de Inicialização} somente é
-invocada na primeira execução do \textit{Program Principal}, sendo ignorada nas
+invocada na primeira execução do \textit{Programa Principal}, sendo ignorada nas
 iterações posteriores.
 
-%\begin{algorithm}[htb]
-%\begin{center}
-%\begin{algorithmic}[1]
-%\Function{Initialize}{$clock, state, statistics$}
-%  \State $clock \gets 0.0$
-%  \State Initialize $state$
-%  \State Initialize $statistics$
-%\EndFunction
-%\Statex
-%\Function{Timing}{$clock, state, statistics$}
-%  \State $clock \gets 0.0$
-%  \State Initialize $state$
-%  \State Initialize $statistics$
-%\EndFunction
-%\Statex
-%\Function{Main}{}
-%  \State $clock \gets null$
-%  \State $state \gets null$
-%  \State $statistics \gets null$
-%  \State $eventList \gets \text(new queue<Event>)$
-%  \State \Call{InitializationRoutine}{clock, state, statistics}
-%  \While{$\Call{ShouldSimulationRun}{clock, state}$}
-%    \State $nextEvent \gets \Call{GetNextEvent}{}$
-%    \If{<text>}
-%    <body>
-%    \ElsIf{<text>}
-%    <body>
-%    \Else
-%    <body>
-%    \EndIf
-%  \EndWhile
-%\EndFunction
-%\Procedure{Euclid}{$a,b$}\Comment{The g.c.d. of a and b}
-%\State $r\gets a\bmod b$
-%\While{$r\not=0$}\Comment{We have the answer if r is 0}
-%\State $a\gets b$
-%\State $b\gets r$
-%\State $r\gets a\bmod b$
-%\EndWhile\label{euclidendwhile}
-%\State \textbf{return} $b$\Comment{The gcd is b}
-%\EndProcedure
-%\end{algorithmic}
-%\end{center}
-%\caption[An algorithm with an optional, shorter caption]%
-%    {\label{alg:alg1}This is an algorithm with a very long
-%    caption. However, we replaced it with a shorter version
-%    in the Outline for legibility reasons}%
-%\end{algorithm}
+\section{\label{sec:oursimulator}Nosso Simulador}
