@@ -244,6 +244,14 @@ elevador $E1$ atenderá o terceiro chamado, como pode ser visto pelo caminho des
 O algoritmo é executado (acarretando uma reavaliação) a cada evento do sistema
 de simulação, descrito no Capítulo~\ref{chap:modeling}.
 
+\subsection{Função de Custo como Algoritmo de Planning}
+
+Podemos ver que, para cada etapa do algoritmo de planning, estamos avaliando uma
+função de custo. Isto fica mais explícito na Figura~\ref{fig:planning}. Se
+considerarmos o caso especial de horizonte 1, o resultado do algoritmo seria
+idêntico ao de apenas avaliar a função de custo, como proposto na
+Sessão~\ref{sec:ai:minimize-cost-function}.
+
 \section{Planning Multi-Agente}
 
 Este algoritmo é uma extensão do algoritmo de Planning, onde, em vez de termos
@@ -251,7 +259,40 @@ um processamento central que decide que um elevador deve atender o pedido, temos
 todos os elevadores calculando por conta própria se vale a pena atender um
 pedido ou não.
 
-A literatura neste tópico é bastante escassa ainda. No entanto, uma possível
-implementação desta solução seria algo como:
+A literatura neste tópico é bastante escassa ainda. Um estudo deste tipo de
+comportamento seria interessante, mas dado o tempo disponível para a
+implementação e teste, possivelmente não será viável.
 
-Bla bla bla
+Uma possível implementação deste tipo de algoritmo faria com que cada elevador
+avaliasse qual pedido, dentre os disponíveis, ele tomaria para si. Para evitar
+que todos cheguem à mesma decisão, políticas de escalonamento podem ser
+escolhidas. Por exemplo, coloca-se os elevadores em uma fila circular. O
+primeiro elevador da fila roda seu algoritmo e calcula qual pedido deve tomar
+para si. Ele vai, então, para o fim desta fila, e o próximo elevador toma a
+próxima decisão.
+
+Os algoritmos que cada elevador pode utilizar são as variações de funções de
+custo e planning, com variações no horizonte.
+
+\section{Políticas de Ociosidade}
+
+Há ainda um outro detalhe a ser considerado, que pode afetar o desempenho do
+sistema: o que um elevador deve fazer quando não há chamados para ele.
+
+Há várias possibilidades para isto, e é interessante testar-se várias delas e
+comparar-se sua eficácia.
+
+Por exemplo, uma política ingênua seria manter o elevador no último andar onde
+ele parou. Outra política, também bastante simples, seria mandar todo elevador
+ocioso de volta para o térreo.
+
+Políticas mais inteligentes podem maximizar a distância entre elevadores
+ociosos. Por exemplo, o primeiro elevador ocioso deve ir para o térreo. O
+segundo, para o andar mais alto. O terceiro, para um andar intermediário~-~e
+assim por diante.
+
+Há ainda a possibilidade de analisar-se os padrões de tráfego. % TODO: dá pra
+                                % citar alguém aqui
+Como sabe-se o histórico de chegadas de passageiros em cada andar, pode ser
+tomada a decisão de mandar elevadores ociosos para os andares onde é mais
+provável que algum novo pedido surja.
