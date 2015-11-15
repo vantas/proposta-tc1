@@ -71,7 +71,8 @@ classe sem a necessidade de passagem de parâmetros.
 
 Tecnicamente é coisa de preguiçoso, mas simplifica algumas coisas.
 
-\section{Notificando Eventos: o padrão \textit{Observer}}
+\section{\label{sec:model:notify}Notificando Eventos: o padrão
+\textit{Observer}}
 
 Em um simulador, há a necessidade de executar diferentes ações na ocasião de um
 evento específico - cada tipo de evento possui uma \textit{Rotina de Evento}
@@ -176,14 +177,50 @@ dispare as notificações.
 \label{fig:diagram:event:manage}
 \end{figure}
 
-\section{Blah}
+\section{Estado do Sistema: o Prédio e seus Componentes}
+
+A seção \ref{sec:model:notify} apresentou o conceito de \textit{observers}.
+Dentre os listados, encontra-se a classe \textit{Building}. Esta classe é
+responsável por encapsular o \textit{Estado do Sistema} (figura
+\ref{fig:diagram:system}), gerenciando instâncias de elevadores
+(\textit{Elevator}), andares (\textit{Floor}) e clientes (\textit{Client}).
 
 \begin{figure}[htb!]
   \centering
-  \includegraphics[scale=0.6]{img/state.eps}
-  \caption{Diagrama de Classes da Representação do Estado do Sistema}
+  \includegraphics[scale=0.6]{img/model.eps}
+  \caption{Diagrama de classes do \textit{Estado do Sistema}.}
 \label{fig:diagram:system}
 \end{figure}
+
+\begin{description}
+  \item[Building] \hfill \\
+    Representa a composição o prédio sendo simulado. Possui um conjunto de
+    elevadores, uma lista ordenada de andares e um método \texttt{reset},
+    utilizado para a inicialização da simulação. Um prédio é formado por no
+    mínimo um elevador e no mínimo um andar\footnote{Isto em termos conceituais;
+    porém, não há sentido na existência de um sistema de elevadores em uma
+    edificação com somente um andar. De fato, conforme afirmado na seção
+    \ref{section:scenarios}, serão simulados prédios com, no mínimo, 4
+    andares.}.
+
+  \item[Floor] \hfill \\
+    Parte componente de um prédio, possuindo uma numeração e uma fila
+    prioritária de clientes. Seu único método é \texttt{clientArrival},
+    utilizado quando um cliente chega na fila do elevador do andar.
+
+\item[Elevator] \hfill \\
+    Representa um elevador único. Possui como atributos o andar em que se
+    encontra, uma sequência ordenada de andares destinos, um conjunto de
+    clientes (passageiros), a carga atual e a carga máxima. Possui métodos para
+    parar em um andar específico (\texttt{stopAtFloor}), mover-se para cima ou
+    para baixo (\texttt{moveUp} e \texttt{moveDown}, respectivamente).
+
+\item[Client] \hfill \\
+    Representa um grupo de pessoas que desejam utilizar um elevador. Possui como atributos um identificador único, o tamanho do grupo, o horário em que chegou na fila do andar que se encontra e o andar destino para o qual deseja ir.
+
+\end{description}
+
+\section{Blah}
 
 Por fim, a figura \ref{fig:diagram:simulator} ilustra o diagrama do simulador
 com todas as classes (com exceção das classes Elevator, Client e Floor). Algumas
