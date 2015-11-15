@@ -1,5 +1,181 @@
 \chapter{\label{chap:modeling}Modelagem do Sistema}
 
+Conforme visto na subseção \ref{subsec:simulation:components}, um sistema de
+simulação possui uma série de componentes conceituais, cada um tendo suas
+responsabilidades bem definidas. Para o projeto do simulador de sistemas de
+elevadores deste estudo, doravante chamado apenas de simulador, optou-se pelo
+paradigma de Programação Orientada à Objetos. Esta opção se deu pelos seguintes
+motivos:
+
+\begin{description}
+  \item[Elevada Capacidade de Abstração]\hfill \\
+    Conceitos da Programação Orientada à Objetos, como classes, interfaces,
+    polimorfismo, herança e sobrecarga permitem a realização de uma modelagem
+    conceitual em alto nível de abstração, permitindo uma explanação de fácil
+    entendimento sem ser necessário abordar questões da implementação em si
+    (linguagem de programação, arquitetura, etc).
+  \item[Padrão de Mercado]\hfill \\
+    Desde meados dos anos 90, a Programação Orientada à Objetos tornou-se o mais
+    frequentemente utilizado no mercado de desenvolvimento de software e nos
+    ambientes acadêmicos relacionados à computação. Assim, é possível atingir
+    uma maior audiência.
+  \item[Domínio dos Autores]\hfill \\
+    O paradigma é de domínio dos autores deste estudo.
+\end{description}
+
+Nas próximas seções serão apresentadas as construções para o projeto do
+simulador de elevadores.
+
+\section{Eventos e Tipos}
+
+A simulação de eventos discretos, como o próprio nome já diz, é totalmente
+orientada à eventos. Isso significa dizer que as alterações no estado do sistema
+ocorrerão somente na ocasião de algum evento. Sendo assim, é necessária uma
+representação de um evento no projeto do simulador.
+
+Um evento é uma estrutura que deve possuir as seguintes informações: (1) o tipo
+do evento; (2) o horário agendado para a ocorrência do evento; (3) um cliente
+(passageiro) e/ou (4) um elevador e/ou (5) um andar do prédio. As existência de
+informações para os itens (3), (4) e (5) dependem do tipo de evento, que pode
+ser uma das seguintes opções:
+
+\begin{description}
+  \item[Chegada de um cliente] \hfill \ um cliente chegou na fila de um andar
+  \item[Chegada de um elevador] \hfill \ um elevador chegou a um andar e abriu as portas
+  \item[Elevador moveu-se para cima] \hfill \ um elevador moveu-se para cima
+  \item[Elevador moveu-se para baixo] \hfill \ um elevador moveu-se para baixo
+\end{description}
+
+Para o evento \textbf{chegada de um cliente}, é necessário conhecer o cliente e
+o andar. Para o evento \textbf{chegada de um elevator}, é necessário conhecer o
+elevador e o andar. Para os eventos \textbf{elevador moveu-se para cima} e
+\textbf{elevador moveu-se para baixo}, é necessária a informação do elevador. A
+figura \ref{fig:diagram:event} exibe o diagrama de classes para eventos e tipos
+de evento.
+
+\begin{figure}[htb!]
+  \centering
+  \includegraphics[scale=0.6]{img/event.eps}
+  \caption{Diagrama de classes para eventos e tipos de eventos.}
+\label{fig:diagram:event}
+\end{figure}
+
+\section{Classes Singleton}
+
+\textbf{Essa seção tá bem ruim. Melhorar bastante (ou até mesmo removê-la).}
+
+Durante a modelagem desde projeto, fez-se o uso do pattern Singleton em algumas
+entidades concretas. Uma classe Singleton significa que só é possível instanciar
+um objeto daquela classe, sendo esta instância acessível à partir de qualquer
+classe sem a necessidade de passagem de parâmetros.
+
+Tecnicamente é coisa de preguiçoso, mas simplifica algumas coisas.
+
+\section{Notificando Eventos: o padrão \textit{Observer}}
+
+Em um simulador, há a necessidade de executar diferentes ações na ocasião de um
+evento específico - cada tipo de evento possui uma \textit{Rotina de Evento}
+correspondente, responsável por atualizar o estado do sistema, as estatísticas e
+o relógio da simulação. Em termos genéricos, quando ocorrer uma alteração em um
+objeto~-~um evento ocorreu~-,~outros objetos devem ter o seu estado alterado em
+função disso. De acordo com Gamma \cite{Gamma:1995:DPE:186897}, o padrão
+\textit{Observer} é um \textit{design pattern} indicado para resolver este
+problema. Este \textit{pattern} define uma dependência de um-para-muitos (1:N)
+entre objetos de modo que, quando este um objeto (\textit{subject}) tem seu
+estado alterado, todos os seus dependentes (\textit{observers}) são notificados
+deste mudança. Por consequência, estes dependentes podem modificar seu estado
+interno baseando-se nas informações desta notificação. Neste projeto, o
+subsistema que segue o \textit{Observer pattern} será chamado de \textit{SNE},
+acrônimo para \textit{Sistema de Notificação de Eventos}.
+
+Os três principais componentes do \textit{SNE} (\ref{fig:diagram:notification})
+são duas interfaces e uma classe:
+
+\begin{description}
+  \item[EventObserver] \hfill \\
+    Interface a ser realizada por qualquer classe que deseje receber
+    notificações de eventos. Seu único método, \texttt{notify}, permite o
+    recebimento de uma notificação de um evento.
+
+  \item[EventNotifier] \hfill \\
+    Interface a ser realizada por qualquer classe que deseje notificar a
+    ocorrência de eventos. Define métodos que objetos que implementem a
+    interface \textit{EventObserver} possam se registrar (\texttt{register}) ou
+    desregistrar (\texttt{unregister}) para receber notificações de ocorrências
+    de um determinado tipo de evento, além do método \texttt{notify}, que deverá
+    notificar um evento para todos os \textit{observers} registrados.
+
+\item[EventDispatcher] \hfill \\
+    Classe concreta que realiza a interface \textit{EventNotifier}. Deve possuir
+    uma estrutura de dados para armazenar quais \textit{observers} se
+    registraram para cada tipo de evento. Na ocorrência de um evento, o
+    \textit{EventDispatcher} é responsável por varrer a lista de
+    \textit{observers} registrados e notificá-los de acordo com o tipo de evento
+    ocorrido.
+
+\end{description}
+
+\begin{figure}[htb!]
+  \centering
+  \includegraphics[scale=0.6]{img/notification.eps}
+  \caption{Diagrama de classes do \textit{Sistema de Notificação de Eventos}.}
+\label{fig:diagram:notification}
+\end{figure}
+
+Três importantes componentes do simulador podem se beneficiar desta construção:
+(1) o \textit{relógio do sistema} (classe \textit{Timer}); (2) os
+\textit{contadores estatísticos} (classe \textit{Statistics}); e (3) o
+\textit{estado do sistema} (classe \textit{Building}). Na ocorrência de um
+evento, estas três entidades devem ser notificadas e cada uma irá alterar seu
+estado interno da forma que lhe convir. Para isto, devem implementar a interface
+\textit{EventObserver} e registrarem-se no \textit{EventDispatcher}, conforme
+ilustrado na figura \ref{fig:diagram:observers}.
+
+\begin{figure}[htb!]
+  \centering
+  \includegraphics[scale=0.6]{img/observers.eps}
+  \caption{Diagrama de classes dos \textit{observers}.}
+\label{fig:diagram:observers}
+\end{figure}
+
+\section{Criação e Gerenciamento de Eventos}
+
+\begin{figure}[htb!]
+  \centering
+  \includegraphics[scale=0.6]{img/event_management.eps}
+  \caption{Diagrama de Classes do Gerenciador de Eventos}
+\label{fig:diagram:event:manage}
+\end{figure}
+
+A criação de eventos ocorre na classe \textit{EventGenerator}.
+
+A classe EventQueue gerencia a fila de eventos. Atraveś de uma PriorityQueue
+(fila de prioridades), é possível armazenar eventos e ordená-los
+automagicamente. A prioridade é inversamente proporcional ao tempo de ocorrência
+de cada evento - ou seja, eventos mais próximos na linha do tempo terão uma
+prioridade maior e ficarão primeiro na fila.
+
+\begin{figure}[htb!]
+  \centering
+  \includegraphics[scale=0.6]{img/state.eps}
+  \caption{Diagrama de Classes da Representação do Estado do Sistema}
+\label{fig:diagram:system}
+\end{figure}
+
+Por fim, a figura \ref{fig:diagram:simulator} ilustra o diagrama do simulador
+com todas as classes (com exceção das classes Elevator, Client e Floor). Algumas
+relações de menor relevância foram omitidas para uma melhor legibilidade.
+
+\begin{figure}[htb!]
+  \centering
+  \includegraphics[scale=0.6]{img/simulator.eps}
+  \caption{Diagrama de Classes do Simulador}
+\label{fig:diagram:simulator}
+\end{figure}
+
+
+\subsection{aaaaaaaa}
+
 Aqui vamos apresentar:
 
 \begin{itemize}
@@ -9,20 +185,6 @@ que dão sentido à simulação - ou seja, o modelo do sistema de elevadores
 alterações no estado do sistema quais informações desejamos que o simulador
 calcule para nós.
 \end{itemize}
-
-\begin{figure}[htb!]
-  \centering
-  \includegraphics[scale=0.6]{img/simulator_diagram.eps}
-  \caption{Diagrama de Classes do Simulador}
-\label{fig:diagram:simulator}
-\end{figure}
-
-\begin{figure}[htb!]
-  \centering
-  \includegraphics[scale=0.6]{img/system_diagram.eps}
-  \caption{Diagrama de Classes da Representação do Estado do Sistema}
-\label{fig:diagram:system}
-\end{figure}
 
 \section{\label{chap:input}Entrada de Distribuição de Probabilidade}
 
