@@ -138,22 +138,44 @@ ilustrado na figura \ref{fig:diagram:observers}.
 \label{fig:diagram:observers}
 \end{figure}
 
-\section{Criação e Gerenciamento de Eventos}
+\section{Gerenciamento de Eventos: a Fila Prioritária}
+
+Conforme visto na seção anterior, o \textit{EventDispatcher} é responsável por
+notificar as partes interessadas da ocorrência de um evento. Porém não responde
+a questão de qual deve ser o próximo evento que irá ocorrer.
+
+Conforme visto na seção \ref{chap:sim:timeadvance}, no \textit{mecanismo de
+avanço de tempo para o próximo evento} deve-se verificar, em uma lista de
+eventos, qual é o próximo evento a ocorrer. Dado um conjunto de eventos
+agendados (ou seja, ainda não ocorridos), o primeiro evento a ocorrer é
+justamente o que possui o menor tempo de agendamento. Um tipo abstrato de dados
+que serve para este propósito é uma \textit{fila prioritária}, ou
+\textit{priority queue}. Uma \textit{fila prioritária} funciona de forma similar
+a filas \textit{FIFO}, com a diferença de que cada elemento armazenado possui
+uma prioridade associada. A \textit{fila prioritária} irá atender os elementos
+por ordem de prioridade, da maior para a menor. Ao considerar que a prioridade
+de um evento é inversamente proporcional ao instante em que irá ocorrer - ou
+seja, quanto menor o tempo do evento maior é a sua prioridade -, temos uma fila
+na qual o próximo elemento a ser atendido sempre será o próximo evento a
+ocorrer, confirme ilustrado pela figura \textbf{XXXXX (TO-DO: fazer uma figura
+bonitinha para ilustrar a priority queue)}.
+
+A classe \textit{EventQueue} encapsula uma fila prioritária de eventos,
+fornecendo métodos para inserir um evento na fila (\texttt{push}), recuperar e
+remover o próximo evento (\texttt{pop}) ou simplesmente ``espiar'' o próximo
+evento (\texttt{peek}). Juntamente com a classe
+\textit{EventGenerator}\footnote{Classe responsável pela criação de eventos;
+abordada mais adiante neste estudo.}, a \textit{EventQueue} compõe o chamado
+\textit{Sistema de Gerência de Eventos}, ou \textit{SGE}.
 
 \begin{figure}[htb!]
   \centering
   \includegraphics[scale=0.6]{img/event_management.eps}
-  \caption{Diagrama de Classes do Gerenciador de Eventos}
+  \caption{Diagrama de classes do \textit{Sistema de Gerência de Eventos}.}
 \label{fig:diagram:event:manage}
 \end{figure}
 
-A criação de eventos ocorre na classe \textit{EventGenerator}.
-
-A classe EventQueue gerencia a fila de eventos. Atraveś de uma PriorityQueue
-(fila de prioridades), é possível armazenar eventos e ordená-los
-automagicamente. A prioridade é inversamente proporcional ao tempo de ocorrência
-de cada evento - ou seja, eventos mais próximos na linha do tempo terão uma
-prioridade maior e ficarão primeiro na fila.
+\section{Blah}
 
 \begin{figure}[htb!]
   \centering
