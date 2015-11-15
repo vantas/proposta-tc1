@@ -143,26 +143,30 @@ Para o Elevador $E_{1}$:
 
 \[J(1) = g_{1}f_{1} = 0.2 \times 2 = 0.4\]
 
-$g_{1}$ é $0.2$, pois sua lotação é $20\%$, e $f_{1}$ é $2$, pois o elevador
+Neste caso $g_{1}$ é $0.2$, pois sua lotação é $20\%$, e $f_{1}$ é $2$, pois o elevador
 $E_{1}$ deve subir do sétimo para o oitavo andar e descer novamente até o sétimo.
 
 Para o Elevador $E_{2}$:
 
 \[J(2) = g_{2}f_{2} = 0.1 \times 8 = 0.8\]
 
-$g_{2}$ é $0.1$, pois sua lotação é $10\%$\footnote{Como não temos informações a
+Neste caso $g_{2}$ é $0.1$, pois sua lotação é $10\%$\footnote{Como não temos informações a
 respeito do futuro, não podemos considerar alterações na carga de um elevador.},
-e $f_{2}$ é $8$, pois o elevador deverá subir oito andares.
+e $f_{2}$ é $8$, pois o elevador deverá subir oito andares.\footnote{Pela regra
+de cálculo, consideramos apenas a posição atual do elevador, e não a posição que
+ele estará ao fim de sua última atividade. Seria possivel alterar esta regra,
+gerando uma função de custo levemente diferente, com resultados diferentes. É um
+teste válido para a implementação.}
 
 Para o Elevador $E_{3}$:
 
 \[J(3) = g_{3}f_{3} = 0.9 \times 2 = 1.8\]
 
-$g_{3}$ é $0.9$, pois sua lotação é $90\%$, e $f_{3}$ é $2$, pois o elevador
+Neste caso $g_{3}$ é $0.9$, pois sua lotação é $90\%$, e $f_{3}$ é $2$, pois o elevador
 $E_{3}$ deve subir do sétimo para o oitavo andar e descer novamente até o sétimo.
 
 Vemos que, para esta função de custo, neste sistema, é vantajoso mudar o sentido
-de $E_{1}$ para atender o chamado no oitavo andar.
+de $E_{1}$ para atender o chamado no oitavo andar, e depois continuar na direção original.
 
 Várias funções de custo podem ser experimentadas e comparadas.
 
@@ -170,20 +174,20 @@ Outras funções de custo levariam em consideração mudanças de direção de v
 \footnote{\textit{e.g.}, pode ser vantajoso um elevador mudar de direção para atender um
 pedido a um andar de distância, caso a alternativa seja fazer o pedido esperar
 um deslocamendo de dezenas de andares de outro elevador.}, ou ainda tentar
-manter todos os custos o mais baixo possível, ao mesmo tempo que sejam todos o
-mais próximos uns dos outros.
+manter todos os custos o mais baixo possível, ao mesmo tempo que o mais
+próximos uns dos outros.
 
 Uma outra função de custo possível seria:
 
-\[J(e) = \sqrt{g_{e}f_{e}^{2}}\]
+\[J(e) = g_{e}f_{e}^{2}\]
 
-Esta função penaliza mais o movimento, elevando ele ao quadrado.
+Esta função penaliza mais o movimento, elevando-o ao quadrado.
 
 Para o exemplo da Figura~\ref{fig:elevadores-1}, temos:
 
-\[J(1) = \sqrt{g_{1}f_{1}^{2}} = \sqrt{0.2 \times 2^2} = \sqrt{0.8} = 0.8944\]
-\[J(2) = \sqrt{g_{2}f_{2}^{2}} = \sqrt{0.1 \times 8^2} = \sqrt{6.4} = 2.5298\]
-\[J(3) = \sqrt{g_{3}f_{3}^{2}} = \sqrt{0.9 \times 2^2} = \sqrt{3.6} = 1.8973\]
+\[J(1) = g_{1}f_{1}^{2} = 0.2 \times 2^2 = 0.8\]
+\[J(2) = g_{2}f_{2}^{2} = 0.1 \times 8^2 = 6.4\]
+\[J(3) = g_{3}f_{3}^{2} = 0.9 \times 2^2 = 3.6\]
 
 Novamente, para esta função, o Elevador $E_{1}$ é eleito para atender o pedido.
 
