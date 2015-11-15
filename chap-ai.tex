@@ -89,8 +89,8 @@ algum tipo de melhora no tempo de resposta do sistema simulado, bem como a valid
 O primeiro algoritmo de IA a ser testado é simples: define-se uma
 função de custo, inerente a cada elevador, que descreve matematicamente quão
 vantajoso é atender um pedido, comparado a não atendê-lo. A decisão de qual
-elevador é escolhido para atender o pedido é feita com base única e
- exclusivamente em qual deles terá o menor valor da função de custo.
+elevador é escolhido para atender o pedido é feita com base em qual deles
+terá o menor valor da função de custo.
 
 Um exemplo de função de custo é:
 
@@ -100,12 +100,13 @@ Um exemplo de função de custo é:
 
 Onde:
 \begin{itemize}
-\item \textbf{$g_{e}$} é a lotação do elevador
+\item \textbf{$e$} é o elevador
+\item \textbf{$g_{e}$} é o percentual de ocupação do elevador
 \item \textbf{$f_{e}$} é
   \begin{itemize}
     \item zero, caso o programa atual do elevador faça com que ele passe por
       aquele andar
-    \item o número de andares entre onde o elevador está e o pedido, caso o
+    \item o número de andares entre onde o elevador está e andar do pedido, caso o
       elevador não tenha um programa (\textit{i.e.}, ele esteja ocioso) ou o
       elevador esteja indo na direção do pedido.
     \item duas vezes o número de andares entre onde o elevador está e o pedido,
@@ -129,12 +130,12 @@ Utilizando o exemplo da Figura~\ref{fig:elevadores-1}, podemos calcular o custo
 de cada elevador. Nela, temos 3 elevadores:
 
 \begin{itemize}
-\item \textbf{$E_{1}$}, no sétimo andar, com carga $20\%$ e um destino: o segundo andar;
-\item \textbf{$E_{2}$}, no primeiro andar, com carga $10\%$ e um destino: o sexto andar;
-\item \textbf{$E_{3}$}, no sétimo andar, com carga $90\%$ e um destino: o primeiro andar;
+\item \textbf{$E_{1}$} no sétimo andar, com carga $20\%$ e um destino: o segundo andar;
+\item \textbf{$E_{2}$} no primeiro andar, com carga $10\%$ e um destino: o sexto andar;
+\item \textbf{$E_{3}$} no sétimo andar, com carga $90\%$ e um destino: o primeiro andar;
 \end{itemize}
 
-Sabemos que há um pedido no oitavo andar, e que ele quer descer\footnote{Na
+Sabemos que há um pedido no oitavo andar, para descer\footnote{Na
   Figura~\ref{fig:elevadores-1}, representado pelo círculo com um \textbf{D}, de
 \textit{Down}.}.
 
