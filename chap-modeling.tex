@@ -56,7 +56,7 @@ de evento.
 \begin{figure}[htb!]
   \centering
   \includegraphics[scale=0.6]{img/event.eps}
-  \caption{Classes para Eventos e Tipos de Eventos}
+  \caption{Diagrama de classes para eventos e tipos de eventos.}
 \label{fig:diagram:event}
 \end{figure}
 
@@ -71,55 +71,70 @@ classe sem a necessidade de passagem de parâmetros.
 
 Tecnicamente é coisa de preguiçoso, mas simplifica algumas coisas.
 
-\section{Notificando Eventos: o pattern Observer}
+\section{Notificando Eventos: o padrão \textit{Observer}}
 
 Em um simulador, há a necessidade de executar diferentes ações na ocasião de um
-evento específico. Por exemplo, atualizar o estado atual do sistema, as
-estatísticas e o relógio da simulação. De acordo com Gamma
-\cite{Gamma:1995:DPE:186897}, um \textit{design pattern} da programação
-Orientada à Objetos indicado para o problema de notificar componentes que um
-determinado evento ocorrereu é chamado de \textit{Observer}. Este
-\textit{pattern} define uma dependência de um-para-muitos entre objetos de modo
-que, quando este um objeto tem seu estado alterado, todos os seus dependentes
-são notificados automaticamente. Por consequencia, estes objetos podem modificar
-seu estado interno baseando-se nas informações desta notificação.
+evento específico - cada tipo de evento possui uma \textit{Rotina de Evento}
+correspondente, responsável por atualizar o estado do sistema, as estatísticas e
+o relógio da simulação. Em termos genéricos, quando ocorrer uma alteração em um
+objeto~-~um evento ocorreu~-,~outros objetos devem ter o seu estado alterado em
+função disso. De acordo com Gamma \cite{Gamma:1995:DPE:186897}, o padrão
+\textit{Observer} é um \textit{design pattern} indicado para resolver este
+problema. Este \textit{pattern} define uma dependência de um-para-muitos (1:N)
+entre objetos de modo que, quando este um objeto (\textit{subject}) tem seu
+estado alterado, todos os seus dependentes (\textit{observers}) são notificados
+deste mudança. Por consequência, estes dependentes podem modificar seu estado
+interno baseando-se nas informações desta notificação. Neste projeto, o
+subsistema que segue o \textit{Observer pattern} será chamado de \textit{SNE},
+acrônimo para \textit{Sistema de Notificação de Eventos}.
 
-A figura \ref{fig:diagram:notification} ilustra as classes projetadas deste
-sistema de Notificação de Eventos. A interface \textit{EventObserver} deve ser
-realizada por qualquer classe que deseje receber eventos. Já a interface
-\textit{EventNotifier} define a interface pública de um notificador de eventos.
-Esta interface provê métodos que objetos \textit{EventObserver} possam se
-registrar ou desregistrar para receber notificações das ocorrências de um
-determinado tipo de evento, além de um método para realizar a notificação
-propriamente dita do evento.
+Os três principais componentes do \textit{SNE} (\ref{fig:diagram:notification})
+são duas interfaces e uma classe:
+
+\begin{description}
+  \item[EventObserver] \hfill \\
+    Interface a ser realizada por qualquer classe que deseje receber
+    notificações de eventos. Seu único método, \texttt{notify}, permite o
+    recebimento de uma notificação de um evento.
+
+  \item[EventNotifier] \hfill \\
+    Interface a ser realizada por qualquer classe que deseje notificar a
+    ocorrência de eventos. Define métodos que objetos que implementem a
+    interface \textit{EventObserver} possam se registrar (\texttt{register}) ou
+    desregistrar (\texttt{unregister}) para receber notificações de ocorrências
+    de um determinado tipo de evento, além do método \texttt{notify}, que deverá
+    notificar um evento para todos os \textit{observers} registrados.
+
+\item[EventDispatcher] \hfill \\
+    Classe concreta que realiza a interface \textit{EventNotifier}. Deve possuir
+    uma estrutura de dados para armazenar quais \textit{observers} se
+    registraram para cada tipo de evento. Na ocorrência de um evento, o
+    \textit{EventDispatcher} é responsável por varrer a lista de
+    \textit{observers} registrados e notificá-los de acordo com o tipo de evento
+    ocorrido.
+
+\end{description}
 
 \begin{figure}[htb!]
   \centering
   \includegraphics[scale=0.6]{img/notification.eps}
-  \caption{Diagrama de Classes do Notificador de Eventos}
+  \caption{Diagrama de classes do \textit{Sistema de Notificação de Eventos}.}
 \label{fig:diagram:notification}
 \end{figure}
 
-A classe concreta \textit{EventDispatcher} realiza a interface
-\textit{EventNotifier}. Para armazenar os objetos que deverão receber
-notificações para cada evento, é utilizado um mapa que relaciona tipo de evento
-com uma lista de \textit{EventObservers}. Na ocasião da ocorrência de um evento,
-o \textit{EventDispatcher} é responsável por varrer a sua lista interna de
-assinantes e notificá-los conforme o tipo de evento ocorrido.
-
-Esta construção é bastante útil no momento em que possuímos três importantes
-componentes do sistema que necessitam alterar o seu estado interno a cada evento
-ocorrido (figura \ref{fig:diagram:observers}). São eles: \textit{Timer},
-responsável por encapsular o relógio da simulação; \textit{Statistics},
-responsável pela acumulação das estatísticas da simulação; e \textit{Building},
-entidade que armazena o estado do prédio em si, com seus andares, elevadores e
-passageiros. Na ocorrência de um evento, estas três entidades devem ser
-notificadas e cada uma irá alterar seu estado interno da forma que lhe convir.
+Três importantes componentes do simulador podem se beneficiar desta construção:
+(1) o \textit{relógio do sistema} (classe \textit{Timer}); (2) os
+\textit{contadores estatísticos} (classe \textit{Statistics}); e (3) o
+\textit{estado do sistema} (classe \textit{Building}). Na ocorrência de um
+evento, estas três entidades devem ser notificadas e cada uma irá alterar seu
+estado interno da forma que lhe convir. Para isto, devem implementar a interface
+\textit{EventObserver} e registrarem-se no \textit{EventDispatcher}, conforme
+ilustrado na figura \ref{fig:diagram:observers}.
 
 \begin{figure}[htb!]
   \centering
   \includegraphics[scale=0.6]{img/observers.eps}
-  \caption{Diagrama de Classes dos Observadores de Eventos}
+  \caption{Diagrama de classes dos \textit{observers}.}
 \label{fig:diagram:observers}
 \end{figure}
 
