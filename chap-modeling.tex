@@ -80,7 +80,7 @@ o relógio da simulação. Em termos genéricos, quando ocorrer uma alteração 
 objeto~-~um evento ocorreu~-,~outros objetos devem ter o seu estado alterado em
 função disso. De acordo com Gamma \cite{Gamma:1995:DPE:186897}, o padrão
 \textit{Observer} é um \textit{design pattern} indicado para resolver este
-problema. Este \textit{pattern} define uma dependência de um-para-muitos (1:N)
+problema. Este \textit{pattern} define uma dependência de um-para-muitos ($1:N$)
 entre objetos de modo que, quando este um objeto (\textit{subject}) tem seu
 estado alterado, todos os seus dependentes (\textit{observers}) são notificados
 deste mudança. Por consequência, estes dependentes podem modificar seu estado
@@ -88,8 +88,8 @@ interno baseando-se nas informações desta notificação. Neste projeto, o
 subsistema que segue o \textit{Observer pattern} será chamado de \textit{SNE},
 acrônimo para \textit{Sistema de Notificação de Eventos}.
 
-Os três principais componentes do \textit{SNE} (\ref{fig:diagram:notification})
-são duas interfaces e uma classe:
+Os três principais componentes do \textit{SNE} (figura
+\ref{fig:diagram:notification}) são duas interfaces e uma classe:
 
 \begin{description}
   \item[EventObserver] \hfill \\
@@ -157,16 +157,17 @@ por ordem de prioridade, da maior para a menor. Ao considerar que a prioridade
 de um evento é inversamente proporcional ao instante em que irá ocorrer - ou
 seja, quanto menor o tempo do evento maior é a sua prioridade -, temos uma fila
 na qual o próximo elemento a ser atendido sempre será o próximo evento a
-ocorrer, confirme ilustrado pela figura \textbf{XXXXX (TO-DO: fazer uma figura
-bonitinha para ilustrar a priority queue)}.
+ocorrer.
 
-A classe \textit{EventQueue} encapsula uma fila prioritária de eventos,
+Assim, a classe \textit{EventQueue} encapsula uma fila prioritária de eventos,
 fornecendo métodos para inserir um evento na fila (\texttt{push}), recuperar e
 remover o próximo evento (\texttt{pop}) ou simplesmente ``espiar'' o próximo
 evento (\texttt{peek}). Juntamente com a classe
 \textit{EventGenerator}\footnote{Classe responsável pela criação de eventos;
 abordada mais adiante neste estudo.}, a \textit{EventQueue} compõe o chamado
-\textit{Sistema de Gerência de Eventos}, ou \textit{SGE}.
+\textit{Sistema de Gerência de Eventos}, ou \textit{SGE}. Assim, possibilita-se
+que o \textit{EventDispatcher} facilmente recupere próximo evento a ocorrer e
+dispare as notificações.
 
 \begin{figure}[htb!]
   \centering
@@ -194,7 +195,6 @@ relações de menor relevância foram omitidas para uma melhor legibilidade.
   \caption{Diagrama de Classes do Simulador}
 \label{fig:diagram:simulator}
 \end{figure}
-
 
 \subsection{aaaaaaaa}
 
