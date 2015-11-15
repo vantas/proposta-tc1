@@ -11,9 +11,9 @@ prédio/andares/elevadores (e não a modelagem do simulador propriamente dito);
 
 A busca pela solução do problema de atribuir elevadores para atender chamadas
 feitas pelos passageiros, minimizando alguma métrica, é apresentada pela
-literatura pesquisada na forma de alguns algoritmos. Tais algoritmos possuem
-complexidades distintas, indo desde algoritmos triviais, que sequer podem ser
-classificados como algoritmos de Inteligência Artificial~-~mas ainda
+literatura pesquisada na forma de alguns algoritmos~\cite{KOEHLEROTTIGER02}.
+Tais algoritmos possuem complexidades distintas, indo desde algoritmos triviais,
+que sequer podem ser classificados como algoritmos de Inteligência Artificial~-~mas ainda
 interessantes para fins de comparação~-~, até soluções mais complexas, onde mais
 dados são utilizados de modo a tomar decisões mais complexas.
 
@@ -35,7 +35,7 @@ O algoritmo de \textit{Nearest Neighbour} é o mais ingênuo de todos, e servir�
 de base para a avaliação dos demais algoritmos.
 
 Seu funcionamento é trivial: o elevador mais próximo do chamado sempre
-atenderá este chamado.
+atenderá este chamado~\cite{Friese20061908}.
 
 Um dos problemas deste algoritmo é que ele pode causar muitas mudanças de
 direção de um elevador, o que acarreta um tempo de espera maior para os
@@ -65,11 +65,11 @@ mais triviais, o \textit{Nearest Neighbour Melhorado}.
 \section{\label{sec:ai:nnm}Nearest Neighbour Melhorado}
 
 Uma melhoria que pode ser feita ao algoritmo de \textit{Nearest Neighbour}
-é considerar o sentido em que o elevador está indo para atender o chamado. Isto
-implica em considerar-se agora a informação de sentido dos pedidos. É importante
-notar que ainda não se considera quantas pessoas fizeram um pedido~-~apenas
-sabe-se que há pedidos no andar, e como destinos tem-se ``para cima'', ``para
-baixo'' ou ambos.
+é considerar o sentido em que o elevador está indo para atender o
+chamado~\cite{Friese20061908}. Isto implica em considerar-se agora
+a informação de sentido dos pedidos. É importante notar que ainda não se
+considera quantas pessoas fizeram um pedido~-~apenas sabe-se que há pedidos no
+andar, e como destinos tem-se ``para cima'', ``para baixo'' ou ambos.
 
 Este algoritmo resolve o problema de mudanças de direção que o algoritmo de
 \textit{Nearest Neighbour} sofre.
@@ -88,9 +88,9 @@ algum tipo de melhora no tempo de resposta do sistema simulado, bem como a valid
 
 O primeiro algoritmo de IA a ser testado é simples: define-se uma
 função de custo, inerente a cada elevador, que descreve matematicamente quão
-vantajoso é atender um pedido, comparado a não atendê-lo. A decisão de qual
-elevador é escolhido para atender o pedido é feita com base em qual deles
-terá o menor valor da função de custo.
+vantajoso é atender um pedido, comparado a não atendê-lo~\cite{Friese20061908}.
+A decisão de qual elevador é escolhido para atender o pedido é feita com base
+em qual deles terá o menor valor da função de custo.
 
 Um exemplo de função de custo é:
 
@@ -206,7 +206,7 @@ elevador ($e$) e o número do andar onde o pedido se encontra ($p$).
 % TODO: essa explicação pode melhorar ainda
 
 A idéia do algoritmo de planning é estender o de função de custo, calculando-a
-para vários passos no futuro~-~como em um jogo de xadrez. Busca-se o
+para vários passos no futuro~\cite{Koehler00elevatorcontrol}~-~como em um jogo de xadrez. Busca-se o
 caminho cuja soma tem o menor custo total depois de vários passos.
 
 Há duas alternativas para esta árvore de decisões: a decisão pode ser ``qual
