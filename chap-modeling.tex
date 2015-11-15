@@ -1,35 +1,57 @@
 \chapter{\label{chap:modeling}Modelagem do Sistema}
 
-Conforme visto final do \ref{chap:simulation}, um sistema de simulação possui
-uma série responsabilidades bem definidas. Neste estudo o sistema será projetado
-através das construções do paradigma da orientação à objetos. A opção pela
-Orientação à Objetos se dá por diversos motivos:
-
-\begin{itemize}
-  \item encapsulamento
-  \item abstração
-  \item padrão de mercado
-  \item padrão acadêmico
-\end{itemize}
-
-\section{Eventos e Tipos de Eventos}
-
-O simulador é orientado à eventos. Logo, é necessário ter uma representação de
-um evento na implementação. Um evento deve possuir as seguintes informações:
-tipo de evento; horário em que o evento está agendado; um cliente (passageiro)
-e/ou um elevador e/ou um andar do prédio\footnote{A existência de informações
-sobre o cliente, o elevador e o andar dependem do tipo de evento.}. Já os tipos
-de eventos possíveis são:
+Conforme visto na subseção \ref{subsec:simulation:components}, um sistema de
+simulação possui uma série de componentes conceituais, cada um tendo suas
+responsabilidades bem definidas. Para o projeto do simulador de sistemas de
+elevadores deste estudo, doravante chamado apenas de simulador, optou-se pelo
+paradigma de Programação Orientada à Objetos. Esta opção se deu pelos seguintes
+motivos:
 
 \begin{description}
-  \item[Chegada de um cliente] um cliente chegou na fila de um andar;
-  \item[Chegada de um elevador] um elevador chegou a um andar;
-  \item[Elevador moveu-se para cima] um elevador moveu-se para cima;
-  \item[Elevador moveu-se para baixo] um elevador moveu-se para baixo.
+  \item[Elevada Capacidade de Abstração]\hfill \\
+    Conceitos da Programação Orientada à Objetos, como classes, interfaces,
+    polimorfismo, herança e sobrecarga permitem a realização de uma modelagem
+    conceitual em alto nível de abstração, permitindo uma explanação de fácil
+    entendimento sem ser necessário abordar questões da implementação em si
+    (linguagem de programação, arquitetura, etc).
+  \item[Padrão de Mercado]\hfill \\
+    Desde meados dos anos 90, a Programação Orientada à Objetos tornou-se o mais
+    frequentemente utilizado no mercado de desenvolvimento de software e nos
+    ambientes acadêmicos relacionados à computação. Assim, é possível atingir
+    uma maior audiência.
+  \item[Domínio dos Autores]\hfill \\
+    O paradigma é de domínio dos autores deste estudo.
 \end{description}
 
-A figura \ref{fig:diagram:event} exibe o diagrama UML da classe \textit{Event} e
-a enumeração \textit{EventType}.
+Nas próximas seções serão apresentadas as construções para o projeto do
+simulador de elevadores.
+
+\section{Eventos e Tipos}
+
+A simulação de eventos discretos, como o próprio nome já diz, é totalmente
+orientada à eventos. Isso significa dizer que as alterações no estado do sistema
+ocorrerão somente na ocasião de algum evento. Sendo assim, é necessária uma
+representação de um evento no projeto do simulador.
+
+Um evento é uma estrutura que deve possuir as seguintes informações: (1) o tipo
+do evento; (2) o horário agendado para a ocorrência do evento; (3) um cliente
+(passageiro) e/ou (4) um elevador e/ou (5) um andar do prédio. As existência de
+informações para os itens (3), (4) e (5) dependem do tipo de evento, que pode
+ser uma das seguintes opções:
+
+\begin{description}
+  \item[Chegada de um cliente] \hfill \ um cliente chegou na fila de um andar
+  \item[Chegada de um elevador] \hfill \ um elevador chegou a um andar e abriu as portas
+  \item[Elevador moveu-se para cima] \hfill \ um elevador moveu-se para cima
+  \item[Elevador moveu-se para baixo] \hfill \ um elevador moveu-se para baixo
+\end{description}
+
+Para o evento \textbf{chegada de um cliente}, é necessário conhecer o cliente e
+o andar. Para o evento \textbf{chegada de um elevator}, é necessário conhecer o
+elevador e o andar. Para os eventos \textbf{elevador moveu-se para cima} e
+\textbf{elevador moveu-se para baixo}, é necessária a informação do elevador. A
+figura \ref{fig:diagram:event} exibe o diagrama de classes para eventos e tipos
+de evento.
 
 \begin{figure}[htb!]
   \centering
@@ -38,7 +60,18 @@ a enumeração \textit{EventType}.
 \label{fig:diagram:event}
 \end{figure}
 
-\section{Notificando Eventos}
+\section{Classes Singleton}
+
+\textbf{Essa seção tá bem ruim. Melhorar bastante (ou até mesmo removê-la).}
+
+Durante a modelagem desde projeto, fez-se o uso do pattern Singleton em algumas
+entidades concretas. Uma classe Singleton significa que só é possível instanciar
+um objeto daquela classe, sendo esta instância acessível à partir de qualquer
+classe sem a necessidade de passagem de parâmetros.
+
+Tecnicamente é coisa de preguiçoso, mas simplifica algumas coisas.
+
+\section{Notificando Eventos: o pattern Observer}
 
 Em um simulador, há a necessidade de executar diferentes ações na ocasião de um
 evento específico. Por exemplo, atualizar o estado atual do sistema, as
@@ -90,6 +123,8 @@ notificadas e cada uma irá alterar seu estado interno da forma que lhe convir.
 \label{fig:diagram:observers}
 \end{figure}
 
+\section{Criação e Gerenciamento de Eventos}
+
 \begin{figure}[htb!]
   \centering
   \includegraphics[scale=0.6]{img/event_management.eps}
@@ -97,12 +132,24 @@ notificadas e cada uma irá alterar seu estado interno da forma que lhe convir.
 \label{fig:diagram:event:manage}
 \end{figure}
 
+A criação de eventos ocorre na classe \textit{EventGenerator}.
+
+A classe EventQueue gerencia a fila de eventos. Atraveś de uma PriorityQueue
+(fila de prioridades), é possível armazenar eventos e ordená-los
+automagicamente. A prioridade é inversamente proporcional ao tempo de ocorrência
+de cada evento - ou seja, eventos mais próximos na linha do tempo terão uma
+prioridade maior e ficarão primeiro na fila.
+
 \begin{figure}[htb!]
   \centering
   \includegraphics[scale=0.6]{img/state.eps}
   \caption{Diagrama de Classes da Representação do Estado do Sistema}
 \label{fig:diagram:system}
 \end{figure}
+
+Por fim, a figura \ref{fig:diagram:simulator} ilustra o diagrama do simulador
+com todas as classes (com exceção das classes Elevator, Client e Floor). Algumas
+relações de menor relevância foram omitidas para uma melhor legibilidade.
 
 \begin{figure}[htb!]
   \centering
