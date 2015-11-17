@@ -224,26 +224,26 @@ descritas nas seções anteriores é representado pela classe \textit{Simulator}
 \label{fig:diagram:simulator}
 \end{figure}
 
-\begin{algorithm}[htb]
+\begin{algorithm}[H]
 \begin{center}
 \begin{algorithmic}[1]
-\Function{doSimulation}{$timer, statistics, building, eventQueue, eventDispatcher, reportBuilder$}
-  \State $timer.$\Call{reset}{ }
-  \State $statistics.$\Call{reset}{ }
-  \State $building.$\Call{reset}{ }
-  \State $eventDispatcher.$\Call{register}{$EventType.Any, timer$}
-  \State $eventDispatcher.$\Call{register}{$EventType.Any, building$}
-  \State $eventDispatcher.$\Call{register}{$EventType.Any, statistics$}
-  \While{\Call{MustSimulationRun}{ } = $true$}
-    \State $nextEvent \leftarrow eventQueue.$\Call{pop}{\ }
-    \State $eventDispatcher.$\Call{notify}{$nextEvent$}
+\Function{run}{$config, timer, statistics, building, dispatcher, eventQueue, reportBuilder$}
+  \State $timer.$\Call{Reset}{$config$}
+  \State $statistics.$\Call{Reset}{$config$}
+  \State $building.$\Call{Reset}{$config$}
+  \State $dispatcher.$\Call{Register}{$EventType.Any, timer$}
+  \State $dispatcher.$\Call{Register}{$EventType.Any, statistics$}
+  \State $dispatcher.$\Call{Register}{$EventType.Any, building$}
+  \While{$statistics.$\Call{KeepRunning}{}}
+    \State $nextEvent \gets eventQueue.$\Call{Pop}{}
+    \State $dispatcher.$\Call{Notify}{$nextEvent$}
   \EndWhile
-  \State $reportBuilder.$\Call{buildReport}{$config, statistics$}
+  \State $reportBuilder.$\Call{BuildReport}{$config, statistics$}
 \EndFunction
 \end{algorithmic}
 \end{center}
 \caption
-   {\label{alg:base}Algoritmo Base}
+   {\label{alg:sim}Algoritmo de Simulação}
 \end{algorithm}
 
 \section{\label{sec:model:report}Gerando Relatórios}
