@@ -64,7 +64,7 @@ para eventos e tipos de evento. Adicionalmente foi criada a classe
 Outro componente fundamental de um simulador é a representação do \textit{estado
 do sistema}. Neste projeto, a classe \textit{Building} é responsável por
 encapsular o conjunto de informações que dão forma à ele (figura
-\ref{fig:diagram:system}), sendo responsável por instâncias de elevadores
+\ref{fig:diagram:model}), sendo responsável por instâncias de elevadores
 (classe \textit{Elevator}), andares (classe \textit{Floor}) e clientes (classe
 \textit{Client}).
 
@@ -72,7 +72,7 @@ encapsular o conjunto de informações que dão forma à ele (figura
   \centering
   \includegraphics[scale=0.6]{img/Model.eps}
   \caption{Diagrama de classes do \textit{Estado do Sistema}.}
-\label{fig:diagram:system}
+\label{fig:diagram:model}
 \end{figure}
 
 \begin{description}
@@ -107,6 +107,49 @@ encapsular o conjunto de informações que dão forma à ele (figura
     atributos o tamanho do grupo, o horário em que chegou na fila do andar e o
     andar destino para o qual deseja ir.
 
+    \begin{algorithm}[H]
+    \begin{center}
+    \begin{algorithmic}[1]
+    \Function{HandleClientArrival}{$event$}
+      \State $floor \gets floors.$\Call{Find}{$event.floor$}
+      \If{client is going up}
+        \If{$floor.upLine.size > 0$}
+          \State $floor.upLine.$\Call{Enqueue}{event.client}
+        \Else
+          \State do something clever
+        \EndIf
+      \Else
+        \If{$floor.downLine.size > 0$}
+          \State $floor.downLine.$\Call{Enqueue}{event.client}
+        \Else
+          \State do something clever
+        \EndIf
+      \EndIf
+    \EndFunction
+    \end{algorithmic}
+    \end{center}
+    \caption
+       {\label{alg:state:clientarrival}Algoritmo de Tratamento de Chegada de Cliente}
+    \end{algorithm}
+
+    \begin{algorithm}[H]
+    \begin{center}
+    \begin{algorithmic}[1]
+    \Function{HandleElevatorArrival}{$event$}
+      \State $floor \gets floors.$\Call{Find}{$event.floor$}
+      \State $elevator \gets elevators.$\Call{Find}{$event.elevator$}
+      \If{elevator is going up}
+        \State Entra ae galera bora subir
+      \Else
+        \State Entra ae galera bora descer
+      \EndIf
+    \EndFunction
+    \end{algorithmic}
+    \end{center}
+    \caption
+       {\label{alg:state:clientarrival}Algoritmo de Tratamento de Chegada de Cliente}
+    \end{algorithm}
+
 \end{description}
 
 \subsection{\textit{Relógio da simulação}}
@@ -121,10 +164,22 @@ LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :DLALALAL :D
 
 \begin{figure}[htb!]
   \centering
-  \includegraphics[scale=0.6]{img/TimerStats.eps}
-  \caption{Diagrama de classes do \textit{Estado do Sistema}.}
+  \includegraphics[scale=0.6]{img/Timer.eps}
+  \caption{Diagrama de classes do \textit{Relógio da Simulação}.}
 \label{fig:diagram:timer}
 \end{figure}
+
+\begin{algorithm}[H]
+\begin{center}
+\begin{algorithmic}[1]
+\Function{HandleAnyEvent}{$event$}
+  \State \Call{AdvanceTime}{$event.eventTime$}
+\EndFunction
+\end{algorithmic}
+\end{center}
+\caption
+   {\label{alg:timer:clientarrival}Algoritmo de Tratamento de Chegada de Cliente}
+\end{algorithm}
 
 \subsection{\textit{Acumulador de Estatísticas}}
 
@@ -138,8 +193,8 @@ LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :DLALALAL :D
 
 \begin{figure}[htb!]
   \centering
-  \includegraphics[scale=0.6]{img/TimerStats.eps}
-  \caption{Diagrama de classes do \textit{Estado do Sistema}.}
+  \includegraphics[scale=0.6]{img/Stats.eps}
+  \caption{Diagrama de classes do \textit{Acumulador de Estatísticas}.}
 \label{fig:diagram:stats}
 \end{figure}
 
@@ -252,14 +307,14 @@ remover o próximo evento (\texttt{pop}) ou simplesmente ``espiar'' o próximo
 evento (\texttt{peek}). Juntamente com a classe
 \textit{EventGenerator}\footnote{Classe responsável pela criação de eventos;
 abordada mais adiante neste estudo.}, a \textit{EventQueue} compõe o chamado
-\textit{Sistema de Gerência de Eventos}, ou \textit{SGE}. Assim, possibilita-se
-que o \textit{EventDispatcher} facilmente recupere próximo evento a ocorrer e
+\textit{Sistema de Priorização de Eventos}, ou \textit{SPE}. Assim, possibilita-
+se que o \textit{EventDispatcher} facilmente recupere próximo evento a ocorrer e
 dispare as notificações.
 
 \begin{figure}[htb!]
   \centering
   \includegraphics[scale=0.6]{img/EventQueue.eps}
-  \caption{Diagrama de classes do \textit{Sistema de Gerência de Eventos}.}
+  \caption{Diagrama de classes do \textit{Sistema de Priorização de Eventos}.}
 \label{fig:diagram:event:manage}
 \end{figure}
 
