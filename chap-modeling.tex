@@ -42,34 +42,20 @@ ser uma das seguintes opções:
 \begin{description}
   \item[Chegada de um cliente] \hfill \ um cliente chegou na fila de um andar
   \item[Chegada de um elevador] \hfill \ um elevador chegou a um andar e abriu as portas
-  \item[Elevador moveu-se para cima] \hfill \ um elevador moveu-se para cima
-  \item[Elevador moveu-se para baixo] \hfill \ um elevador moveu-se para baixo
 \end{description}
 
 Para o evento \textbf{chegada de um cliente}, é necessário conhecer o cliente e
 o andar. Para o evento \textbf{chegada de um elevator}, é necessário conhecer o
-elevador e o andar. Para os eventos \textbf{elevador moveu-se para cima} e
-\textbf{elevador moveu-se para baixo}, é necessária a informação do elevador. A
-figura \ref{fig:diagram:event} exibe o diagrama de classes para eventos e tipos
-de evento.
+elevador e o andar. A figura \ref{fig:diagram:event} exibe o diagrama de classes
+para eventos e tipos de evento. Adicionalmente foi criada a classe
+\textit{Config}, que irá armazenar as informações do cenário de testes.
 
 \begin{figure}[htb!]
   \centering
   \includegraphics[scale=0.6]{img/Basic.eps}
-  \caption{Diagrama de classes para eventos e tipos de eventos.}
+  \caption{Diagrama de classes para eventos, tipos de eventos e configuração da simulação.}
 \label{fig:diagram:event}
 \end{figure}
-
-\section{Classes Singleton}
-
-\textbf{Essa seção tá bem ruim. Melhorar bastante (ou até mesmo removê-la).}
-
-Durante a modelagem desde projeto, fez-se o uso do pattern Singleton em algumas
-entidades concretas. Uma classe Singleton significa que só é possível instanciar
-um objeto daquela classe, sendo esta instância acessível à partir de qualquer
-classe sem a necessidade de passagem de parâmetros.
-
-Tecnicamente é coisa de preguiçoso, mas simplifica algumas coisas.
 
 \section{\label{sec:model:notify}Notificando Eventos: o padrão
 \textit{Observer}}
@@ -139,14 +125,14 @@ ilustrado na figura \ref{fig:diagram:observers}.
 \label{fig:diagram:observers}
 \end{figure}
 
-\section{Gerenciamento de Eventos: a Fila Prioritária}
+\section{Gerenciamento de Eventos com Prioridades}
 
-Conforme visto na seção anterior, o \textit{EventDispatcher} é responsável por
-notificar as partes interessadas da ocorrência de um evento. Porém não responde
-a questão de qual deve ser o próximo evento que irá ocorrer.
+Conforme visto na seção \ref{sec:model:notify}, o \textit{EventDispatcher} é
+responsável por notificar as partes interessadas da ocorrência de um evento.
+Porém não responde a questão de qual deve ser o próximo evento que irá ocorrer.
 
-Conforme visto na seção \ref{chap:sim:timeadvance}, no \textit{mecanismo de
-avanço de tempo para o próximo evento} deve-se verificar, em uma lista de
+Na seção \ref{chap:sim:timeadvance} foi apresentado o \textit{mecanismo de
+avanço de tempo para o próximo evento}, onde deve-se verificar, em uma lista de
 eventos, qual é o próximo evento a ocorrer. Dado um conjunto de eventos
 agendados (ou seja, ainda não ocorridos), o primeiro evento a ocorrer é
 justamente o que possui o menor tempo de agendamento. Um tipo abstrato de dados
@@ -172,12 +158,12 @@ dispare as notificações.
 
 \begin{figure}[htb!]
   \centering
-  \includegraphics[scale=0.6]{img/EventManagement.eps}
+  \includegraphics[scale=0.6]{img/EventQueue.eps}
   \caption{Diagrama de classes do \textit{Sistema de Gerência de Eventos}.}
 \label{fig:diagram:event:manage}
 \end{figure}
 
-\section{Estado do Sistema: o Prédio e seus Componentes}
+\section{Estado do Sistema: o Prédio e suas Partes}
 
 A seção \ref{sec:model:notify} apresentou o conceito de \textit{observers}.
 Dentre os listados, encontra-se a classe \textit{Building}. Esta classe é
@@ -204,34 +190,32 @@ responsável por encapsular o \textit{Estado do Sistema} (figura
     andares.}.
 
   \item[Floor] \hfill \\
-    Parte componente de um prédio, possuindo uma numeração e uma fila
-    prioritária de clientes. Seu único método é \texttt{clientArrival},
-    utilizado quando um cliente chega na fila do elevador do andar.
+    Parte componente de um prédio, possuindo uma numeração e duas
+    filas\footnote{No mundo real, apesar de aparentemente as pessoas formarem
+    uma fila única, os membros da fila respeitam o sentido de viagem do elevador
+    e implicitamente separam-se em duas filas: uma para subir e outra para
+    descer.}: uma para clientes que desejam descer e outra para clientes que
+    desejam subir.
 
 \item[Elevator] \hfill \\
     Representa um elevador único. Possui como atributos o andar em que se
-    encontra, uma sequência ordenada de andares destinos, um conjunto de
-    clientes (passageiros), a carga atual e a carga máxima. Possui métodos para
-    parar em um andar específico (\texttt{stopAtFloor}), mover-se para cima ou
-    para baixo (\texttt{moveUp} e \texttt{moveDown}, respectivamente).
+    encontra, uma sequência ordenada de andares destinos, e um mapa associando
+    andares com conjuntos de clientes - ou seja, agrupa, para cada andar, quais
+    os grupos de clientes que o possuem como destino. Além disso, possui métodos
+    auxiliares para informar o sentido da viagem do elevador
+    (\texttt{direction}), bem como a sua ocupação atual (\texttt{ocupation}).
 
 \item[Client] \hfill \\
-    Representa um grupo de pessoas que desejam utilizar um elevador. Possui como atributos um identificador único, o tamanho do grupo, o horário em que chegou na fila do andar que se encontra e o andar destino para o qual deseja ir.
+    Representa um grupo de pessoas que desejam utilizar um elevador. Possui como
+    atributos o tamanho do grupo, o horário em que chegou na fila do andar e o
+    andar destino para o qual deseja ir.
 
 \end{description}
 
-\section{Blah}
+\section{Simulador}
 
-Por fim, a figura \ref{fig:diagram:simulator} ilustra o diagrama do simulador
-com todas as classes (com exceção das classes Elevator, Client e Floor). Algumas
-relações de menor relevância foram omitidas para uma melhor legibilidade.
-
-\begin{figure}[htb!]
-  \centering
-  \includegraphics[scale=0.6]{img/Report.eps}
-  \caption{Diagrama de Classes do Simulador}
-\label{fig:diagram:report}
-\end{figure}
+O componente responsável por orquestrar todas as interações entre as classes
+descritas nas seções anteriores é representado pela classe \textit{Simulator}.
 
 \begin{figure}[htb!]
   \centering
@@ -240,17 +224,51 @@ relações de menor relevância foram omitidas para uma melhor legibilidade.
 \label{fig:diagram:simulator}
 \end{figure}
 
-\subsection{aaaaaaaa}
+\begin{algorithm}[htb]
+\begin{center}
+\begin{algorithmic}[1]
+\Function{doSimulation}{$timer, statistics, building, eventQueue, eventDispatcher, reportBuilder$}
+  \State $timer.$\Call{reset}{ }
+  \State $statistics.$\Call{reset}{ }
+  \State $building.$\Call{reset}{ }
+  \State $eventDispatcher.$\Call{register}{$EventType.Any, timer$}
+  \State $eventDispatcher.$\Call{register}{$EventType.Any, building$}
+  \State $eventDispatcher.$\Call{register}{$EventType.Any, statistics$}
+  \While{\Call{MustSimulationRun}{ } = $true$}
+    \State $nextEvent \leftarrow eventQueue.$\Call{pop}{\ }
+    \State $eventDispatcher.$\Call{notify}{$nextEvent$}
+  \EndWhile
+  \State $reportBuilder.$\Call{buildReport}{$config, statistics$}
+\EndFunction
+\end{algorithmic}
+\end{center}
+\caption
+   {\label{alg:base}Algoritmo Base}
+\end{algorithm}
 
-Aqui vamos apresentar:
+\section{\label{sec:model:report}Gerando Relatórios}
 
-\begin{itemize}
-  \item Descrições e diagramas UML dos componentes (classes, algoritmos, etc)
-que dão sentido à simulação - ou seja, o modelo do sistema de elevadores
-  \item Algoritmos e fluxogramas dos eventos do simulador que causarão
-alterações no estado do sistema quais informações desejamos que o simulador
-calcule para nós.
-\end{itemize}
+Por último, porém não menos importante, é apresentado o \textit{Sistema de
+Geração de Relatórios}, ilustrado pela figura \ref{fig:diagram:report}. Este
+sistema nada mais é do que um componente que recebe a configuração da simulação
+e os dados estatísticos coletados e monta relatórios sintéticos e anaĺiticos com
+informações relevantes.
+
+\begin{figure}[htb!]
+  \centering
+  \includegraphics[scale=0.6]{img/Report.eps}
+  \caption{Diagrama de classes do \textit{Sistema de Geração de Relatórios}.}
+\label{fig:diagram:report}
+\end{figure}
+
+\section{\label{sec:model:generator}Criação de Eventos}
+
+\begin{figure}[htb!]
+  \centering
+  \includegraphics[scale=0.6]{img/EventGenerator.eps}
+  \caption{Diagrama de classes do \textit{Sistema de Geração de Eventos}.}
+\label{fig:diagram:generator}
+\end{figure}
 
 \section{\label{chap:input}Entrada de Distribuição de Probabilidade}
 
