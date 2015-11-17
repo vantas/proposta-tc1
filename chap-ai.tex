@@ -191,6 +191,50 @@ Para o exemplo da Figura~\ref{fig:elevadores-1}, temos:
 
 Novamente, para esta função, o Elevador $E_{1}$ é eleito para atender o pedido.
 
+\subsection{Algoritmo}
+
+O Algoritmo~\ref{alg:cost-function} ilustra um algoritmo com o comportamento desta
+função.
+
+\begin{algorithm}[htb]
+\begin{center}
+\begin{algorithmic}[1]
+\Function{ChooseElevator}{$call, elevatorSet, costFunction$}
+  \State $selectedElevator \leftarrow null$
+  \State $minCost \leftarrow \infty$
+  \For{\textbf{each} $elevator$ in $elevatorSet$}
+    \State $cost \leftarrow \Call{CostFunction}{$call, elevatorSet$}$
+    \If{$cost = 0$}
+      \State \textbf{return} $elevator$
+    \EndIf
+    \If{$cost < minCost$}
+      \State $selectedElevator \leftarrow elevator$
+      \State $minCost \leftarrow cost$
+    \EndIf
+  \EndFor
+  \State \textbf{return} $selectedElevator$
+\EndFunction
+\end{algorithmic}
+\end{center}
+\caption
+   {\label{alg:cost-function}Função de Custo}
+\end{algorithm}
+
+Os argumentos para este algoritmo são:
+
+\begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries $costFunction$}]
+  \item[$call$] Abstração de uma chamada;
+  \item[$elevatorset$] Conjunto de todos os elevadores do prédio;
+  \item[$costFunction$] Ponteiro para a função de cálculo de custo.
+\end{description}
+
+Seu funcionamento pode ser descrito como: dada uma chamada, para cada elevador
+presente no conjunto calcula-se o retorno da função de custo e o algoritmo
+retorna o elevador com a menor função de custo correspondente. Além disso, há
+uma otimização (programação dinâmica): se algum elevador possuir custo zero, o
+algoritmo retorna imediatamente, como resultado, este elevador - pois nenhum
+outro elevador poderá ter um retorno da função de custo melhor do que zero.
+
 \subsection{Nearest Neighbour como Função de Custo}
 
 É possível definir o algoritmo de \textit{Nearest Neighbour} como uma função de
