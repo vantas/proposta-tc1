@@ -26,12 +26,12 @@ motivos:
 Nas próximas seções serão apresentadas as construções para o projeto do
 simulador de elevadores.
 
-\section{Eventos e Tipos}
+\section{Eventos e seus tipos}
 
-A simulação de eventos discretos, como o próprio nome já diz, é totalmente
-orientada à eventos. Isso significa dizer que as alterações no estado do sistema
-ocorrerão somente na ocasião de algum evento. Sendo assim, é necessária uma
-representação de um evento no projeto do simulador.
+A simulação de eventos discretos, como o próprio nome já diz, é orientada à
+eventos. Isso significa dizer que as alterações no estado do sistema ocorrerão
+somente na ocasião de algum evento. Sendo assim, é necessária uma representação
+de um evento no projeto do simulador.
 
 Um evento é uma estrutura que deve possuir as seguintes informações: (1) o tipo
 do evento; (2) o horário agendado para a ocorrência do evento; (3) um cliente
@@ -41,7 +41,7 @@ ser uma das seguintes opções:
 
 \begin{description}
   \item[Chegada de um cliente] \hfill \ um cliente chegou na fila de um andar
-  \item[Chegada de um elevador] \hfill \ um elevador chegou a um andar e abriu as portas
+  \item[Chegada de um elevador] \hfill \ um elevador chegou à um andar e abriu as portas
 \end{description}
 
 Para o evento \textbf{chegada de um cliente}, é necessário conhecer o cliente e
@@ -57,7 +57,93 @@ para eventos e tipos de evento. Adicionalmente foi criada a classe
 \label{fig:diagram:event}
 \end{figure}
 
-\section{\label{sec:model:notify}Notificando Eventos: o padrão
+\section{Reagindo à eventos}
+
+\subsection{\textit{Estado do sistema}}
+
+Outro componente fundamental de um simulador é a representação do \textit{estado
+do sistema}. Neste projeto, a classe \textit{Building} é responsável por
+encapsular o conjunto de informações que dão forma à ele (figura
+\ref{fig:diagram:system}), sendo responsável por instâncias de elevadores
+(classe \textit{Elevator}), andares (classe \textit{Floor}) e clientes (classe
+\textit{Client}).
+
+\begin{figure}[htb!]
+  \centering
+  \includegraphics[scale=0.6]{img/Model.eps}
+  \caption{Diagrama de classes do \textit{Estado do Sistema}.}
+\label{fig:diagram:system}
+\end{figure}
+
+\begin{description}
+  \item[Building] \hfill \\
+    Representa a composição do prédio sendo simulado. Possui um conjunto de
+    elevadores, uma lista ordenada de andares e um método \texttt{reset},
+    utilizado para a inicialização da simulação. Um prédio é formado por no
+    mínimo um elevador e no mínimo um andar\footnote{Isto em termos conceituais;
+    porém, não há sentido na existência de um sistema de elevadores em uma
+    edificação com somente um andar. De fato, conforme afirmado na seção
+    \ref{section:scenarios}, serão simulados prédios com, no mínimo, 4
+    andares.}.
+
+  \item[Floor] \hfill \\
+    Parte componente de um prédio, possuindo uma numeração e duas
+    filas\footnote{No mundo real, apesar de aparentemente as pessoas formarem
+    uma fila única, os membros da fila respeitam o sentido de viagem do elevador
+    e implicitamente separam-se em duas filas: uma para subir e outra para
+    descer.}: uma para clientes que desejam descer e outra para clientes que
+    desejam subir.
+
+\item[Elevator] \hfill \\
+    Representa um elevador único. Possui como atributos o andar em que se
+    encontra, uma sequência ordenada de andares destinos, e um mapa associando
+    andares com conjuntos de clientes - ou seja, para cada andar o mapa reune
+    quais os grupos de clientes que o possuem como destino. Além disso, possui
+    métodos auxiliares para informar o sentido da viagem do elevador
+    (\texttt{direction}), bem como a sua ocupação atual (\texttt{ocupation}).
+
+\item[Client] \hfill \\
+    Representa um grupo de pessoas que desejam utilizar um elevador. Possui como
+    atributos o tamanho do grupo, o horário em que chegou na fila do andar e o
+    andar destino para o qual deseja ir.
+
+\end{description}
+
+\subsection{\textit{Relógio da simulação}}
+
+LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D
+LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D
+LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D
+LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D
+LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D
+LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D
+LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :DLALALAL :D
+
+\begin{figure}[htb!]
+  \centering
+  \includegraphics[scale=0.6]{img/TimerStats.eps}
+  \caption{Diagrama de classes do \textit{Estado do Sistema}.}
+\label{fig:diagram:timer}
+\end{figure}
+
+\subsection{\textit{Acumulador de Estatísticas}}
+
+LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D
+LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D
+LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D
+LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D
+LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D
+LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D
+LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :DLALALAL :D
+
+\begin{figure}[htb!]
+  \centering
+  \includegraphics[scale=0.6]{img/TimerStats.eps}
+  \caption{Diagrama de classes do \textit{Estado do Sistema}.}
+\label{fig:diagram:stats}
+\end{figure}
+
+\section{\label{sec:model:notify}Notificando eventos: o padrão
 \textit{Observer}}
 
 Em um simulador, há a necessidade de executar diferentes ações na ocasião de um
@@ -100,6 +186,20 @@ Os três principais componentes do \textit{SNE} (figura
     \textit{observers} registrados e notificá-los de acordo com o tipo de evento
     ocorrido.
 
+    \begin{algorithm}[H]
+    \begin{center}
+    \begin{algorithmic}[1]
+    \Function{Notify}{$event$}
+      \For{\textbf{each} $observer$ \textbf{in} $observers$}
+        \State $observer.$\Call{Notify}{$event$}
+      \EndFor
+    \EndFunction
+    \end{algorithmic}
+    \end{center}
+    \caption
+       {\label{alg:notify}Algoritmo de Simulação}
+    \end{algorithm}
+
 \end{description}
 
 \begin{figure}[htb!]
@@ -125,7 +225,7 @@ ilustrado na figura \ref{fig:diagram:observers}.
 \label{fig:diagram:observers}
 \end{figure}
 
-\section{Gerenciamento de Eventos com Prioridades}
+\section{Gerenciamento de eventos com prioridades}
 
 Conforme visto na seção \ref{sec:model:notify}, o \textit{EventDispatcher} é
 responsável por notificar as partes interessadas da ocorrência de um evento.
@@ -163,54 +263,34 @@ dispare as notificações.
 \label{fig:diagram:event:manage}
 \end{figure}
 
-\section{Estado do Sistema: o Prédio e suas Partes}
+\section{\label{sec:model:generator}Criação de eventos}
 
-A seção \ref{sec:model:notify} apresentou o conceito de \textit{observers}.
-Dentre os listados, encontra-se a classe \textit{Building}. Esta classe é
-responsável por encapsular o \textit{Estado do Sistema} (figura
-\ref{fig:diagram:system}), gerenciando instâncias de elevadores
-(\textit{Elevator}), andares (\textit{Floor}) e clientes (\textit{Client}).
+LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D
+LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D
+LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D LALALAL :D
+LALALAL :D
 
 \begin{figure}[htb!]
   \centering
-  \includegraphics[scale=0.6]{img/Model.eps}
-  \caption{Diagrama de classes do \textit{Estado do Sistema}.}
-\label{fig:diagram:system}
+  \includegraphics[scale=0.6]{img/EventGenerator.eps}
+  \caption{Diagrama de classes do \textit{Sistema de Geração de Eventos}.}
+\label{fig:diagram:generator}
 \end{figure}
 
-\begin{description}
-  \item[Building] \hfill \\
-    Representa a composição o prédio sendo simulado. Possui um conjunto de
-    elevadores, uma lista ordenada de andares e um método \texttt{reset},
-    utilizado para a inicialização da simulação. Um prédio é formado por no
-    mínimo um elevador e no mínimo um andar\footnote{Isto em termos conceituais;
-    porém, não há sentido na existência de um sistema de elevadores em uma
-    edificação com somente um andar. De fato, conforme afirmado na seção
-    \ref{section:scenarios}, serão simulados prédios com, no mínimo, 4
-    andares.}.
+\section{\label{sec:model:report}Geração de relatórios}
 
-  \item[Floor] \hfill \\
-    Parte componente de um prédio, possuindo uma numeração e duas
-    filas\footnote{No mundo real, apesar de aparentemente as pessoas formarem
-    uma fila única, os membros da fila respeitam o sentido de viagem do elevador
-    e implicitamente separam-se em duas filas: uma para subir e outra para
-    descer.}: uma para clientes que desejam descer e outra para clientes que
-    desejam subir.
+Por último, porém não menos importante, é apresentado o \textit{Sistema de
+Geração de Relatórios}, ilustrado pela figura \ref{fig:diagram:report}. Este
+sistema nada mais é do que um componente que recebe a configuração da simulação
+e os dados estatísticos coletados e monta relatórios sintéticos e anaĺiticos com
+informações relevantes.
 
-\item[Elevator] \hfill \\
-    Representa um elevador único. Possui como atributos o andar em que se
-    encontra, uma sequência ordenada de andares destinos, e um mapa associando
-    andares com conjuntos de clientes - ou seja, agrupa, para cada andar, quais
-    os grupos de clientes que o possuem como destino. Além disso, possui métodos
-    auxiliares para informar o sentido da viagem do elevador
-    (\texttt{direction}), bem como a sua ocupação atual (\texttt{ocupation}).
-
-\item[Client] \hfill \\
-    Representa um grupo de pessoas que desejam utilizar um elevador. Possui como
-    atributos o tamanho do grupo, o horário em que chegou na fila do andar e o
-    andar destino para o qual deseja ir.
-
-\end{description}
+\begin{figure}[htb!]
+  \centering
+  \includegraphics[scale=0.6]{img/Report.eps}
+  \caption{Diagrama de classes do \textit{Sistema de Geração de Relatórios}.}
+\label{fig:diagram:report}
+\end{figure}
 
 \section{Simulador}
 
@@ -245,30 +325,6 @@ descritas nas seções anteriores é representado pela classe \textit{Simulator}
 \caption
    {\label{alg:sim}Algoritmo de Simulação}
 \end{algorithm}
-
-\section{\label{sec:model:report}Gerando Relatórios}
-
-Por último, porém não menos importante, é apresentado o \textit{Sistema de
-Geração de Relatórios}, ilustrado pela figura \ref{fig:diagram:report}. Este
-sistema nada mais é do que um componente que recebe a configuração da simulação
-e os dados estatísticos coletados e monta relatórios sintéticos e anaĺiticos com
-informações relevantes.
-
-\begin{figure}[htb!]
-  \centering
-  \includegraphics[scale=0.6]{img/Report.eps}
-  \caption{Diagrama de classes do \textit{Sistema de Geração de Relatórios}.}
-\label{fig:diagram:report}
-\end{figure}
-
-\section{\label{sec:model:generator}Criação de Eventos}
-
-\begin{figure}[htb!]
-  \centering
-  \includegraphics[scale=0.6]{img/EventGenerator.eps}
-  \caption{Diagrama de classes do \textit{Sistema de Geração de Eventos}.}
-\label{fig:diagram:generator}
-\end{figure}
 
 \section{\label{chap:input}Entrada de Distribuição de Probabilidade}
 
