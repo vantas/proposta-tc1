@@ -155,16 +155,34 @@ sistema simulado.
 Neste projeto, os \textit{contadores estatísticos} são representados pela classe
 \textit{Statistics} (figura \ref{fig:diagram:stats}). Conforme descrito na
 proposta de trabalho deste estudo, o objetivo é encontrar algoritmos que
-otimizem o tempo de espera médio. Portanto, a classe \textit{Stats} possui os
-seguintes contadores:
+otimizem o tempo de espera médio. Porém, armazenar mais dados estatísticos
+permite realizar análises mais ricas, fornecendo informações como desvios, por
+exemplo. Portanto, para cada grupo de clientes transportados pelo sistema serão
+armazenados o seguinte conjunto de informações sobre a viagem (classe
+\textit{Travel}):
 
 \newpage
 
 \begin{description}
-  \item[\texttt{totalWaitingTime}] \hfill \ Tempo de espera total.
-  \item[\texttt{totalJourneyTime}] \hfill \ Tempo de jornada total.
-  \item[\texttt{totalTime}]        \hfill \ Tempo de simulação total.
-  \item[\texttt{totalPassengers}]  \hfill \ Total de passageiros atendidos.
+  \item[\texttt{origin}] \hfill \\ O andar de origem da viagem.
+
+  \item[\texttt{client}] \hfill \\
+    O grupo de cliente, contendo o tamanho do grupo, a hora em que
+    chegou à fila e o seu andar de destino.
+
+  \item[\texttt{elevator}] \hfill \\
+    O elevador que transportou o grupo do andar origem ao andar destino.
+
+  \item[\texttt{waitingTime}] \hfill \\
+    O tempo que o grupo esperou na fila - ou seja, o tempo compreendido entre a
+  chegada do grupo na fila e o seu embarque no elevador.
+
+  \item[\texttt{journeyTime}] \hfill \\
+    O tempo que o grupo esperou na fila - ou seja, o tempo compreendido entre
+    o embarque do grupo no elevador e o desembarque no andar destino.
+
+  \item[\texttt{arrivalTime}] \hfill \\
+    O horário em que o grupo desembarou no andar destino.
 \end{description}
 
 Além destes, a classe também possui métodos para inicialização (\texttt{reset})
