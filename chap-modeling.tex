@@ -5,19 +5,19 @@ simulação possui uma série de componentes conceituais, cada um com suas
 responsabilidades bem definidas. Para projetar um simulador, diversas abordagens
 e paradigmas poderíam ser aplicadas. Para o projeto do simulador de sistemas de
 elevadores deste estudo, doravante chamado apenas de simulador, optou-se pelo
-paradigma de \textit{Programação Orientada à Objetos}. Esta escolha se deu pelos
+paradigma de \textit{Programação Orientada a Objetos}. Esta escolha se deu pelos
 seguintes motivos:
 
 \begin{description}
-  \item[Elevada Capacidade de Abstração]\hfill \\
-    Conceitos da Programação Orientada à Objetos, como classes, interfaces,
+  \item[Capacidade de Abstração]\hfill \\
+    Conceitos da Programação Orientada a Objetos, como classes, interfaces,
     polimorfismo, herança e sobrecarga permitem a realização de uma modelagem
     conceitual em alto nível de abstração, permitindo uma explanação de fácil
     entendimento sem ser necessário abordar questões da implementação em si
     (linguagem de programação, arquitetura, etc).
   \item[Padrão de Mercado]\hfill \\
-    Desde meados dos anos 90, a Programação Orientada à Objetos tornou-se o mais
-    frequentemente utilizado no mercado de desenvolvimento de software e nos
+    Desde meados dos anos 90, a Programação Orientada a Objetos tornou-se
+    frequentemente utilizada no mercado de desenvolvimento de software e nos
     ambientes acadêmicos relacionados à computação. Assim, é possível atingir
     uma maior audiência.
   \item[Domínio dos Autores]\hfill \\
@@ -29,9 +29,10 @@ do simulador de elevadores.
 
 \section{Eventos e tipos}
 
-A simulação de eventos discretos, como o próprio nome já diz, é orientada à
+A simulação de eventos discretos, como o próprio nome já diz, é orientada a
 eventos. Isso significa dizer que as alterações no estado do sistema ocorrerão
-somente na ocasião de algum evento. Sendo assim, é preciso ser possível representar um evento no contexto do simulador.
+somente na ocasião de algum evento e é preciso ser possível representar um
+evento no contexto do simulador.
 
 Um evento é uma estrutura que deve possuir as seguintes informações: (1) o tipo
 do evento; (2) o horário agendado para a ocorrência do evento; (3) um cliente
@@ -39,9 +40,11 @@ do evento; (2) o horário agendado para a ocorrência do evento; (3) um cliente
 informações para os itens (3), (4) e (5) dependem do tipo de evento, que pode
 ser uma das seguintes opções:
 
+\newpage
+
 \begin{description}
-  \item[Chegada de um cliente] \hfill \ um cliente chegou na fila de um andar
-  \item[Chegada de um elevador] \hfill \ um elevador chegou à um andar e abriu as portas
+  \item[Chegada de grupo de clientes] \hfill \ um grupo de clientes chegou na fila de um andar.
+  \item[Chegada de elevador] \hfill \ um elevador chegou a um andar e abriu as portas.
 \end{description}
 
 Para o evento \textbf{chegada de um cliente}, é necessário conhecer o cliente e
@@ -60,10 +63,9 @@ responsável por armazenar informações referentes ao cenário sendo simulado.
 
 \section{\label{sec:reactive}Componentes reativos}
 
-Durante a execução da simulação, à medida que eventos ocorrem, determinados
-componentes do simulador deverão de acordo~-~i.~e.,~deverão alterar seu estado
-interno de acordo com o evento ocorrido, levando o estado do simulador à uma
-nova situação. Estes componentes são:
+Durante a execução da simulação, à medida que eventos ocorrem, componentes do
+simulador deverão alterar seu estado interno de acordo com o evento ocorrido,
+levando o estado do simulador a uma nova situação. Estes componentes são:
 
 \begin{enumerate}
   \item Relógio da Simulação;
@@ -71,21 +73,20 @@ nova situação. Estes componentes são:
   \item Contadores Estatísticos.
 \end{enumerate}
 
-À seguir são apresentadas as classes que representam estes componentes no
+A seguir são apresentadas as classes que representam estes componentes no
 simulador.
 
 \subsection{Estado do sistema}
 
 Entre os componentes fundamentais de um simulador destaca-se a representação do
-\textit{estado do sistema}. Entende-se por \textit{estado do sistema} como uma
-coleção de variáveis necessárias para descrever o estado do sistema em um
-instante em particular da simulação \cite{Law}. Neste projeto, a classe
-\textit{Building} é responsável por encapsular o conjunto de informações que
-definem este estado (figura \ref{fig:diagram:model}). Esta classe é responsável
-por gerenciar múltiplas instâncias de elevadores (classe \textit{Elevator}),
-andares (classe \textit{Floor}) e clientes (classe \textit{Client}) e relacionar
-estas instâncias entre si - reproduzindo, deste modo, as dinâmicas do sistema do
-mundo real que está sendo simulado.
+\textit{estado do sistema}, uma coleção de variáveis necessárias para descrever
+o sistema em um instante em particular da simulação \cite{Law}. Neste projeto, a
+classe \textit{Building} é responsável por encapsular o conjunto de informações
+que definem este estado (figura \ref{fig:diagram:model}). Esta classe é
+responsável por gerenciar múltiplas instâncias de elevadores (classe
+\textit{Elevator}), andares (classe \textit{Floor}) e clientes (classe
+\textit{Client}) e relacionar estas instâncias entre si - reproduzindo, deste
+modo, as dinâmicas do sistema do mundo real que está sendo simulado.
 
 \begin{figure}[htb!]
   \centering
@@ -114,17 +115,18 @@ mundo real que está sendo simulado.
     desejam subir.
 
 \item[Elevator] \hfill \\
-    Representa um elevador único. Possui como atributos o andar em que se
-    encontra, uma sequência ordenada de andares destinos, e um mapa associando
+    Representa um elevador. Possui como atributos o andar em que se
+    encontra, uma sequência ordenada de andares de destino e um mapa associando
     andares com conjuntos de clientes - ou seja, para cada andar o mapa reune
     quais os grupos de clientes que o possuem como destino. Além disso, possui
     métodos auxiliares para informar o sentido da viagem do elevador
-    (\texttt{direction}), bem como a sua ocupação atual (\texttt{ocupation}).
+    (\texttt{direction}), bem como a sua ocupação atual (\texttt{occupation}).
 
 \item[Client] \hfill \\
     Representa um grupo de pessoas que desejam utilizar um elevador. Possui como
-    atributos o tamanho do grupo, o horário em que chegou na fila do andar e o
-    andar destino para o qual deseja ir.
+    atributos o número de pessoas no grupo (\texttt{partySize}), o horário em
+    que chegou na fila do andar (\texttt{arrivalTime}) e o andar destino para o
+    qual deseja ir (\texttt{destination}).
 
 \end{description}
 
@@ -153,14 +155,34 @@ sistema simulado.
 Neste projeto, os \textit{contadores estatísticos} são representados pela classe
 \textit{Statistics} (figura \ref{fig:diagram:stats}). Conforme descrito na
 proposta de trabalho deste estudo, o objetivo é encontrar algoritmos que
-otimizem o tempo de espera médio. Portanto, a classe \textit{Stats} possui os
-seguintes contadores:
+otimizem o tempo de espera médio. Porém, armazenar mais dados estatísticos
+permite realizar análises mais ricas, fornecendo informações como desvios, por
+exemplo. Portanto, para cada grupo de clientes transportados pelo sistema serão
+armazenados o seguinte conjunto de informações sobre a viagem (classe
+\textit{Travel}):
+
+\newpage
 
 \begin{description}
-  \item[\texttt{totalWaitingTime}] \hfill \ Tempo de espera total.
-  \item[\texttt{totalJourneyTime}] \hfill \ Tempo de jornada total.
-  \item[\texttt{totalTime}]        \hfill \ Tempo de simulação total.
-  \item[\texttt{totalPassengers}]  \hfill \ Total de passageiros atendidos.
+  \item[\texttt{origin}] \hfill \\ O andar de origem da viagem.
+
+  \item[\texttt{client}] \hfill \\
+    O grupo de cliente, contendo o tamanho do grupo, a hora em que
+    chegou à fila e o seu andar de destino.
+
+  \item[\texttt{elevator}] \hfill \\
+    O elevador que transportou o grupo do andar origem ao andar destino.
+
+  \item[\texttt{waitingTime}] \hfill \\
+    O tempo que o grupo esperou na fila - ou seja, o tempo compreendido entre a
+  chegada do grupo na fila e o seu embarque no elevador.
+
+  \item[\texttt{journeyTime}] \hfill \\
+    O tempo que o grupo esperou na fila - ou seja, o tempo compreendido entre
+    o embarque do grupo no elevador e o desembarque no andar destino.
+
+  \item[\texttt{arrivalTime}] \hfill \\
+    O horário em que o grupo desembarou no andar destino.
 \end{description}
 
 Além destes, a classe também possui métodos para inicialização (\texttt{reset})
@@ -177,7 +199,7 @@ exemplo, o tempo mínimo se simulação já se passou.
 \section{\label{sec:model:event}Gerenciamento de eventos}
 
 Na seção \ref{sec:reactive} foram apresentados componentes reativos~-~ou seja,
-que devem reagir na ocorrência de um evento. Porém resta as questões de como
+que devem reagir na ocorrência de um evento. Porém restam as questões de como
 saber qual evento será o próximo a ocorrer e como notificar os elementos
 reativos disso. Portanto, precisamos de mecanismos para ordenar eventos e
 notificar os componentes da ocorrência de um evento.
@@ -190,14 +212,13 @@ eventos, qual é o próximo evento a ocorrer. Dado um conjunto de eventos
 agendados (ou seja, ainda não ocorridos), o primeiro evento a ocorrer é
 justamente o que possui o menor tempo de agendamento. Um tipo abstrato de dados
 que serve para este propósito é uma \textit{fila prioritária}, ou
-\textit{priority queue}. Uma \textit{fila prioritária} funciona de forma similar
-a filas \textit{FIFO}, com a diferença de que cada elemento armazenado possui
-uma prioridade associada. A \textit{fila prioritária} irá atender os elementos
-por ordem de prioridade, da maior para a menor. Ao considerar que a prioridade
-de um evento é inversamente proporcional ao instante em que irá ocorrer - ou
-seja, quanto menor o tempo do evento maior é a sua prioridade -, temos uma fila
-na qual o próximo elemento a ser atendido sempre será o próximo evento a
-ocorrer.
+\textit{priority queue}, que funciona de forma similar a filas \textit{FIFO},
+com a diferença de que cada elemento armazenado possui uma prioridade associada.
+A \textit{fila prioritária} irá atender os elementos por ordem de prioridade, da
+maior para a menor. Ao considerar que a prioridade de um evento é inversamente
+proporcional ao instante em que irá ocorrer - ou seja, quanto menor o tempo do
+evento maior é a sua prioridade -, temos uma fila na qual o próximo elemento a
+ser atendido sempre será o próximo evento a ocorrer.
 
 Assim, a classe \textit{EventQueue} encapsula uma fila prioritária de eventos,
 fornecendo métodos para inserir um evento na fila (\texttt{push}), recuperar e
@@ -205,8 +226,8 @@ remover o próximo evento (\texttt{pop}) ou simplesmente ``espiar'' o próximo
 evento (\texttt{peek}). Juntamente com a classe
 \textit{EventGenerator}\footnote{Classe responsável pela criação de eventos;
 abordada mais adiante neste estudo.}, a \textit{EventQueue} compõe o chamado
-\textit{Sistema de Priorização de Eventos}, ou \textit{SPE}. Assim, possibilita-
-se que facilmente se saiba qual será o próximo evento a ocorrer.
+\textit{Sistema de Priorização de Eventos}, ou \textit{SPE}. Assim,
+possibilita-se que facilmente se saiba qual será o próximo evento a ocorrer.
 
 \begin{figure}[htb!]
   \centering
@@ -241,7 +262,7 @@ Os três principais componentes do \textit{SNE} (figura
   \item[EventNotifier] \hfill \\
     Interface a ser realizada por qualquer classe que deseje notificar a
     ocorrência de eventos. Define métodos que objetos que implementem a
-    interface \textit{EventObserver} possam se registrar (\texttt{register}) ou
+    interface \textit{EventObserver} possam registrar (\texttt{register}) ou
     desregistrar (\texttt{unregister}) para receber notificações de ocorrências
     de um determinado tipo de evento, além do método \texttt{notify}, que deverá
     notificar um evento para todos os \textit{observers} registrados.
@@ -268,7 +289,7 @@ Três importantes componentes do simulador podem se beneficiar desta construçã
 \textit{contadores estatísticos} (classe \textit{Statistics}); e (3) o
 \textit{estado do sistema} (classe \textit{Building}). Na ocorrência de um
 evento, estas três entidades devem ser notificadas e cada uma irá alterar seu
-estado interno da forma que lhe convir. Para isto, devem implementar a interface
+estado interno da forma adequada. Para isto, devem implementar a interface
 \textit{EventObserver} e registrarem-se no \textit{EventDispatcher}, conforme
 ilustrado na figura \ref{fig:diagram:observers}. Assim, o
 \textit{EventDispatcher} e a \textit{EventQueue} podem, juntos, notificar aos
@@ -322,9 +343,9 @@ no estado do sistema.
 
 \section{\label{sec:model:report}Geração de relatórios}
 
-Por último mas não menos importante, é apresentado a classe
+Por último mas não menos importante, é apresentada a classe
 \textit{ReportBuilder}, ilustrado pela figura \ref{fig:diagram:report}. Esta
-classe tem por responsabilidade a elaboração de um relatório (em arquivo) à
+classe tem por responsabilidade a elaboração de um relatório (em arquivo) a
 partir da configuração da simulação e das estatísticas acumuladas durante a
 execução.
 
