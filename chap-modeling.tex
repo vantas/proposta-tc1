@@ -326,8 +326,18 @@ informações relevantes.
 
 \section{Simulador completo}
 
-O componente responsável por orquestrar todas as interações entre as classes
-descritas nas seções anteriores é representado pela classe \textit{Simulator}.
+O uso de instâncias de todas estas classes juntas dá forma ao simulador,
+conforme proposto por \cite{Law,Banks}. Entretanto, todas as interações entre as
+instâncias devem ser organizadas conforme o fluxo proposto na figura
+\ref{fig:simflow}. O componente responsável por orquestrar estas interações e
+garantir o fluxo de execução é representado pela classe \textit{Simulator}.
+
+Esta classe não possui atributos ou métodos específicos; somente as instâncias
+das outras classes e um método que realiza um laço indefinido, onde um evento é
+recuperado e notificado para os componentes reativos; estes, por sua vez,
+atualizam seu estado interno e agendam novos eventos; a simulação segue até que
+a condição de parada seja satisfeita. O algoritmo \ref{alg:sim} mostra um
+pseudo-código de como poderia ser este método de execução da simulação.
 
 \begin{figure}[htb!]
   \centering
