@@ -3,7 +3,7 @@
 Conforme visto na subseção \ref{subsec:simulation:components}, um sistema de
 simulação possui uma série de componentes conceituais, cada um com suas
 responsabilidades bem definidas. Para projetar um simulador, diversas abordagens
-e paradigmas poderíam ser aplicadas. Para o projeto do simulador de sistemas de
+e paradigmas poderiam ser aplicadas. Para o projeto do simulador de sistemas de
 elevadores deste estudo, doravante chamado apenas de simulador, optou-se pelo
 paradigma de \textit{Programação Orientada a Objetos}. Esta escolha se deu pelos
 seguintes motivos:
@@ -27,7 +27,7 @@ seguintes motivos:
 Nas próximas seções serão apresentadas as modelagens conceituais para o projeto
 do simulador de elevadores.
 
-\section{Eventos e tipos}
+\section{\label{sec:eventos-e-tipos}Eventos e tipos}
 
 A simulação de eventos discretos, como o próprio nome já diz, é orientada a
 eventos. Isso significa dizer que as alterações no estado do sistema ocorrerão
@@ -305,13 +305,19 @@ simulação, na ordem correta dos eventos.
 
 \section{\label{sec:model:generator}Criação}
 
-\textbf{TO-DO! TO-DO! TO-DO! TO-DO! TO-DO!}
+Como foi mostrado na Seção~\ref{sec:eventos-e-tipos}, há dois eventos possíveis:
+\textbf{chegada de passageiros} e \textbf{chegada de elevador a um andar}.
 
-\textbf{TO-DO! TO-DO! TO-DO! TO-DO! TO-DO!}
+A chegada de um elevador é um evento determinístico~-~sabe-se que o elevador
+viaja a uma velocidade constante e conhece-se sua agenda interna. Portanto o
+tempo entre um elevador sair de um andar e o evento deste chegar a outro andar é
+fixo. Isto é, para um elevador que leva $t$ segundos para se deslocar um andar,
+após sair de um andar $a_{0}$ no tempo $t_{0}$ e subir ou descer $a$ andares, o evento
+de chegar ao andar $a_{0} + a$ ocorrerá no tempo $t_{0} + at$.
 
-\textbf{TO-DO! TO-DO! TO-DO! TO-DO! TO-DO!}
+Já a chegada de passageiros segue modelos estocásticos, descritos na Seção~\ref{chap:input}.
 
-\textbf{TO-DO! TO-DO! TO-DO! TO-DO! TO-DO!}
+A Figura~\ref{fig:diagram:generator} mostra o diagrama UML da classe que gera eventos.
 
 \begin{figure}[htb!]
   \centering
