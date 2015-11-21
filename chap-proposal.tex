@@ -12,14 +12,14 @@ já existentes.
 Para realizar tais simulações, será modelado e desenvolvido um simulador de
 elevadores. Esta ferramenta irá expor uma \textit{Application Programming
 Interface} (API) com elementos que permitam ao usuário definir um cenário
-utilizando os parâmetros \textbf{F}, \textbf{E}, \textbf{C}, \textbf{P},
-\textbf{D} e \textbf{Pu}\footnote{Seção~\ref{section:scenarios}.}. Além disto, a
+utilizando os parâmetros \textbf{F}, \textbf{E}, \textbf{C}, \textbf{P} e
+\textbf{D}\footnote{Seção~\ref{section:scenarios}.}. Além disto, a
 API permitirá que o usuário selecione a estratégia a ser utilizada pelo sistema
 de controle de grupos de elevadores. Alternativamente, o usuário poderá utilizar
 suas próprias implementações.
 
 O simulador deverá fornecer como saída um relatório apresentando
-métricas\footnote{Seção \ref{section:data}.} de desempenho para sistemas de
+métricas\footnote{Seção~\ref{section:data}.} de desempenho para sistemas de
 controle de grupo de elevadores. Será possível simular uma estratégia em um
 conjunto de cenários ou comparar várias estratégias em um mesmo cenário. Estes
 dados darão base para análise e proposta de uma estratégia (ou um conjunto de
@@ -33,7 +33,38 @@ há um ganho significativo em se utilizar uma delas em prédios de baixo, médio
 grande porte, tanto residenciais quanto comerciais. As estratégias pretendidas
 são detalhadas a seguir.
 
-\section{\label{section:multiagentes}Sistemas multi-agentes}
+\section{\label{sec:proposal:planning}Planning}
+
+Os algoritmos de Planning se mostraram os mais promissores para a realização
+desta tarefa, dadas as limitações de tempo de desenvolvimento e a quantidade de
+dados disponíveis em sistemas reais de elevadores.
+
+Um algoritmo de planning, conforme descrito na Seção~\ref{sec:ai:planning},
+utiliza uma função de custo (descrito na
+Seção~\ref{sec:ai:minimize-cost-function}) e tenta encontrar uma seqüência de
+eventos que gere a menor soma de custos. Estes eventos podem ser quaisquer
+eventos que o sistema tenha controle. No caso de sistemas de elevadores, é
+possível controlar, por exemplo, qual elevador atenderá qual chamado em uma
+fila. Levando-se em conta os dados disponíveis no momento e, talvez, fazendo
+inferências a respeito de outros, calcula-se o custo por alguns passos no futuro
+(por exemplo, atendendo vários eventos da fila). Um exemplo claro deste
+comportamento pode ser visto na Seção~\ref{sec:ai:planning}.
+
+O algoritmo de Planning será comparado com os comportamentos mais triviais, como
+os descritos nas Seções~\ref{sec:ai:nn}~e~\ref{sec:ai:nnm}. Além disto, a
+comparação de diferentes funções de custo e diferentes
+horizontes\footnote{Horizonte é a quantidade de passos no futuro que o algoritmo
+prevê. Mais detalhes podem ser vistos na Seção~\ref{sec:ai:planning}.} será
+feita, avaliando quão vantajosa é a implementação de um destes algoritmos,
+comparado com a implementação dos algoritmos triviais.
+
+
+\section{\label{sec:proposal:out-of-scope}Técnicas Fora do Escopo}
+
+Duas técnicas princiais estão fora do escopo deste trabalho, por motivos de
+limitação de tempo. No entanto, sua abordagem seria interessante.
+
+\subsection{\label{section:multiagentes}Sistemas multi-agentes}
 
 Um \textit{agente} é um sistema computacional que está situado em um \textit{ambiente} e é capaz de tomar \textit{ações autônomas} neste ambiente de modo a atingir seus \textit{objetivos}~\cite{Woolridge:2001:IMS:559667}. Ou seja, dadas as condições do ambiente (entradas), o agente é capaz de decidir qual ação tomar (saídas). Logo, qualquer \textit{sistema de controle} pode ser considerado um agente.
 
@@ -54,7 +85,7 @@ descentralizado, removendo toda a tarefa de coordenação do EGCS e trazendo-a
 para dentro dos elevadores, onde cada um é um agente inteligente. Portanto,
 julga-se que uma modelagem multi-agentes pode ser interessante no contexto.
 
-\section{\label{section:machinelearning}Aprendizado de máquina}
+\subsection{\label{section:machinelearning}Aprendizado de máquina}
 
 As técnicas de aprendizado de máquina são especialmente interessantes para a
 solução deste problema por lidarem dinamicamente com a mudança de comportamento
