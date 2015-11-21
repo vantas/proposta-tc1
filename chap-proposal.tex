@@ -35,29 +35,28 @@ são detalhadas a seguir.
 
 \section{\label{sec:proposal:planning}Planning}
 
-Os algoritmos de Planning se mostraram os mais promissores para a realização
-desta tarefa, dadas as limitações de tempo de desenvolvimento e a quantidade de
-dados disponíveis em sistemas reais de elevadores.
+Os algoritmos de \textit{planning} se mostraram os mais promissores para a
+realização desta tarefa, dadas as limitações de tempo de desenvolvimento e a
+quantidade de dados disponíveis em sistemas reais de elevadores.
 
-Um algoritmo de planning, conforme descrito na Seção~\ref{sec:ai:planning},
-utiliza uma função de custo (descrito na
-Seção~\ref{sec:ai:minimize-cost-function}) e tenta encontrar uma seqüência de
+Um algoritmo de \textit{planning}, conforme descrito na
+seção~\ref{sec:ai:planning}, utiliza uma função de custo (descrito na
+seção~\ref{sec:ai:minimize-cost-function}) e tenta encontrar uma seqüência de
 eventos que gere a menor soma de custos. Estes eventos podem ser quaisquer
 eventos que o sistema tenha controle. No caso de sistemas de elevadores, é
 possível controlar, por exemplo, qual elevador atenderá qual chamado em uma
 fila. Levando-se em conta os dados disponíveis no momento e, talvez, fazendo
 inferências a respeito de outros, calcula-se o custo por alguns passos no futuro
 (por exemplo, atendendo vários eventos da fila). Um exemplo claro deste
-comportamento pode ser visto na Seção~\ref{sec:ai:planning}.
+comportamento pode ser visto na seção~\ref{sec:ai:planning}.
 
-O algoritmo de Planning será comparado com os comportamentos mais triviais, como
-os descritos nas Seções~\ref{sec:ai:nn}~e~\ref{sec:ai:nnm}. Além disto, a
-comparação de diferentes funções de custo e diferentes
+O algoritmo de \textit{planning} será comparado com os comportamentos mais
+triviais, como os descritos nas seções~\ref{sec:ai:nn}~e~\ref{sec:ai:nnm}. Além
+disto, a comparação de diferentes funções de custo e diferentes
 horizontes\footnote{Horizonte é a quantidade de passos no futuro que o algoritmo
-prevê. Mais detalhes podem ser vistos na Seção~\ref{sec:ai:planning}.} será
+prevê. Mais detalhes podem ser vistos na seção~\ref{sec:ai:planning}.} será
 feita, avaliando quão vantajosa é a implementação de um destes algoritmos,
 comparado com a implementação dos algoritmos triviais.
-
 
 \section{\label{sec:proposal:out-of-scope}Técnicas Fora do Escopo}
 
