@@ -244,36 +244,41 @@ elevador ($e$) e o número do andar onde a chamada foi originada ($p$).
 
 \section{\label{sec:ai:planning}Planning}
 
-% TODO: essa explicação pode melhorar ainda
+A idéia do algoritmo de \textit{planning} é estender o de função de custo. Neste
+algoritmo, é realizada a expansão no espaço de estados em uma árvore de
+decisões, realizando-se a valoração da função de custos para vários passos no
+futuro~\cite{Koehler00elevatorcontrol}, como em um jogo de xadrez. Em cada nodo
+desta árvore de decisões (figura~\ref{fig:planning}) é feita a pergunta:
+\textit{qual elevador deve atender a próxima chamada}?
 
-A idéia do algoritmo de \textit{planning} é estender o de função de custo,
-calculando-a para vários passos no futuro~\cite{Koehler00elevatorcontrol}~-~como
-em um jogo de xadrez. Busca-se o caminho cuja soma tem o menor custo total
-depois de vários passos.
+A expansão da árvore pode ocorrer diversas vezes, fazendo com que a árvore de
+decisões possua múltiplos níveis. No fim desta expansão, que se dá quando
+determinada condição é observada, é realizado o somatório, à partir da raiz até
+cada folha da árvore, dos custos calculados. No fim destes somatórios, o
+algoritmo toma a decisão pelo ramo com menor custo (à partir da raiz). Assim,
+avança-se um passo na simulação e executa-se o algoritmo novamente.
 
-Há duas alternativas para esta árvore de decisões: a decisão pode ser ``qual
-elevador deve atender a próxima chamada'' (figura~\ref{fig:planning}),
-ou ``qual chamada deve ser atendida por qual elevador''. % TODO: Esta ilustração
-
-O horizonte de cálculo deve ser selecionado, dado que é um fator limitante no
-tamanho do cálculo do algoritmo. Cada decisão diferente, para cada elevador, é
-um nodo novo na árvore. Ao escolher-se uma das alternativas (\textit{i.e.} a
-que, ao final de $x$ eventos no futuro tem a menor soma de custos), avança-se um
-passo na simulação e executa-se o algoritmo novamente.
+O parâmetro que limita a expansão da árvore é chamado de \textit{horizonte de
+cálculo}. O valor deste horizonte é arbitrário e representa o número de níveis
+da expansão. Em uma regra geral, quanto maior o horizonte de cálculo maior a
+chance do algoritmo tomar a melhor escolha. Porém, a complexidade de memória
+$O(N^{E})$, onde $N$ é o horizonte de cálculo e $E$ é o número de elevadores,
+é um fator limitador do horizonte de cálculo.
 
 Na figura~\ref{fig:planning}, vemos um exemplo hipotético de \textit{planning}
-sendo executado com horizonte 3 e dois elevadores. Para cada passo do algoritmo,
-a decisão a ser tomada é ``qual elevador deve atender a próxima chamada da
-fila?'', e, para isto, calcula-se a função de custo. O resultado da função pode
-ser visto entre parênteses em cada nodo da árvore da figura~\ref{fig:planning}.
+sendo executado com $N = 3$ e $E = 2$. Para cada nível da árvore a decisão a ser
+tomada é ``qual elevador deve atender a próxima chamada da fila?'', e, para
+isto, calcula-se a função de custo para cada elevador. O resultado da função
+pode ser visto entre parênteses em cada nodo da árvore da
+figura~\ref{fig:planning}.
 
 Ao atingir o horizonte (no caso da figura~\ref{fig:planning}, no nível 3 da
-árvore), soma-se os custos até lá (na figura~\ref{fig:planning}, os círculos
-abaixo do nível mais baixo indicam a soma dos custos). O caminho que leva ao
-menor custo total é o que deve ser tomado. No exemplo da
-figura~\ref{fig:planning}, o elevador $E2$ atenderá a primeira e a segunda
-chamadas da fila, e então o elevador $E1$ atenderá a terceira chamada, como pode
-ser visto pelo caminho destacado.
+árvore), soma-se os custos até cada folha (na figura~\ref{fig:planning}, os
+círculos abaixo do nível mais baixo representam a soma dos custos até aquela
+folha). O caminho que leva ao menor custo total é o que deve ser tomado. No
+exemplo da figura~\ref{fig:planning}, o elevador $E2$ atenderá a primeira e a
+segunda chamadas da fila, e então o elevador $E1$ atenderá a terceira chamada,
+como pode ser visto pelo caminho destacado.
 
 \begin{figure}[htb!]
   \centering
