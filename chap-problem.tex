@@ -40,7 +40,7 @@ minimamente, pelas seguintes informações:
   \item Para cada elevador:
   \begin{itemize}
     \item Um conjunto de \textbf{chamadas de cabine} solicitadas pelos
-          passageiros;
+          passageiros embarcados;
     \item O andar em que se encontra;
     \item Se está parado, subindo ou descendo;
     \item Sua lotação atual\footnote{A capacidade máxima \textbf{C} é uma
@@ -49,27 +49,29 @@ minimamente, pelas seguintes informações:
   \end{itemize}
 \end{itemize}
 
-Com base nestes dados o EGCS utiliza-se de algoritmos e técnicas para fornecer como
-saída:
+Com base nestes dados o EGCS utiliza-se de algoritmos e técnicas para fornecer
+como saída:
 
 \begin{itemize}
-  \item Para cada elevador:
+  \item Para uma nova \textbf{chamada de corredor}:
   \begin{itemize}
-    \item Uma \textbf{sequência de paradas} que aquele elevador deve realizar.
+    \item Qual elevador deverá atender esta chamada de modo a minimizar o tempo de espera.
   \end{itemize}
 \end{itemize}
 
-Existem eventos após os quais o EGCS deve recalcular as sequências de paradas
-dos elevadores de modo a atender as novas solicitações. Tais eventos são:
+Além disso, existem eventos após os quais o EGCS pode recalcular as sequências
+de paradas dos elevadores de modo a atender as novas solicitações. Tais eventos
+podem ser:
 
 \begin{itemize}
   \item Uma nova \textbf{chamada de corredor};
   \item Uma nova \textbf{chamada de cabine};
   \item Uma \textbf{parada realizada};
-  \item Um elevador torna-se ocioso, i.e.,~não possui mais paradas a realizar.
+  \item Um \textbf{elevador torna-se ocioso}, i.e.,~não possui mais paradas a realizar.
 \end{itemize}
 
-Para cada um destes eventos deve existir uma estampa de tempo associada para
+Para cada um destes tipos eventos devem existir estampas de tempo e informações
+adicionais associadas\footnote{Sobre o andar, o elevador e os passageiros.} para
 fins estatísticos e cálculos de métricas, conforme apresentado a seguir.
 
 \section{\label{section:data}Aquisição de Dados e Métricas}
@@ -93,28 +95,30 @@ projeto, antes da sua construção. Por exemplo, supondo que em um prédio de 10
 andares com 2 elevadores exista uma fila de 20 pessoas que desejam ir a andares
 variados do prédio; cada uma destas pessoas chegou à fila em um momento
 distinto; porém, a chamada de corredor foi realizada apenas pela primeira pessoa
-da fila. Como medir o tempo que cada passageiro ficou esperando pelo elevador ou
-levou para chegar ao seu destino? A modelagem do problema e simulação em
-ambiente computacional permitem obter dados que em um ambiente real seriam
-impossíveis ou muito caros de se conseguir. Tais dados podem compreender:
+da fila. Como medir o tempo que cada passageiro ficou esperando pelo elevador
+chegar, sendo que somente a primeira pessoa da fila interagiu diretamente com o
+sistema? Ou como medir o tempo que cada pessoa levou para chegar ao seu destino?
+A modelagem do problema e simulação em ambiente computacional permitem obter
+dados que em um ambiente real seriam impossíveis ou muito caros de se conseguir.
+Tais dados podem compreender:
 
 \begin{itemize}
   \item Para cada andar:
   \begin{itemize}
-    \item O conjunto dos passageiros que encontram-se esperando naquele andar;
+    \item Uma fila dos passageiros que encontram-se esperando naquele andar e querer subir;
+    \item Uma fila dos passageiros que encontram-se esperando naquele andar e querer descer;
   \end{itemize}
   \item Para cada passageiro:
   \begin{itemize}
-    \item A hora de sua chegada;
-    \item O andar de origem;
-    \item O andar de destino;
+    \item A hora de sua chegada na fila;
+    \item O seu andar de origem;
+    \item O seu andar de destino;
     \item A hora de embarque no elevador;
     \item A hora de desembarque no andar de destino;
   \end{itemize}
   \item Para cada elevador:
   \begin{itemize}
-    \item O conjunto dos passageiros que encontram-se dentro daquele elevador;
-    \item A hora em que partiu do lobby.
+    \item O conjunto dos passageiros que encontram-se dentro daquele elevador e suas informações associadas (vide item anterior).
   \end{itemize}
 \end{itemize}
 
@@ -131,11 +135,12 @@ de elevadores para avaliar o desempenho de seus sistemas podem ser calculadas:
 
   \item[WT]
   \textit{Waiting Time}, ou tempo de espera; está compreendido entre a
-  requisição por passageiro e o seu embarque em um elevador.
+  requisição por passageiro, ou sua chegada na fila, e o seu embarque em um
+  elevador.
 
   \item[JT]
   \textit{Journey Time}, ou tempo de jornada; está compreendido entre o embarque
-   de um passageiro em um elevador e o desembarque em seu destino.
+   de um passageiro em um elevador e o posterior desembarque em seu destino.
 
   \item[ST]
   \textit{System Time}, ou tempo de sistema; está compreendido entre entre a
@@ -162,12 +167,12 @@ diretamente à percepção que os passageiros possuem do sistema. É correto afi
 que o desejo de um passageiro é chegar no seu destino o mais rápido
 possível~-~ou seja, com o menor tempo de sistema possível. Normalmente, tempos
 de sistema menores relacionam-se com um alto HC\textsubscript{5\%}; porém,
-passageiros tendem a dar maior importância a um baixo tempo de espera do que a
-um baixo tempo de jornada~\cite{KOEHLEROTTIGER02}. Isto por que, uma vez dentro
-do elevador, o passageiro não se sente mais esperando: ele sente que já está
-sendo servido. Ainda assim, embora uma redução de 32 para 28 segundos de espera
-não seja considerada uma grande melhoria, é psicologicamente importante evitar
-esperas longas, i.e.,~60 segundos ou mais.
+passageiros tendem a dar maior importância a um baixo tempo de espera (WT) do
+que a um baixo tempo de jornada (JT) ~\cite{KOEHLEROTTIGER02}. Isto por que, uma
+vez dentro do elevador, o passageiro não se sente mais esperando: ele sente que
+já está sendo servido. Ainda assim, embora uma redução de 32 para 28 segundos de
+espera não seja considerada uma grande melhoria, é psicologicamente importante
+evitar esperas longas, i.e.,~60 segundos ou mais.
 
 \section{\label{section:scenarios}Cenários de Testes}
 
