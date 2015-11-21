@@ -34,8 +34,8 @@ selecionados para o desenvolvimento na segunda etapa deste trabalho.
 O algoritmo de \textit{Nearest Neighbour} é o mais ingênuo de todos, e servirá
 de base para a avaliação dos demais algoritmos.
 
-Seu funcionamento é trivial: o elevador mais próximo do chamado sempre
-atenderá este chamado~\cite{Friese20061908}.
+Seu funcionamento é trivial: o elevador mais próximo da chamada sempre
+atenderá esta chamada~\cite{Friese20061908}.
 
 Um dos problemas deste algoritmo é que ele pode causar muitas mudanças de
 direção de um elevador, o que acarreta um tempo de espera maior para os
@@ -51,10 +51,10 @@ Considere, por exemplo, o cenário da figura~\ref{fig:elevadores:nn:bad}.
 \end{figure}
 
 Caso o algoritmo de \textit{Nearest Neighbour} seja utilizado, o elevador $E1$
-seria selecionado para atender o pedido no sétimo andar. Isto é claramente ruim
+seria selecionado para atender a chamada no sétimo andar. Isto é claramente ruim
 para os passageiros deste elevador. Além disto, é possível notar que o elevador
 $E3$ já tinha uma parada programada no sétimo andar e seria possível atender
-este pedido sem alterar a agenda de nenhum elevador. O algoritmo de
+esta chamada sem alterar a agenda de nenhum elevador. O algoritmo de
 \textit{Nearest Neighbour}, no entanto, não leva em consideração estas informações.
 
 O único propósito deste algoritmo é servir de base de comparação com outros
@@ -65,10 +65,10 @@ mais triviais, o \textit{Nearest Neighbour Melhorado}.
 \section{\label{sec:ai:nnm}Nearest Neighbour Melhorado}
 
 Uma melhoria que pode ser feita ao algoritmo de \textit{Nearest Neighbour}
-é considerar o sentido em que o elevador está indo para atender o
-chamado~\cite{Friese20061908}. Isto implica em considerar-se agora
-a informação de sentido dos pedidos. É importante notar que ainda não se
-considera quantas pessoas fizeram um pedido~-~apenas sabe-se que há pedidos no
+é considerar o sentido em que o elevador está indo para atender a
+chamada~\cite{Friese20061908}. Isto implica em considerar-se agora
+a informação de sentido das chamadas. É importante notar que ainda não se
+considera quantas pessoas fizeram uma chamada~-~apenas sabe-se que há chamadas no
 andar, e como destinos tem-se ``para cima'', ``para baixo'' ou ambos.
 
 Este algoritmo resolve o problema de mudanças de direção que o algoritmo de
@@ -76,8 +76,8 @@ Este algoritmo resolve o problema de mudanças de direção que o algoritmo de
 
 Considere, novamente, o caso ilustrado pela figura~\ref{fig:elevadores:nn:bad}.
 Este algoritmo considerará apenas os elevadores que estão parados ou indo no
-sentido de onde o pedido se encontra. Neste caso, apenas os elevadores $E2$ e
-$E3$ serão considerados. O elevador $E3$ está mais próximo do pedido, então será
+sentido de onde a chamada se originou. Neste caso, apenas os elevadores $E2$ e
+$E3$ serão considerados. O elevador $E3$ está mais próximo da chamada, então será
 escolhido.
 
 No entanto, sua escolha para este trabalho também se dá para fim de comparação
@@ -89,8 +89,8 @@ algum tipo de melhora no tempo de resposta do sistema simulado, bem como a valid
 
 O primeiro algoritmo de IA a ser testado é simples: define-se uma
 função de custo, inerente a cada elevador, que descreve quão custoso
-é atender um pedido, comparado a não atendê-lo~\cite{Friese20061908}.
-A decisão de qual elevador é escolhido para atender o pedido é feita com base
+é atender uma chamada, comparado a não atendê-la~\cite{Friese20061908}.
+A decisão de qual elevador é escolhido para atender a chamada é feita com base
 em qual deles terá o menor valor da função de custo.
 
 Um exemplo de função de custo é:
@@ -103,17 +103,17 @@ Onde:
 \begin{itemize}
 \item \textbf{$e$} é o número do andar onde o elevador se encontra
 \item \textbf{$l$} é o percentual de lotação do elevador
-\item \textbf{$p$} é o número do andar onde o pedido se encontra
+\item \textbf{$p$} é o número do andar onde a chamada se originou
 \item \textbf{$\lambda$} é
   \begin{list}{$\circ$}{}
     \item zero, caso o programa atual do elevador faça com que ele passe por
       aquele andar
     \item $1$, caso o elevador não tenha um programa (\textit{i.e.},
-      ele esteja ocioso) ou o elevador esteja indo na direção do pedido.
-    \item $2$ caso ele mude de direção para atender este pedido.\footnote{Multiplica-se
-        a distância por dois pois é necessário ir até o andar do pedido e então
+      ele esteja ocioso) ou o elevador esteja indo na direção da chamada.
+    \item $2$ caso ele mude de direção para atender esta chamada.\footnote{Multiplica-se
+        a distância por dois pois é necessário ir até o andar da chamada e então
         voltar para o andar onde se estava anteriormente, para só então atender
-        o pedido.}
+        a chamada.}
   \end{list}
 \end{itemize}
 
@@ -121,7 +121,7 @@ Onde:
   \centering
   \includegraphics[scale=0.6]{img/elevator_example1.eps}
   \caption[Exemplo de sistema de 3 elevadores com 8 andares]{Exemplo de sistema
-    de 3 elevadores com 8 andares, com um pedido para descer a partir do oitavo
+    de 3 elevadores com 8 andares, com uma chamada para descer a partir do oitavo
     andar. A lotação dos elevadores está representada em percentual dentro
     deles, e seus programas são representados por setas.}
   \label{fig:elevadores-1}
@@ -136,7 +136,7 @@ de cada elevador. Nela, temos 3 elevadores:
 \item \textbf{$E_{3}$} no sétimo andar, com carga $90\%$ e um destino: o primeiro andar;
 \end{itemize}
 
-Sabemos que há um pedido no oitavo andar, para descer\footnote{Na
+Sabemos que há uma chamada no oitavo andar, para descer\footnote{Na
   figura~\ref{fig:elevadores-1}, representado pelo círculo com um \textbf{D}, de
 \textit{Down}.}.
 
@@ -168,13 +168,13 @@ Neste caso $l$ é $0.9$, pois sua lotação é $90\%$, e $\lambda$ é $2$, pois 
 $E_{3}$ deve subir do sétimo para o oitavo andar e descer novamente até o sétimo.
 
 Vemos que, para esta função de custo, neste sistema, é vantajoso mudar o sentido
-de $E_{1}$ para atender o chamado no oitavo andar, e depois continuar na direção original.
+de $E_{1}$ para atender a chamada no oitavo andar, e depois continuar na direção original.
 
 Várias funções de custo podem ser experimentadas e comparadas: outras funções de
 custo levariam em consideração mudanças de direção de viagem
 \footnote{\textit{e.g.}, pode ser vantajoso um elevador mudar de direção para
-  atender um pedido a um andar de distância, caso a alternativa seja fazer o
-  pedido esperar um deslocamendo de dezenas de andares de outro elevador.}, ou
+  atender uma chamada a um andar de distância, caso a alternativa seja fazer a
+  chamada esperar um deslocamendo de dezenas de andares de outro elevador.}, ou
 ainda tentar manter todos os custos o mais baixo possível, ao mesmo tempo que o
 mais próximos uns dos outros.
 
@@ -190,7 +190,7 @@ Para o exemplo da figura~\ref{fig:elevadores-1}, temos:
 \[J(1, 0.1, 8) = 0.1(1 \times (8-1))^2 = 6.4\]
 \[J(7, 0.9, 8) = 0.9(2 \times (8-7))^2 = 3.6\]
 
-Novamente, para esta função, o Elevador $E_{1}$ é eleito para atender o pedido.
+Novamente, para esta função, o Elevador $E_{1}$ é eleito para atender a chamada.
 
 \subsection{Algoritmo}
 
@@ -245,7 +245,7 @@ custo:
 \[J(e, p) = p - e\]
 
 Onde considera-se apenas $p - e$, que é a distância entre a posição atual do
-elevador ($e$) e o número do andar onde o pedido se encontra ($p$).
+elevador ($e$) e o número do andar onde a chamada foi originada ($p$).
 
 \section{Planning}
 
@@ -256,8 +256,8 @@ para vários passos no futuro~\cite{Koehler00elevatorcontrol}~-~como em um jogo 
 caminho cuja soma tem o menor custo total depois de vários passos.
 
 Há duas alternativas para esta árvore de decisões: a decisão pode ser ``qual
-elevador deve atender o próximo pedido'' (figura~\ref{fig:planning}),
-ou ``qual pedido deve ser atendido por qual elevador''. % TODO: Esta ilustração
+elevador deve atender a próxima chamada'' (figura~\ref{fig:planning}),
+ou ``qual chamada deve ser atendida por qual elevador''. % TODO: Esta ilustração
 
 O horizonte de cálculo deve ser selecionado, dado que é um fator limitante no
 tamanho do cálculo do algoritmo.
@@ -269,7 +269,7 @@ algoritmo novamente.
 
 Na figura~\ref{fig:planning}, vemos um exemplo hipotético de planning sendo executado com
 horizonte 3 e dois elevadores. Para cada passo do algoritmo, a decisão a ser
-tomada é ``qual elevador deve atender o próximo pedido da fila?'', e, para isto,
+tomada é ``qual elevador deve atender a próxima chamada da fila?'', e, para isto,
 calcula-se a função de custo. O resultado da função pode ser visto entre
 parênteses em cada nodo da árvore da figura~\ref{fig:planning}.
 
@@ -277,8 +277,8 @@ Ao encontrarmos o horizonte (no caso da figura~\ref{fig:planning}, no nível 3 d
 árvore), soma-se os custos até lá (na figura~\ref{fig:planning}, os círculos
 abaixo do nível mais baixo indicam a soma dos custos). O caminho que leva ao
 menor custo total é o que deve ser tomado. No exemplo da figura~\ref{fig:planning}, o
-elevador $E2$ atenderá o primeiro e o segundo chamados da fila, e então o
-elevador $E1$ atenderá o terceiro chamado, como pode ser visto pelo caminho destacado.
+elevador $E2$ atenderá a primeira e a segunda chamadas da fila, e então o
+elevador $E1$ atenderá a terceira chamada, como pode ser visto pelo caminho destacado.
 
 \begin{figure}[htb!]
   \centering
@@ -301,19 +301,19 @@ decisão, como proposto na Seção~\ref{sec:ai:minimize-cost-function}.
 \section{Planning Multi-Agente}
 
 Este algoritmo é uma extensão do algoritmo de Planning, onde, em vez de termos
-um processamento central que decide que um elevador deve atender o pedido, temos
-todos os elevadores calculando por conta própria se vale a pena atender um
-pedido ou não.
+um processamento central que decide que um elevador deve atender a chamada,
+temos todos os elevadores calculando por conta própria se vale a pena atender
+uma chamada ou não.
 
 A literatura neste tópico é ainda escassa. Um estudo deste tipo de
 comportamento seria interessante, mas dado o tempo disponível para a
 implementação e teste, possivelmente não será viável.
 
 Uma possível implementação deste tipo de algoritmo faria com que cada elevador
-avaliasse qual pedido, dentre os disponíveis, ele tomaria para si. Para evitar
+avaliasse qual chamada, dentre as disponíveis, ele tomaria para si. Para evitar
 que todos cheguem à mesma decisão, políticas de escalonamento podem ser
 escolhidas. Por exemplo, coloca-se os elevadores em uma fila circular. O
-primeiro elevador da fila roda seu algoritmo e calcula qual pedido deve tomar
+primeiro elevador da fila roda seu algoritmo e calcula qual chamada deve tomar
 para si. Ele vai, então, para o fim desta fila, e o próximo elevador toma a
 próxima decisão.
 
@@ -323,7 +323,7 @@ custo e planning, com variações no horizonte.
 \section{Políticas de Ociosidade}
 
 Há ainda um outro detalhe a ser considerado, que pode afetar o desempenho do
-sistema: o que um elevador deve fazer quando não há chamados para ele.
+sistema: o que um elevador deve fazer quando não há chamadas para ele.
 
 Há várias possibilidades para isto, e é interessante testar-se várias delas e
 comparar-se sua eficácia.
@@ -339,6 +339,6 @@ assim por diante.
 
 Há ainda a possibilidade de analisar-se os padrões de tráfego. Como sabe-se o
 histórico de chegadas de passageiros em cada andar, pode ser tomada a decisão de
-mandar elevadores ociosos para os andares onde é mais provável que algum novo
-pedido surja. No entanto, este tipo de comportamento está fora do escopo deste
+mandar elevadores ociosos para os andares onde é mais provável que alguma nova
+chamada surja. No entanto, este tipo de comportamento está fora do escopo deste
 trabalho, por motivos de limitação de tempo.
