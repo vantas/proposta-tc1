@@ -164,22 +164,24 @@ armazenados o seguinte conjunto de informações sobre a viagem (classe
 \newpage
 
 \begin{description}
-  \item[\texttt{origin}] \hfill \\ O andar de origem da viagem.
+  \item[\texttt{origin}] \hfill \\
+    O andar de origem da viagem.
 
   \item[\texttt{client}] \hfill \\
     O grupo de cliente, contendo o tamanho do grupo, a hora em que
     chegou à fila e o seu andar de destino.
 
   \item[\texttt{elevator}] \hfill \\
-    O elevador que transportou o grupo do andar origem ao andar destino.
+    O elevador que transportou o grupo do andar origem ao andar destino, junto
+    de sua ocupação no momento em que parou no andar para o desembarque.
 
   \item[\texttt{waitingTime}] \hfill \\
     O tempo que o grupo esperou na fila - ou seja, o tempo compreendido entre a
-  chegada do grupo na fila e o seu embarque no elevador.
+    chegada do grupo na fila e o seu embarque no elevador.
 
   \item[\texttt{journeyTime}] \hfill \\
-    O tempo que o grupo esperou na fila - ou seja, o tempo compreendido entre
-    o embarque do grupo no elevador e o desembarque no andar destino.
+    O tempo de jornada do grupo - ou seja, o tempo compreendido entre o embarque
+    do grupo no elevador e o desembarque no andar destino.
 
   \item[\texttt{arrivalTime}] \hfill \\
     O horário em que o grupo desembarou no andar destino.
@@ -305,8 +307,9 @@ simulação, na ordem correta dos eventos.
 
 \section{\label{sec:model:generator}Criação}
 
-Como foi mostrado na Seção~\ref{sec:eventos-e-tipos}, há dois eventos possíveis:
-\textbf{chegada de passageiros} e \textbf{chegada de elevador a um andar}.
+Como foi mostrado na Seção~\ref{sec:eventos-e-tipos}, há dois eventos onde há
+alteração no \textit{estado do sistema}: \textbf{chegada de passageiros} e
+\textbf{chegada de elevador a um andar}.
 
 A chegada de um elevador é um evento determinístico~-~sabe-se que o elevador
 viaja a uma velocidade constante e conhece-se sua agenda interna. Portanto o
@@ -367,6 +370,9 @@ execução.
 \newpage
 
 \subsection{Exemplo de Relatório}
+Com base nas informações estatísticas, pretende-se a obtenção de um relatório
+sumarizando e detalhando diversas informações com aproximadamente o
+\textit{layout} a seguir:
 
 \begin{lstlisting}
 Título:       Prédio comercial de tamanho médio
@@ -374,18 +380,26 @@ Andares:      99
 Elevadores:   99
 Carga máxima: 99
 Algoritmo:    Planning (horizonte 9)
----------------------------------------------------
+---------------------------------------------------------
 Período simulado: 99 horas
 Horário inicial:  00:00:00
 Horário final:    23:59:59
----------------------------------------------------
-Passageiros transportados: 99
+---------------------------------------------------------
+Passageiros transportados: 9999
 Total de paradas: 999
 
        Total    Média   Desvio
 AWT    99999    99999    99999
 AJT    99999    99999    99999
----------------------------------------------------
+---------------------------------------------------------
+              Tempo em  Tempo     Total         Ocupação
+              viagem    Ocioso    Passageiros   Média
+Elevador 1    99%       99%       999           99%
+Elevador 2    99%       99%       999           99%
+Elevador 3    99%       99%       999           99%
+...
+Elevador 99   99%       99%       999           99%
+---------------------------------------------------------
 Simulação executada em 99:99:99.
 \end{lstlisting}
 
