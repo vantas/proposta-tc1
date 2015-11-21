@@ -174,60 +174,6 @@ já está sendo servido. Ainda assim, embora uma redução de 32 para 28 segundo
 espera não seja considerada uma grande melhoria, é psicologicamente importante
 evitar esperas longas, i.e.,~60 segundos ou mais.
 
-\section{\label{section:scenarios}Cenários de Testes}
-
-Pode-se dizer que cada prédio é um cenário em potencial no contexto deste
-trabalho. Alguns dos principais atributos que podem ser utilizados para definir
-um cenário são:
-
-\begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Pu}]
-  \item[F]
-  Número total de andares do prédio.
-  \item[E]
-  Número total de elevadores que compõem o sistema.
-  \item[C]
-  Capacidade\footnote{Como efeito de redução de escopo, consideram-se todos os
-  elevadores de um mesmo sistema como tendo a mesma capacidade.} (em número de
-  pessoas\footnote{Considerando uma pessoa com peso médio de 70 kg.}) máxima de
-  passageiros que cada elevador é capaz de transportar.
-  \item[P]
-  População total do prédio.
-  \item[D]
-  Função de distribuição de probabilidade de chegada/saída de passageiros.
-  \item[Pu]
-  Propósito do prédio: \textit{residencial} (com baixo fluxo entre os andares superiores), \textit{comercial com múltiplas empresas} (com médio fluxo entre andares superiores) ou \textit{comercial
-    com única empresa} (com alto fluxo entre andares superiores).\footnote{O
-    propósito do prédio é diretamente relacionado com \textbf{D}. É listado para
-  fins didáticos, principalmente.}
-\end{description}
-
-Logo, há tantos cenários possíveis quanto há prédios ao redor do mundo. Vamos
-limitar os cenários em algumas categorias. A escolha destas divisões segue a
-classificação\cite{Emporis15} sugerida pela empresa \textbf{Emporis GmbH}, uma
-empresa de mineração de dados sobre imóveis com sede em Frankfurt, exceto pelo
-limite inferior de 4 andares devido à exigência legal do município de Porto
-Alegre\footnote{http://www2.portoalegre.rs.gov.br/netahtml
-/sirel/atos/Lei\%201344} onde prédios deste tamanho ou maiores (mas não menores
-que isto) de serem construídos com elevadores. O limite superior\footnote{O
-maior arranha-céu do mundo em 2015 é o Burj Khalif, localizado em Dubai, com
-mais de 800m de altura distribuídos em 160 andares habitáveis.} fica em aberto.
-
-Os cenários são definidos na tabela \ref{tab:cenarios}.
-
-\begin{table}[htb!]
-\centering
-\caption{Cenários de Testes}
-\label{tab:cenarios}
-\begin{tabular}{|c|c|c|c|c|c|}
-\hline
-{\bf Cenário} & {\bf Altura} & {\bf F}  & {\bf E} & {\bf C} & {\bf P por andar}
-\\ \hline
-{\it Low-rise}   & menor que 35 m    & 4 a 11         & 1  & 6  & 20 \\ \hline
-{\it High-rise}  & entre 35 e 100 m  & 12 a 39        & 5  & 10 & 40 \\ \hline
-{\it Skyscraper} & maior que 100 m   & a partir de 40 & 10 & 12 & 60 \\ \hline
-\end{tabular}
-\end{table}
-
 \section{\label{section:difficulties}Situações fora do escopo deste trabalho}
 
 Existem fatores humanos cujas ocorrências geram situações especiais que aumentam
