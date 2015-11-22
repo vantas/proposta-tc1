@@ -331,26 +331,68 @@ A figura~\ref{fig:diagram:generator} mostra o diagrama UML da classe que gera ev
 
 \subsection{\label{chap:input}Entrada de Distribuição de Probabilidade}
 
-\textbf{TO-DO! TO-DO! TO-DO! TO-DO! TO-DO!}
+Segundo~\cite{Ross:2006:IPM:1197141}, a taxa de chegada de clientes é um
+processo de Poisson, com razão $\lambda$. Ou seja, o tempo entre novos clientes
+são variáveis exponenciais independentes, com valor esperado
+$\frac{1}{\lambda}$. Esta distribuição varia de acordo com a hora do dia. Por
+exemplo, nos horários do início do turno da manhã e no início do turno da tarde,
+muito mais passageiros chegam ao térreo, com destino ao andar onde trabalham.
 
-\textbf{TO-DO! TO-DO! TO-DO! TO-DO! TO-DO!}
+A distribuição de Poisson é dada na seguinte forma:
 
-\textbf{TO-DO! TO-DO! TO-DO! TO-DO! TO-DO!}
+\[f(k,\lambda) = \frac{\lambda^{k}e^{-k}}{k!}\]
 
-\textbf{TO-DO! TO-DO! TO-DO! TO-DO! TO-DO!}
+onde $X$ é uma variável aleatória com distribuição de Poisson, $\lambda$ é o
+valor esperado e a variância de $X$ e $k$ é um inteiro não-negativo que, no caso
+deste sistema, representa um momento do dia.
 
-Segundo~\cite{Ross:2006:IPM:1197141}, bla bla bla whiskas sachê.
+Pode-se ver na Figura~\ref{fig:distribution:poisson} um exemplo de diferentes
+valores de $\lambda$ gerando diferentes distribuições.
 
-Aqui vamos apresentar:
+\begin{figure}[htb!]
+  \centering
+  \includegraphics[scale=1.0]{img/poisson.eps}
+  \caption{Exemplo de distribuições de Poisson.}
+\label{fig:distribution:poisson}
+\end{figure}
 
-\begin{itemize}
-\item Conceitos sobre distribuições de probabilidade;
-\item Conceitos sobre geração de variáveis aleatórias em ambiente computacional;
-\item Descrever o modelo selecionado de processo de chegada de clientes
-(passageiros);
-\item Algoritmos e fluxogramas dos eventos do simulador que causarão alterações
-no estado do sistema.
-\end{itemize}
+Já a probabilidade de um cliente ir de um andar para outro, em um tráfego
+chamado de \textit{interfloor}, é um processo de Markov, com distribuições
+normais que variam de acordo com a hora do dia.
+
+Uma cadeia de Markov, utilizada para representar este processo, é por sua vez
+representada por uma matriz de probabilidades. No caso deste sistema, tem-se uma
+função com distribuição normal (\textit{i.e.} uma média e um desvio padrão) que
+varia de acordo com o horário do dia, para cada posição desta matriz.
+
+Um exemplo de matriz para um prédio de 3 andares é:
+
+\[
+  \begin{bmatrix}
+    f_{11} & f_{12} & f_{13} \\
+    f_{21} & f_{22} & f_{23} \\
+    f_{31} & f_{32} & f_{33}
+  \end{bmatrix}
+\]
+
+Onde cada valor é uma função $f(t)$, com $t$ sendo o momento do dia e resultando
+em um valor de média e um valor de desvio padrão para a distribuição naquele
+momento. Cada função descreve a probabilidade de um cliente estar em um andar e
+desejar ir para outro. Por exemplo, $f_{31}$ descreve a probabilidade de um
+cliente estar no terceiro andar e desejar descer para o primeiro.
+
+Além disto, a diagonal principal (\textit{i.e} $f_{11}$, $f_{22}$ e
+$f_{33}$) é sempre zero, já que não faz sentido um cliente desejar ir para o
+mesmo andar em que se encontra.
+
+Esta cadeia de Markov pode ser vista na Figura~\ref{fig:distribution:markov}.
+
+\begin{figure}[htb!]
+  \centering
+  \includegraphics[scale=0.6]{img/markov.eps}
+  \caption{Exemplo de cadeia de Markov para um prédio de 3 andares.}
+\label{fig:distribution:markov}
+\end{figure}
 
 \section{\label{sec:model:report}Geração de relatórios}
 
