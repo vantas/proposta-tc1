@@ -40,8 +40,6 @@ do evento; (2) o horário agendado para a ocorrência do evento; (3) um cliente
 informações para os itens (3), (4) e (5) dependem do tipo de evento, que pode
 ser uma das seguintes opções:
 
-\newpage
-
 \begin{description}
   \item[Chegada de grupo de clientes] \hfill \ um grupo de clientes chegou na fila de um andar.
   \item[Chegada de elevador] \hfill \ um elevador chegou a um andar e abriu as portas.
@@ -145,7 +143,7 @@ consulta (\texttt{currentTime}), atualização para um valor arbitrário
 \label{fig:diagram:timer}
 \end{figure}
 
-\subsection{Contadores Estatísticos}
+\subsection{Contadores estatísticos}
 
 Os \textit{contadores estatísticos} da simulação são responsáveis por coletar e
 sumarizar dados do sistema durante toda a execução da simulação. Sua existência
@@ -160,8 +158,6 @@ permite realizar análises mais ricas, fornecendo informações como desvios, po
 exemplo. Portanto, para cada grupo de clientes transportados pelo sistema serão
 armazenados o seguinte conjunto de informações sobre a viagem (classe
 \textit{Travel}):
-
-\newpage
 
 \begin{description}
   \item[\texttt{origin}] \hfill \\
@@ -307,7 +303,7 @@ simulação, na ordem correta dos eventos.
 
 \section{\label{sec:model:generator}Criação}
 
-Como foi mostrado na Seção~\ref{sec:eventos-e-tipos}, há dois eventos onde há
+Como foi mostrado na seção~\ref{sec:eventos-e-tipos}, há dois eventos onde há
 alteração no \textit{estado do sistema}: \textbf{chegada de passageiros} e
 \textbf{chegada de elevador a um andar}.
 
@@ -318,7 +314,7 @@ fixo. Isto é, para um elevador que leva $t$ segundos para se deslocar um andar,
 após sair de um andar $a_{0}$ no tempo $t_{0}$ e subir ou descer $a$ andares, o evento
 de chegar ao andar $a_{0} + a$ ocorrerá no tempo $t_{0} + at$.
 
-Já a chegada de passageiros segue modelos estocásticos, descritos na Seção~\ref{chap:input}.
+Já a chegada de passageiros segue modelos estocásticos, descritos na seção~\ref{chap:input}.
 
 A figura~\ref{fig:diagram:generator} mostra o diagrama UML da classe que gera eventos.
 
@@ -329,7 +325,7 @@ A figura~\ref{fig:diagram:generator} mostra o diagrama UML da classe que gera ev
 \label{fig:diagram:generator}
 \end{figure}
 
-\subsection{\label{chap:input}Entrada de Distribuição de Probabilidade}
+\subsection{\label{chap:input}Entrada de distribuição de probabilidade}
 
 Segundo~\cite{Ross:2006:IPM:1197141}, a taxa de chegada de clientes é um
 processo de Poisson, com razão $\lambda$. Ou seja, o tempo entre novos clientes
@@ -409,9 +405,7 @@ execução.
 \label{fig:diagram:report}
 \end{figure}
 
-\newpage
-
-\subsection{Exemplo de Relatório}
+\subsection{Exemplo de relatório}
 Com base nas informações estatísticas, pretende-se a obtenção de um relatório
 sumarizando e detalhando diversas informações com aproximadamente o
 \textit{layout} a seguir:
@@ -463,7 +457,7 @@ pseudo-código de como poderia ser este método de execução da simulação.
 \begin{figure}[htb!]
   \centering
   \includegraphics[scale=0.6]{img/Simulator.eps}
-  \caption{Diagrama de Classes do Simulador}
+  \caption{Diagrama de classes do simulador}
 \label{fig:diagram:simulator}
 \end{figure}
 
@@ -486,10 +480,10 @@ pseudo-código de como poderia ser este método de execução da simulação.
 \end{algorithmic}
 \end{center}
 \caption
-   {\label{alg:sim}Algoritmo de Simulação}
+   {\label{alg:sim}Algoritmo de simulação.}
 \end{algorithm}
 
-\section{\label{section:scenarios}Cenários de Testes}
+\section{\label{section:scenarios}Cenários de testes}
 
 Pode-se dizer que cada prédio é um cenário em potencial no contexto deste
 trabalho. Os atributos que podem ser utilizados para definir um cenário são:
@@ -526,7 +520,7 @@ de elevadores limítrofes estabelecidas de forma arbitrária.
 
 \begin{table}[htb!]
 \centering
-\caption{Categorias de Cenários de Testes}
+\caption{Categorias de cenários de testes.}
 \label{tab:cenarios}
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
