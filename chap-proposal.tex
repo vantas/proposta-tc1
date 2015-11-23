@@ -64,201 +64,101 @@ prevê. Mais detalhes podem ser vistos na seção~\ref{sec:ai:planning}.} será
 feita, avaliando quão vantajosa é a implementação de um destes algoritmos,
 comparado com a implementação dos algoritmos triviais.
 
-\section{\label{sec:proposal:out-of-scope}Técnicas fora do escopo}
 
-Duas técnicas princiais estão fora do escopo deste trabalho, por motivos de
-limitação de tempo. No entanto, sua abordagem seria interessante.
+\section{\label{chap:related}Trabalhos Relacionados}
 
-\subsection{\label{section:multiagentes}Sistemas multi-agentes}
+Alguns trabalhos já abordaram a temática de Inteligência Artificial aplicada a
+elevadores. Abaixo descrevemos alguns que relacionaram-se e guiaram este estudo.
 
-Um \textit{agente} é um sistema computacional que está situado em um \textit{ambiente} e é capaz de tomar \textit{ações autônomas} neste ambiente de modo a atingir seus \textit{objetivos}~\cite{Woolridge:2001:IMS:559667}. Ou seja, dadas as condições do ambiente (entradas), o agente é capaz de decidir qual ação tomar (saídas). Logo, qualquer \textit{sistema de controle} pode ser considerado um agente.
+\subsection{\label{section:koehler}An AI-based Approach to Destination Control in
+Elevators~\cite{KOEHLEROTTIGER02}}
 
-Além disto, estes agentes podem ser inteligentes. A inteligência de um agente pode ser classificada das seguintes formas:
+O artigo descreve o problema de despachar elevadores para atender chamadas de
+modo a minimizar o tempo de espera e o classifica como NP-difícil. Também fala
+das tentativas feitas de se contar os passageiros que estão esperando, bem como
+os padrões de tráfego dos mesmos. O artigo segue descrevendo o histórico de
+pesquisa em Inteligência Artificial aplicada a elevadores, passando por
+lógica~\textit{fuzzy} e redes~neurais.
 
-\begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Pró-ativa}]
-  \item[Reativa]    O agente percebe o ambiente e responde à mudanças no estado
-                    do sistema de forma a atingir seus objetivos;
-  \item[Pró-ativa]  Ao agente é permitida a iniciativa para tomar ações sem que
-                    necessariamente ocorra uma mudança no ambiente
-                    anterioremente;
-  \item[Social]     Os agentes são capazes de interagir entre si de modo a
-                    atingirem seus objetivos.
-\end{description}
+Além disso, segundo este artigo, algoritmos genéticos foram utilizados para
+definir zonas de atuação de elevadores, onde, por exemplo, um elevador só irá
+atender do sétimo ao décimo quarto andares, e isto seria ajustado dinamicamente.
 
-Estes conceitos podem ser aplicados a um sistema de controle de elevadores
-descentralizado, removendo toda a tarefa de coordenação do EGCS e trazendo-a
-para dentro dos elevadores, onde cada um é um agente inteligente. Portanto,
-julga-se que uma modelagem multi-agentes pode ser interessante no contexto.
+Outra alternativa apresentada pelo artigo é a de controle de destino, onde o
+destino do passageiro é selecionado do lado de fora do elevador, em vez de
+apenas uma indicação de direção de viagem. Isto permite, segundo o artigo, um
+planejamento melhor da alocação dos carros, mas tem a desvantagem de não poder
+ser facilmente integrado a sistemas existentes, já que exige que painéis novos e
+mais caros sejam instalados em todos os andares. No entanto, o sistema  está
+instalado em mais de 1500 elevadores~\cite{KOEHLEROTTIGER02} e obtém resultados
+muito bons, utilizando algoritmos de alocação heurística para atingir um valor
+duas vezes maior para o HC\textsubscript{5\%} do que quando não utilizado.
 
-\subsection{\label{section:machinelearning}Aprendizado de máquina}
+Tanto o sistema de zonas de atuação quanto o de controle de destino têm a
+desvantagem de onerar o usuário. O potencial passageiro deve atentar para qual
+elevador foi alocado para ele, no caso do controle de destino, ou qual elevador
+estará servindo o andar para qual deseja ir, no caso do sistema de zonas de
+atuação~\cite{KOEHLEROTTIGER02}.
 
-As técnicas de aprendizado de máquina são especialmente interessantes para a
-solução deste problema por lidarem dinamicamente com a mudança de comportamento
-do cenário~\cite{Russell:2003:AIM:773294}.
+\subsection{\label{section:marja}Elevator Group Control with Artificial
+Intelligence~\cite{marja97}}
 
-Entende-se que os padrões de tráfego de um prédio podem mudar ao longo do tempo,
-e isto pode alterar drasticamente os requisitos de alocação de elevadores. Por
-exemplo, uma nova empresa pode se instalar em um prédio comercial, utilizando
-dois andares. Subitamente, o tráfego~\textit{interfloor}\footnote{Tráfego entre
-andares, oposto a tráfego do \textit{lobby} para um andar ou de um andar para
-o \textit{lobby}.} se torna significativo em algumas horas do dia, quando antes
-era desprezível.
+O artigo  se preocupa em utilizar análise do comportamento passado do grupo de
+elevadores e, com base nessas estatísticas, aplicar lógica~\textit{fuzzy} para
+reconhecer padrões de tráfego.
 
-Além de lidarem bem com mudanças graduais, as tecnicas de aprendizado de máquina
-tendem a obter resultados melhores com o tempo, conforme vão descobrindo padrões
-existentes, mas que não foram anteriormente notados.
+Como principal variável observada, foi escolhido o número de passageiros que
+entram e que saem em cada andar. Para esta medida, foi utilizada a balança
+interna de cada carro, além do sensor da porta, que é normalmente utilizado para
+evitar fechar a porta com algum passageiro bloqueando a mesma~\cite{marja97}.
 
-\section{\label{chap:stages}Etapas do trabalho}
+Com base nestes dado e dividindo o dia em períodos de 15 minutos, este trabalho
+conseguiu explicar 97\% das mudanças de comportamento como padrões e, então,
+prevê-los e mudar o comportamento dos carros de acordo.
 
-O Trabalho de Conclusão é dividido em duas etapas distintas ao longo de dois
-semestres do curso de Ciência da Computação. Durante o primeiro semestre,
-envolve a contextualização na área de conhecimento para definir objetivos e
-elaborar uma fundamentação teórica e a modelagem do que se deseja implementar.
-Já a segunda etapa, durante o segundo semestre, envolve a implementação
-utilizando ferramentas de software e a análise dos resultados de modo a obter
-conclusões acerca dos objetivos definidos na primeira etapa~-~se foram atingidos
-e por quê.
+\subsection{\label{section:dblp}Marginalizing Out Future Passengers in Group
+Elevator Control~\cite{DBLP:journals/corr/abs-1212-2499}}
 
-Os objetivos do trabalho foram segmentados da seguinte forma:
+Neste artigo, o problema de designar elevadores para atender chamadas de
+passageiros e minimizando seu o tempo de espera é novamente definido como
+NP-difícil. Um modelo de como a chegada de novos passageiros ao \textit{lobby}
+afeta o tráfego e tempo de espera é definido e utilizado para reduzir o tempo de
+espera total dos passageiros.
 
-\begin{enumerate}
-  \item \textbf{Objetivos da Primeira Etapa}: fundamentação teórica e modelagem
-  \begin{enumerate}[label*=\arabic*.]
-    \item Estudo do funcionamento de elevadores e suas possibilidades de
-          comportamento;
-    \item Estudo de métodos de inteligência artificial utilizados em ou
-          propostos para elevadores;
-    \item Definição de objetivos e cenários de testes;
-    \item Estudo de padrões de projeto de simuladores;
-    \item Realização da modelagem do simulador de elevadores;
-  \end{enumerate}
-  \item \textbf{Objetivos da Segunda Etapa}: implementação, análise e conclusões
-  \begin{enumerate}[label*=\arabic*.]
-    \item Implementação do simulador;
-    \item Implementação de algoritmos de Inteligência Artificial;
-    \item Realização de simulações nos cenários pré-definidos;
-    \item Análise de resultados e tomada de conclusões.
-  \end{enumerate}
-\end{enumerate}
+Este artigo descreve os passageiros como um conjunto de três variáveis~-~horário
+de chegada, andar de chegada e destino. Também caracteriza a chegada de
+passageiros como um problema estocástico, que introduz incerteza no processo de
+decisão.
 
-\section{\label{section:schedule}Cronograma}
+O resultado do algoritmo~-~descrito em detalhe no artigo~-~é bastante
+promissor, reduzindo o tempo de espera dos passageiros entre 5\% e 55\%.
 
-A execução do trabalho será dividida em iterações de duas semanas, respeitando
-as etapas previamente definidas. Cada iteração terá um objetivo claramente
-definido, conforme ilustrado pela tabela~\ref{tab:cronograma}.
+\subsection{\label{section:art}Estado da Arte}
 
-\begin{table}[htb!]
-\centering
-\caption{Objetivos por iteração.}
-\label{tab:cronograma}
-\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-\cline{2-17}
-{\bf }                                & \multicolumn{2}{c|}{{\bf Ago/15}}             & \multicolumn{2}{c|}{{\bf Set/15}}             & \multicolumn{2}{c|}{{\bf Out/15}}             & \multicolumn{2}{c|}{{\bf Nov/15}}             & \multicolumn{2}{c|}{{\bf Mar/16}}             & \multicolumn{2}{c|}{{\bf Abr/16}} & \multicolumn{2}{c|}{{\bf Mai/16}} & \multicolumn{2}{c|}{{\bf Jun/16}} \\ \hline
-\multicolumn{1}{|c|}{{\bf Objetivo}}  & {\bf 1}               & {\bf 2}               & {\bf 3}               & {\bf 4}               & {\bf 5}               & {\bf 6}               & {\bf 7}               & {\bf 8}               & {\bf 9}               & {\bf 10}              & {\bf 11}        & {\bf 12}        & {\bf 13}        & {\bf 14}        & {\bf 15}        & {\bf 16}        \\ \hline
-\multicolumn{1}{|c|}{1.1}             & {\bf X}               & {\bf X}               &                       &                       &                       &                       &                       &                       &                       &                       &                 &                 &                 &                 &                 &                 \\ \hline
-\multicolumn{1}{|c|}{1.2}             &                       & {\bf X}               & {\bf X}               &                       &                       &                       &                       &                       &                       &                       &                 &                 &                 &                 &                 &                 \\ \hline
-\multicolumn{1}{|c|}{1.3}             &                       & {\bf X}               & {\bf X}               &                       &                       &                       &                       &                       &                       &                       &                 &                 &                 &                 &                 &                 \\ \hline
-\multicolumn{1}{|c|}{1.4}             &                       &                       &                       & {\bf X}               &                       &                       &                       &                       &                       &                       &                 &                 &                 &                 &                 &                 \\ \hline
-\multicolumn{1}{|c|}{1.5}             &                       &                       &                       &                       & {\bf X}               & {\bf X}               & {\bf X}               & {\bf X}               &                       &                       &                 &                 &                 &                 &                 &                 \\ \hline
-\multicolumn{1}{|c|}{2.1}             &                       &                       &                       &                       &                       &                       &                       &                       & {\bf X}               & {\bf X}               & {\bf X}         &                 &                 &                 &                 &                 \\ \hline
-\multicolumn{1}{|c|}{2.2}             &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       & {\bf X}         & {\bf X}         &                 &                 &                 &                 \\ \hline
-\multicolumn{1}{|c|}{2.3}             &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                 &                 & {\bf X}         & {\bf X}         &                 &                 \\ \hline
-\multicolumn{1}{|c|}{2.4}             &                       &                       &                       &                       &                       &                       &                       &                       &                       &                       &                 &                 &                 &                 & {\bf X}         & {\bf X}         \\ \hline
-\end{tabular}
-\end{table}
+O fabricante de elevadores alemão Schindler desenvolveu uma tecnologia batizada
+de \textit{PORT}, um acrônimo para \textit{Personal Occupant Requirement
+Terminal}, ou \textit{Terminal de Requisição de Ocupantes Pessoais} em uma
+tradução livre. De acordo com o fabricante, a tecnologia \textit{PORT}
+representa o estado da arte em sistemas de gerenciamento de elevadores, ao mesmo
+tempo em que reduz o consumo de energia a níveis nunca
+alcançados~\cite{Schindler14}.
 
-\section{\label{section:objectives}Detalhamento de objetivos}
+A tecnologia \textit{PORT} tem por objetivo analisar e prever a necessidade de
+cada passageiro de forma individual e personalizada. Os passageiros simplesmente
+encostam seus cartões de acesso em um terminal de leitura do sistema. Após, o
+usuário seleciona o seu andar de destino~-~tudo isso \textit{antes} de entrar no
+elevador. Neste momento, o sistema PORT calcula qual a rota mais rápida para o
+destino do passageiro e aloca um elevador específico para atender a solicitação.
 
-\subsection{Primeira etapa}
+Esta tecnologia traz uma mudança de paradigma muito grande, onde o passageiro
+informa seu destino antes de sequer embarcar em um elevador. Este simples fato
+enriquece muito o conjunto de informações com a qual o sistema trabalha e abre
+muitas possibilidades para novos produtos e serviços relacionados ao problema,
+como, por exemplo, agrupamento de passageiros, controle de acesso e outras.
 
-O objetivo da primeira etapa foi realizar a fundamentação teórica e produzir
-artefatos de modelagem de software. Os sub-objetivos da etapa são detalhados a
-seguir:
-
-  \setcounter{enumi}{1}
-    \begin{enumerate}[label*=\arabic*.]
-    \item Estudo do funcionamento de elevadores e suas possibilidades de
-          comportamento
-      \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Descrição}]
-        \item[Descrição] Pesquisa e leitura de artigos científicos e literatura
-                         especializada em elevadores; compreensão das
-                         necessidades, demandas e possibilidades da área;
-                         elaboração da introdução deste trabalho.
-        \item[Iterações] 1 e 2
-        \item[Período]   1 a 30 de agosto de 2015
-      \end{description}
-    \item Estudo de métodos de inteligência artificial utilizados em ou
-          propostos para elevadores;
-      \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Descrição}]
-        \item[Descrição] Pesquisa e leitura de artigos científicos que aplicaram
-                         conceitos e técnicas de Inteligência Artificial a
-                         elevadores; elaboração da descrição do problema deste
-                         trabalho.
-        \item[Iterações] 2 e 3
-        \item[Período]   15 de agosto a 15 de setembro de 2015
-      \end{description}
-    \item Definição de objetivos e cenários de testes;
-      \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Descrição}]
-        \item[Descrição] Definição dos objetivos das etapas deste trabalho;
-                         pesquisa de dados praticados na área para
-                         parametrização de cenários; definição dos cenários de
-                         testes.
-        \item[Iterações] 2 e 3
-        \item[Período]   15 de agosto a 15 de setembro de 2015
-      \end{description}
-    \item Estudo de padrões de projeto de simuladores;
-      \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Descrição}]
-        \item[Descrição] Pesquisa e estudo de \textit{patterns} e
-                         \textit{anti-patterns} já utilizados e validados
-                         para implementação de simuladores~\cite{Law,Banks,Sim}.
-        \item[Iterações] 4
-        \item[Período]   15 a 30 de setembro de 2015
-      \end{description}
-    \item Realização da modelagem do simulador de elevadores;
-      \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Descrição}]
-        \item[Descrição] Modelagem de um simulador de elevadores baseado no
-                         estudo realizado na iteração anterior e produção de
-                         artefatos de engenharia de software.
-        \item[Iterações] 5, 6, 7 e 8
-        \item[Período]   01 de outubro a 30 de novembro de 2015
-      \end{description}
-  \end{enumerate}
-
-\subsection{Segunda etapa}
-
-O objetivo da segunda etapa é colocar em prática a fundamentação teórica e modelagem construídas na primeira etapa do trabalho. Isso envolve a implementação dos componentes de software projetados, sua execução e análise dos resultados. Os sub-objetivos da etapa são detalhados a seguir:
-
-  \begin{enumerate}[label*=\arabic*.]
-    \item Implementação do simulador
-      \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Descrição}]
-        \item[Descrição] Definição de plataforma de desenvolvimento; escolha da
-                         linguagem de programação utilizada; desenvolvimento do
-                         simulador; desenvolvimento de testes unitários.
-        \item[Iterações] 9, 10 e 11
-        \item[Período]   01 de março a 15 de abril de 2016
-      \end{description}
-    \item Implementação de algoritmos de Inteligência Artificial
-      \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Descrição}]
-        \item[Descrição] Implementação das abordagens multi-agentes e
-                         aprendizado de máquina para utilização junto ao
-                         simulador implementado nas iterações anteriores.
-        \item[Iterações] 11 e 12
-        \item[Período]   01 de abril a 30 de abril de 2016
-      \end{description}
-    \item Realização de simulações nos cenários pré-definidos
-      \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Descrição}]
-        \item[Descrição] Simulações utilizando os algoritmos de Inteligência
-                         Artificial e levantamento de resultados.
-        \item[Iterações] 13 e 14
-        \item[Período]   01 de maio a 30 de maio de 2016
-      \end{description}
-    \item Análise de resultados e tomada de conclusões
-      \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries Descrição}]
-        \item[Descrição] Análise dos resultados das simulações e avaliação
-                         acerca das combinações de estratégias e cenários;
-                         proposta de estratégias mais adequadas; avaliação se
-                         os objetivos foram atingidos ou não.
-        \item[Iterações] 15 e 16
-        \item[Período]   01 de junho a 30 de junho de 2016
-      \end{description}
-  \end{enumerate}
+Entretanto, em seu site institucional o fabricante não dá mais detalhes sobre
+quais tecnologias e conceitos estão por trás deste produto. Para se ter uma
+noção mais apurada sobre isto é necessário elaborar uma pesquisa mais a fundo,
+buscando documentações relacionadas e possivelmente entrando em contato com o
+fabricante, pois não foram encontrados artigos e pesquisas científicas a
+respeito desta abordagem.
